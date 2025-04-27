@@ -1,0 +1,141 @@
+<form [formGroup]="workplaceDataForm" class="w-full max-w-[700px]">
+  <div class="flex flex-col w-full gap-[6px]">
+    <div class="flex flex-row gap-[16px] w-full">
+      <!-- Chamber id -->
+      <mat-form-field class="max-w-full">
+        <mat-label>ID komory</mat-label>
+        <mat-icon matTooltip="V prípade, že nemáte ID, tak vyplňte 4 nuly" matSuffix>info</mat-icon>
+        <input formControlName="chamberId" matInput type="text" />
+        <mat-error *ngIf="workplaceDataForm.controls['chamberId'].errors?.['required']">
+          ID komory je povinný údaj
+        </mat-error>
+      </mat-form-field>
+      <!-- NCZI Type -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Typ ZP podľa NCZI</mat-label>
+        <mat-select formControlName="medicTypeId">
+          @for (type of ncziTypes; track type.id) {
+          <mat-option [value]="type.id" class="!text-sm">{{
+            type.abbreviation + ' ' + type.name
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Medical expertise -->
+    <mat-form-field *ngIf="isMedicalExpertiseVisible$ | async" class="max-w-full">
+      <mat-label>Zdravotnícka odbornosť</mat-label>
+      <input type="text" matInput formControlName="medicalExpertise" [matAutocomplete]="auto" />
+      <mat-error *ngIf="workplaceDataForm.controls['medicalExpertise'].errors?.['required']">
+        Zdravotnícka odbornosť je povinný údaj
+      </mat-error>
+      <mat-error *ngIf="workplaceDataForm.controls['medicalExpertise'].errors?.['isDirty']">
+        Vyberte zo zoznamu
+      </mat-error>
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+        @for (option of medicalExptertiseSuggestions; track option) {
+        <mat-option [value]="option" class="!text-sm">{{
+          option.abbreviation + ' ' + option.name
+          }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <!-- Workplace full name -->
+    <mat-form-field class="max-w-full">
+      <mat-label>Názov pracoviska</mat-label>
+      <input required formControlName="workplaceFullName"
+        placeholder="Uveďte celý názov pracoviska bez použitia skratiek." matInput type="text" />
+      <mat-error *ngIf="
+          workplaceDataForm.controls['workplaceFullName'].errors?.['required']
+        ">
+        Názov pracoviska je povinný údaj
+      </mat-error>
+      <mat-error *ngIf="
+          workplaceDataForm.controls['workplaceFullName'].errors?.['minLength']
+        ">
+        Názov pracoviska musí mať aspoň 10 znakov
+      </mat-error>
+    </mat-form-field>
+    <div class="flex flex-row gap-[16px] w-full">
+      <!-- Workplace street -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Ulica pracoviska</mat-label>
+        <input formControlName="workplaceStreet" matInput autocomplete="address-line1" />
+        <mat-error *ngIf="
+            workplaceDataForm.controls['workplaceStreet'].errors?.['required']
+          ">
+          Ulica pracoviska je povinný údaj
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Workplace street number -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Číslo ulice pracoviska</mat-label>
+        <input formControlName="workplaceStreetNumber" matInput />
+        <mat-error *ngIf="
+            workplaceDataForm.controls['workplaceStreetNumber'].errors?.[
+              'required'
+            ]
+          ">
+          Číslo ulice pracoviska je povinný údaj
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Zipcode -->
+    <mat-form-field class="max-w-full">
+      <mat-label>PSČ, mesto pracoviska</mat-label>
+      <mat-icon matPrefix>place</mat-icon>
+      <input matInput #workplaceZipCodeInputNative formControlName="workplaceZipCode"
+        [matAutocomplete]="workplaceZipCodeSuggestionsAuto" />
+      <mat-error *ngIf="
+          workplaceDataForm.controls['workplaceZipCode'].errors?.['required']
+        ">
+        PSČ je povinný údaj
+      </mat-error>
+      <mat-autocomplete #workplaceZipCodeSuggestionsAuto="matAutocomplete"
+        (optionSelected)="onWorkplaceZipCodeSelected($event)">
+        <mat-option *ngFor="let option of workplaceZipCodeSuggestions" [value]="option" class="!text-sm">
+          {{ option.name + ', ' + option.zipCode }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <h3 class="text-center">Som zdravotnícky pracovník oprávnený predpisovať alebo vydávať lieky</h3>
+
+    <div class="flex flex-row gap-[16px]">
+      <!-- Yes -->
+      <mat-card
+        [ngClass]="{'profile-workplace-statement-selected':  workplaceDataForm.controls['canPrescribeMedication'].value}"
+        class="flex w-[140px] h-[140px] profile-workplace-statement-mat-card summeet-mat-card"
+        (click)="togglePrescription(true)">
+        <mat-card-content class="h-full">
+          <div class="flex flex-col items-center justify-between gap-[16px]">
+            <mat-icon class="profile-workplace-statement-big-icon" svgIcon="check-solid"></mat-icon>
+            <span class="text-xs">ÁNO</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- Not interested -->
+      <mat-card
+        [ngClass]="{'profile-workplace-statement-ban-selected': !workplaceDataForm.controls['canPrescribeMedication'].value}"
+        class="flex w-[140px] h-[140px] profile-workplace-statement-mat-card summeet-mat-card"
+        (click)="togglePrescription(false)">
+        <mat-card-content class="h-full">
+          <div class="flex flex-col items-center justify-between gap-[16px]">
+            <mat-icon class="profile-workplace-statement-big-icon-ban" svgIcon="ban-solid"></mat-icon>
+            <span class="text-xs">Nie</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="flex justify-center items-center my-[32px]">
+    <button [disabled]="workplaceDataForm.invalid" color="primary" mat-flat-button (click)="onSubmit()"
+      class="!rounded">
+      <mat-icon svgIcon="floppy-disk" class="!w-[20px] !h-[20px]"></mat-icon>
+      <span>Uložiť</span>
+    </button>
+  </div>
+</form>

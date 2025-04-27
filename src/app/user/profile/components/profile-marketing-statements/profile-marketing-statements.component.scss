@@ -1,0 +1,13 @@
+::ng-deep .profile-marketing-statements-toggle .mdc-switch {
+  transform: scale(0.6);
+  margin-right: 8px;
+}
+
+::ng-deep .mat-mdc-slide-toggle .mat-internal-form-field {
+  display: flex;
+  align-items: start;
+}
+
+::ng-deep .mat-internal-form-field > label {
+  padding-left: 0px !important;
+}

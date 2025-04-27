@@ -1,0 +1,3 @@
+echo "\033[1;35mHusky 🐺🐾 commit-msg: npx --no-install commitlint --edit "$1"\033[0m"
+
+npx --no-install commitlint --edit "$1"

@@ -1,0 +1,244 @@
+<div class="flex flex-col" class="main-content register-page-main-box">
+  <summeet-title-overlay [title]="'Registrácia a poplatky'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-row justify-center items-center mt-[60px]">
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Registration Term -->
+      <div *ngIf="registerPageData.conferenceRegisterTerm"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="calendar-day-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col w-[100%] gap-[16px]">
+          <h2 class="register-page-subtitle lt-sm:text-center">Termíny registrácie účasti na podujatí</h2>
+          <div class="register-table-box text-sm register-page-table"
+            [innerHTML]="registerPageData.conferenceRegisterTerm">
+          </div>
+        </div>
+      </div>
+
+      <!-- Active participation Term -->
+      <div *ngIf="registerPageData.activityRegisterTerm"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="calendar-day-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col w-[100%] gap-[16px]">
+          <h2 class="register-page-subtitle lt-sm:text-center">Termíny týkajúce sa aktívnej účasti na podujatí</h2>
+          <div class="text-sm register-page-table" [innerHTML]="registerPageData.activityRegisterTerm">
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Conditions -->
+      <div *ngIf="registerPageData.registrationConditions"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="memo-circle-check-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="register-page-subtitle lt-sm:text-center">Podmienky registrácie na podujatie</h2>
+          <div class="flex flex-1">
+            <summeet-shared-list-custom [data]="registerPageData.registrationConditions"></summeet-shared-list-custom>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Fee -->
+      <div *ngIf="registerPageData.registrationFee" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="ticket" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col w-[100%] gap-[16px]">
+          <h2 class="register-page-subtitle lt-sm:text-center">Poplatok za účasť na podujatí (registračný poplatok)</h2>
+          <div class="register-page-table">
+            <table class="text-sm">
+              <tr>
+                <th></th>
+                <th>
+                  <div><span>Skorá <br> registrácia </span><mat-icon class="material-icons"
+                      matTooltip="do 15.04.2025">info</mat-icon></div>
+                </th>
+                <th>
+                  <div><span>Neskorá <br> registrácia </span><mat-icon class="material-icons"
+                      matTooltip="od 16.04.2025 do 05.05.2025">info</mat-icon></div>
+                </th>
+                <th>
+                  <div><span>Registrácia <br> na mieste </span><mat-icon class="material-icons"
+                      matTooltip="od 22.05.2025 do 23.05.2025">info</mat-icon></div>
+                </th>
+              </tr>
+              <tr>
+                <td>Lekári</td>
+                <td>50 EUR</td>
+                <td>70 EUR</td>
+                <td>70 EUR</td>
+              </tr>
+              <tr>
+                <td>Zdravotné sestry</td>
+                <td>30 EUR</td>
+                <td>50 EUR</td>
+                <td>50 EUR</td>
+              </tr>
+              <tr>
+                <td>Medicínsko-technickí
+                  <br>pracovníci
+                </td>
+                <td>30 EUR</td>
+                <td>50 EUR</td>
+                <td>50 EUR</td>
+              </tr>
+              <!-- <tr>
+                <td>Iní zdravotnícki pracovníci</td>
+                <td>30 EUR</td>
+                <td>50 EUR</td>
+                <td>50 EUR</td>
+              </tr> -->
+              <tr>
+                <td>Zástupca partnera</td>
+                <td>80 EUR*</td>
+                <td>80 EUR*</td>
+                <td>80 EUR*</td>
+              </tr>
+              <!-- <tr>
+              <td>Zdravotná sestra</td>
+              <td>
+                <div class="pl-[25px]">
+                  <span>10 EUR </span><mat-icon class="material-icons"
+                    matTooltip="V cene registračného poplatku je zahrnutý obed dňa 07.06.2024. Večera dňa 07.06.2024 je spoplatnená sumou 10 EUR. Obed dňa 08.06.2024 je spoplatnený sumou 10 EUR."
+                    matTooltipClass="text-justify">info</mat-icon>
+                </div>
+              </td>
+              <td>
+                <div class="pl-[25px]">
+                  <span>10 EUR </span><mat-icon class="material-icons"
+                    matTooltip="V cene registračného poplatku je zahrnutý obed dňa 07.06.2024. Večera dňa 07.06.2024 je spoplatnená sumou 10 EUR. Obed dňa 08.06.2024 je spoplatnený sumou 10 EUR."
+                    matTooltipClass="text-justify">info</mat-icon>
+                </div>
+              </td>
+              <td>
+                <div class="pl-[25px]">
+                  <span>10 EUR </span><mat-icon class="material-icons"
+                    matTooltip="V cene registračného poplatku je zahrnutý obed dňa 07.06.2024. Večera dňa 07.06.2024 je spoplatnená sumou 10 EUR. Obed dňa 08.06.2024 je spoplatnený sumou 10 EUR."
+                    matTooltipClass="text-justify">info</mat-icon>
+                </div>
+              </td>
+            </tr> -->
+            </table>
+          </div>
+
+          <span class="text-sm" *ngIf="registerPageData.registrationFee.text"
+            [innerHTML]="registerPageData.registrationFee.text"></span>
+        </div>
+      </div>
+
+      <!-- Accommodation Fee -->
+      <div *ngIf="registerPageData.accommodationFee" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="money-bill-1-wave" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col w-[100%] gap-[16px]">
+          <h2 class="register-page-subtitle lt-sm:text-center">Poplatok za ubytovanie a stravu v Hotel Turiec</h2>
+          <div class="text-sm register-page-table" [innerHTML]="registerPageData.accommodationFee.table"></div>
+          <!-- <table class="text-sm">
+            <tr>
+              <th></th>
+              <th>07.-08.02.2025</th>
+              <th>08.-09.02.2025</th>
+            </tr>
+            <tr>
+              <td>Ubytovanie</td>
+              <td>bezplatne</td>
+              <td>bezplatne</td>
+            </tr>
+            <tr>
+              <td>Strava pri ubytovaní</td>
+              <td>bezplatne</td>
+              <td>bezplatne</td>
+            </tr>
+            <tr>
+              <td>Strava bez ubytovania</td>
+              <td>bezplatne</td>
+              <td>bezplatne</td>
+            </tr>
+            <tr>
+              <td>Zástupca partnera</td>
+              <td colspan="2">Ceny sú uvedené v Ponuke pre partnerov v časti Doplnkové služby</td>
+            </tr>
+          </table> -->
+          <span class="text-sm" *ngIf="registerPageData.accommodationFee.text"
+            [innerHTML]="registerPageData.accommodationFee.text"></span>
+        </div>
+      </div>
+
+      <!-- Payment conditions -->
+      <div *ngIf="registerPageData.paymentConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="receipt" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="register-page-subtitle lt-sm:text-center">Spôsob a podmienky úhrady poplatkov</h2>
+          <summeet-shared-list-custom [data]="registerPageData.paymentConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Inplace Registration -->
+      <div *ngIf="registerPageData.inPlaceRegistration"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="calendar-lines-pen" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col w-full">
+          <h2 class="register-page-subtitle lt-sm:text-center">Registrácia na mieste podujatia</h2>
+          <summeet-shared-list-custom [data]="registerPageData.inPlaceRegistration"></summeet-shared-list-custom>
+          <!-- <ul>
+            <li *ngFor="let data of registerPageData.inPlaceRegistration">
+              <span [innerHTML]="data.text"></span>
+              <div class="flex flex-col" *ngIf="data.subCategories">
+                <span class="flex justify-start items-center" *ngFor="let subCategory of data.subCategories"><mat-icon
+                    color="primary">check</mat-icon><span class="register-page-check-text"
+                    [innerHTML]="subCategory"></span>
+                </span>
+              </div>
+              <div *ngIf="data.table" class="mt-[16px]" [innerHTML]="data.table"></div>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+
+      <!-- Cathering Registration -->
+      <div *ngIf="registerPageData.catheringRegister" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="plate-utensils-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="register-page-subtitle lt-sm:text-center">Registrácia ubytovania a stravy</h2>
+          <summeet-shared-list-custom [data]="registerPageData.catheringRegister"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Registration Change -->
+      <div *ngIf="registerPageData.registerChange" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="file-pen-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="register-page-subtitle lt-sm:text-center">Zmena registrácie účasti na podujatí</h2>
+          <summeet-shared-list-custom [data]="registerPageData.registerChange"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Conditions Change -->
+      <div *ngIf="registerPageData.conditionsChange" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="pen-to-square-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="register-page-subtitle lt-sm:text-center">Zmena podmienok</h2>
+          <span class="text-sm" [innerHTML]="registerPageData.conditionsChange"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

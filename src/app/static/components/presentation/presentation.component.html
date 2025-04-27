@@ -1,0 +1,191 @@
+<div class="flex flex-col main-content presentation-main-box">
+  <summeet-title-overlay [title]="'Prednáška'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-col justify-center items-center mt-[60px]">
+    <div class="flex flex-col w-[60%] lt-md:w-[90%]">
+      <h1 *ngIf="presentationData.registerTerm || presentationData.activityConditions" class="presentation-title">
+        Termíny a podmienky aktívnej účasti</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Dates for the event -->
+      <div *ngIf="presentationData.registerTerm" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="calendar-day-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col w-[100%] gap-[16px]">
+          <h2 class="presentation-subtitle lt-sm:text-center">Termíny týkajúce sa aktívnej účasti na podujatí</h2>
+          <div class="text-sm gap-[16px] presentation-table" [innerHTML]="presentationData.registerTerm"></div>
+        </div>
+      </div>
+
+      <!-- Activity conditions -->
+      <div *ngIf="presentationData.activityConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="memo-circle-check-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center">Podmienky registrácie aktívnej účasti</h2>
+          <summeet-shared-list-custom [data]="presentationData.activityConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-[60%] lt-md:w-[90%] mt-[32px]">
+      <h1
+        *ngIf="presentationData.prohibitedContent || presentationData.presentationConditions || presentationData.presentationTemplate"
+        class="presentation-title">Formálne a obsahové náležitosti prezentácie</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Forbidden content -->
+      <div *ngIf="presentationData.prohibitedContent" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-xmark"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center">Zakázaný obsah prezentácie</h2>
+          <p class="mt-0 text-sm" [innerHTML]="presentationData.prohibitedContent.listTitle">
+          </p>
+          <summeet-shared-list-custom [data]="presentationData.prohibitedContent.list"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Mandatory content -->
+      <div class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-info"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center m-0">Povinný obsah prezentácie</h2>
+          <div class="flex flex-col gap-[16px]">
+            <!-- First section: Conflict statement -->
+            <div class="flex flex-row pl-[15px]">
+              <div class="flex justify-start items-start">
+                <mat-icon class="list-custom-icon" svgIcon="square"></mat-icon>
+              </div>
+              <div class="flex flex-col w-full">
+                <div class="flex flex-col justify-start items-start">
+                  <p class="!m-1 text-sm font-bold">vyhlásenie o konflikte na 2. snímke prezentácie</p>
+                  <span class="text-sm">
+                    Pod konfliktom záujmov rozumieme súbor okolností, ktoré vytvárajú riziko, že profesionálne posúdenie
+                    alebo
+                    konanie týkajúce sa primárneho cieľa bude negatívne ovplyvnené sekundárnym záujmom. Konflikt záujmov
+                    sa posudzuje
+                    2 roky späť a najmä vo vzťahu k organizátorovi, spoluorganizátorovi, partnerom alebo k ich
+                    zástupcom.
+                  </span>
+                  <p class="text-sm !mt-[6px]">
+                    Vyhlásenie o konflikte musí byť v nasledovnej forme (vyhlásenie je súčasťou odporúčanej šablóny
+                    prezentácie):
+                  </p>
+                  <br />
+                  <div class="presentation-image-box">
+                    <a mat-raised-button class="templates-image-container" href="assets/templates/presentation-law.png"
+                      download="prezentacia">
+                      <div class="flex flex-row items-center gap-[5px]">
+                        <img class="templates-image presentation-image" src="assets/templates/presentation-law.png"
+                          alt="law-image" />
+                        <div class="download-overlay">
+                          <span class="download-text">Stiahnuť</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Second section: Financial support statement -->
+            <div class="flex flex-row pl-[15px]">
+              <div class="flex justify-start items-start">
+                <mat-icon class="list-custom-icon" svgIcon="square"></mat-icon>
+              </div>
+              <div class="flex flex-col w-full">
+                <div class="flex justify-start items-center">
+                  <p class="!m-1 text-sm">
+                    <b>informáciu o finančnej podpore (ak bola poskytnutá) na 2. alebo 3. snímke prezentácie</b>
+                  </p>
+                </div>
+                <p class="text-sm">Informácia o finančnej podpore musí obsahovať jedno z nasledujúcich vyhlásení:</p>
+                <b class="text-sm">A: </b>
+                <i class="presentation-justified-text text-sm">
+                  „Podujatie - prednáška - edukačný materiál CME, resp. CPD bol/&nbsp;o/&nbsp; a
+                  podporené/&nbsp;á/&nbsp;ý
+                  edukačným grantom spoločnosti ….............. Spoločnosť…..... žiadnym spôsobom nezasahovala do
+                  odborného
+                  obsahu podporeného/ej podujatia - prednášky - edukačného materiálu.“
+                </i>
+                <b class="text-sm">B: </b>
+                <i class="presentation-justified-text text-sm">
+                  „Podujatie - prednáška - edukačný materiál CME, resp. CPD bol/&nbsp;o/&nbsp; a
+                  podporené/&nbsp;á/&nbsp;ý
+                  finančným príspevkom spoločnosti ….............. Spoločnosť…..... žiadnym spôsobom nezasahovala do
+                  odborného
+                  obsahu podporeného/ej podujatia - prednášky - edukačného materiálu.“
+                </i>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Terms for presentation -->
+      <div *ngIf="presentationData.presentationConditions"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-check"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center">Podmienky a pravidlá pre prezentáciu</h2>
+          <summeet-shared-list-custom [data]="presentationData.presentationConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Presentation template -->
+      <div *ngIf="presentationData.presentationTemplate"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="file-pen-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center">Šablóna prezentácie</h2>
+          <p class="text-sm m-0" [innerHTML]="presentationData.presentationTemplate"></p>
+        </div>
+      </div>
+
+    </div>
+    <!-- Presentation time -->
+    <div class="flex flex-col w-[60%] lt-md:w-[90%] mt-[32px]">
+      <h1 *ngIf="presentationData.presentationTime" class="presentation-title">Časový limit a spôsob doručenia
+        prezentácie</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <div *ngIf="presentationData.presentationTime" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="clock-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center">Trvanie prednášky</h2>
+          <summeet-shared-list-custom [data]="presentationData.presentationTime"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Presentation upload -->
+      <div *ngIf="presentationData.sendPresentation" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-arrow-up"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="presentation-subtitle lt-sm:text-center">Doručenie prezentácie</h2>
+          <p class="text-sm mt-0">
+            {{presentationData.sendPresentation.text}}</p>
+          <summeet-shared-list-custom [data]="presentationData.sendPresentation.methods"></summeet-shared-list-custom>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

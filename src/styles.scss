@@ -1,0 +1,198 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100vh;
+}
+body {
+  margin: 0;
+  font-family: Poppins, 'Helvetica Neue', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+a:visited {
+  color: #0000ee;
+}
+
+:root {
+  // --primary-color: #b32028;
+  --primary-color: #9fd4d5;
+  // --secondary-color: #9fd4d5;
+  --secondary-color: #b32028;
+  --forgot-password-text: #666666;
+  --light-background-color: #efefef;
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --footer-container-color: #5c6b7b26;
+  --footer-link-color: #5c6b7b;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-checkbox-layout {
+  white-space: normal !important;
+}
+.mat-checkbox-inner-container {
+  margin-top: 4px;
+}
+
+.notification-snackbar {
+  background: white !important;
+  border-left: solid 10px var(--secondary-color);
+  border-right: solid 10px var(--secondary-color);
+  color: black !important;
+}
+
+.picture-browser-backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+summeet-footer {
+  margin-top: auto;
+}
+
+.main-content {
+  padding-bottom: 64px;
+  min-height: calc(100vh - 64px);
+
+  .mat-drawer {
+    margin-bottom: 64px;
+  }
+}
+
+.main-content-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.picture-browser-backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.ng-icons {
+  font-size: 40px;
+  padding: 2px;
+  width: 40px !important;
+  height: 40px !important;
+  color: #fff !important;
+  background-color: var(--primary-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 10%;
+}
+
+.svg-icons {
+  font-size: 35px;
+  padding: 2px;
+  width: 40px !important;
+  height: 40px !important;
+  color: #fff !important;
+  background-color: var(--primary-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 10%;
+}
+
+@media (max-width: 959px) {
+  .main-content {
+    padding-bottom: 50px;
+    min-height: calc(100vh - 50px);
+
+    .mat-drawer {
+      margin-bottom: 50px;
+    }
+  }
+
+  .ng-icons {
+    font-size: 40px;
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--primary-color);
+    border-radius: 10%;
+  }
+
+  .svg-icons {
+    font-size: 30px;
+    padding: 2px;
+    width: 40px !important;
+    height: 40px !important;
+    color: #fff !important;
+    background-color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 10%;
+  }
+}
+
+.animation-from-right {
+  opacity: 0;
+  -webkit-animation: move-right 1s forwards;
+  animation: move-right 1s forwards;
+}
+
+@keyframes move-right {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.animation-from-top {
+  opacity: 0;
+  -webkit-animation: move-top 1s forwards;
+  animation: move-top 1s forwards;
+}
+
+@keyframes move-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.animation-from-bottom {
+  opacity: 0;
+  -webkit-animation: move-bottom 1s forwards;
+  animation: move-bottom 1s forwards;
+}
+
+@keyframes move-bottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.animation-from-left {
+  opacity: 0;
+  -webkit-animation: move-left 1s forwards;
+  animation: move-left 1s forwards;
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}

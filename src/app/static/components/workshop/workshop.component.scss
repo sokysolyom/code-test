@@ -1,0 +1,47 @@
+.workshop-main-box {
+  ul li::before {
+    content: '■';
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -2em;
+    font-size: 20px;
+    margin-right: 1em;
+  }
+}
+.workshop-primary-color {
+  color: var(--primary-color);
+}
+
+.workshop-subtitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+}
+
+.workshop-p {
+  margin: 0;
+}
+
+.workshop-list {
+  list-style: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.workshop-lector-title {
+  margin-top: -6px;
+}
+
+.workshop-program-title {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.list-custom-icon {
+  color: var(--primary-color) !important;
+  width: 7px;
+  // margin-left: -2em;
+  margin-right: 1em;
+}

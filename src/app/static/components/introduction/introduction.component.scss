@@ -1,0 +1,385 @@
+.app-background {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(https://summeet-bucket.fra1.cdn.digitaloceanspaces.com/mladi-hematologovia/public/intro-bg.jpeg);
+
+  p {
+    text-align: justify;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    text-align: justify;
+    display: flex;
+    align-items: center;
+  }
+  ul li::before {
+    content: '■';
+    color: var(--primary-color);
+    font-weight: normal;
+    display: inline-block;
+    margin-left: -2em;
+    font-size: 20px;
+    margin-right: 1em;
+    align-self: center;
+  }
+}
+
+.main-avatar {
+  vertical-align: middle;
+  width: 60px;
+  height: 60px;
+  border-radius: 10%;
+  margin-top: 10px;
+}
+
+.main-icon-avatar {
+  margin-top: 10px;
+  vertical-align: middle;
+  font-size: 46px;
+  padding: 2px;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 10%;
+}
+
+.introduction-motto-box {
+  font-size: 27px;
+  font-weight: 500;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.introduction-intro-text {
+  p {
+    margin: 16px;
+    font-size: 14px;
+  }
+}
+
+.overlay {
+  position: absolute;
+  z-index: 100;
+  font-size: 20px;
+  color: #5c5c5c;
+  margin-top: 40px;
+}
+
+.introduction-year {
+  font-size: 17px;
+  padding-bottom: 15px;
+}
+
+.introduction-calendar-button {
+  padding: 13px;
+  background-color: transparent;
+  color: white;
+}
+
+.introduction-main-logo {
+  width: 200px;
+}
+
+.introduction-co-organizator-logo {
+  width: 100px;
+}
+
+.introduction-doctors-box {
+  margin-left: 20px;
+}
+
+.introduction-doctor-text {
+  margin: 0px;
+  padding-top: 5px;
+}
+
+.introduction-hashtag {
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+.introduction-mini-info {
+  list-style: none;
+  font-size: 22px;
+}
+
+.introduction-mini-info-text {
+  margin-bottom: 25px;
+}
+
+.introduction-list-items {
+  color: var(--primary-color);
+  margin: 0px;
+  padding-top: 10px;
+}
+
+.introduction-button-secondary-color {
+  background-color: var(--secondary-color) !important;
+  color: var(--white-color) !important;
+}
+
+.introduction-button-no-bg {
+  background-color: transparent !important;
+  color: var(
+    --white-color
+  ) !important; // You can adjust the text color if needed
+}
+
+.introduction-main-title {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.introduction-disable {
+  opacity: 0.3;
+  color: var(--black-color);
+}
+
+.introduction-sub-title {
+  font-size: 26px;
+}
+
+.introduction-titles {
+  color: var(--secondary-color);
+  text-align: center;
+  font-size: 30px;
+}
+
+.introduction-participate-button {
+  padding: 16px;
+}
+
+.introduction-background {
+  font-size: 46px;
+  font-weight: bold;
+  color: #efefef;
+  margin-top: 30px;
+}
+
+.introduction-big-background {
+  font-size: 46px;
+  font-weight: bold;
+  color: #efefef;
+  margin-top: 30px;
+}
+
+p {
+  text-align: justify;
+}
+
+.introduction-picture-box {
+  padding-left: 15%;
+  color: white;
+}
+
+.introduction-calendar-box {
+  padding-left: 30px;
+}
+
+.introduction-people-box {
+  margin-top: 0px;
+}
+
+.introduction-organizator-text {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.introduction-organizer-text-aling {
+  text-align: center;
+}
+
+.introduction-content-box {
+  padding-top: 20px;
+  // padding-bottom: 40px
+}
+
+.introduction-greetin-p {
+  margin: 0px;
+}
+
+.hematolife-image {
+  width: 140px;
+  margin-bottom: -130px;
+  margin-top: -130px;
+}
+
+.introduction-under-list-items {
+  padding-bottom: 10px;
+}
+
+.introduction-date-drop-animation {
+  transform: translateY(-100px);
+  opacity: 0;
+  -webkit-animation: date-mover 1s ease 1s forwards;
+  animation: date-mover 1s ease 1s forwards;
+}
+
+.introduction-coorganizator-box {
+  margin-top: 40px;
+}
+
+@-webkit-keyframes date-mover {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes date-mover {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.introduction-button-drop-animation {
+  transform: translateY(-100px);
+  opacity: 0;
+  -webkit-animation: button-mover 1.5s ease 1s forwards;
+  animation: button-mover 1.5s ease 1s forwards;
+}
+
+@-webkit-keyframes button-mover {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes button-mover {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1660px) {
+  .introduction-big-background {
+    font-size: 67px;
+  }
+}
+
+@media (max-width: 1550px) {
+  .introduction-big-background {
+    font-size: 62px;
+  }
+}
+
+@media (max-width: 1450px) {
+  .introduction-big-background {
+    font-size: 57px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .hematolife-image {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .introduction-picture-box {
+    padding-left: 5%;
+  }
+
+  .introduction-text-box {
+    padding-left: 15%;
+    width: 70%;
+  }
+  .introduction-background {
+    font-size: 52px;
+  }
+
+  .introduction-big-background {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 960px) {
+  .introduction-text-box {
+    padding-left: 5%;
+    width: 90%;
+  }
+  .introduction-background {
+    color: #fafafa;
+  }
+
+  .introduction-big-background {
+    color: #fafafa;
+  }
+
+  .introduction-people-box {
+    margin-top: 30px;
+  }
+
+  .introduction-content-box {
+    padding-top: 10px;
+  }
+
+  .introduction-prezident-box {
+    margin-left: 0;
+  }
+
+  .hematolife-image {
+    width: 250px;
+    // margin-bottom: -80px;
+    // margin-top: -130px;
+  }
+}
+
+@media (max-width: 600px) {
+  .introduction-calendar-box {
+    padding-left: 0px;
+  }
+  .introduction-people-box {
+    margin-top: 30px;
+  }
+  .introduction-text-box {
+    margin-top: 0px;
+  }
+  .overlay {
+    margin-top: 0px;
+  }
+  .introduction-organizator-text {
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+  h1 {
+    margin: 0px;
+  }
+  .introduction-sub-title {
+    font-size: 22px;
+  }
+  .introduction-mini-info {
+    font-size: 18px;
+  }
+  .introduction-main-title {
+    font-size: 35px;
+  }
+  ul li::before {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,6 @@
+<div *ngIf="screenWidth > 959; else mobileNavbar">
+  <summeet-navbar></summeet-navbar>
+</div>
+<ng-template #mobileNavbar>
+  <summeet-mobile-navbar></summeet-mobile-navbar>
+</ng-template>

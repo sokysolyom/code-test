@@ -1,0 +1,3 @@
+echo "\033[1;35mHusky 🐺🐾 pre-push: npm run build && npx rimraf dist\033[0m"
+
+ng build -c development && npx rimraf dist

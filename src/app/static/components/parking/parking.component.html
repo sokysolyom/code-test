@@ -1,0 +1,62 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="flex flex-col" class="main-content parking-main-box">
+  <summeet-title-overlay [title]="'Parkovanie'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-col justify-center items-center mt-[60px]">
+    @for (parking of parkingData; track $index; let idx = $index; let first = $first) {
+    <div class="flex flex-col w-[60%] lt-md:w-[90%]" [ngClass]="{'mt-[40px]': !first}">
+      <span class="text-2xl font-bold parking-title-color my-[16px]">{{parking.title}}</span>
+    </div>
+
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Parking infront of the hotel -->
+      <div *ngIf="parking.hotelParking" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="parking"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="parking-subtitle lt-sm:text-center">{{parking.hotelParkingTitle}}</h2>
+          <div class="text-sm m-0" [innerHTML]="parking.hotelParking"></div>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="flex flex-col justify-center items-center gap-[40px]">
+        <button mat-stroked-button (click)="navigate(idx)" color="accent" class="parking-button !rounded">
+          <div class="flex flex-row justify-center items-center gap-[16px]">
+            <mat-icon>directions_car</mat-icon>
+            <span> Navigovať </span>
+          </div>
+        </button>
+        <div class="flex justify-center items-center">
+          <a (click)="navigate(idx)" class="cursor-pointer">
+            <img class="w-full" src="{{parking.imageUrl}}" alt="image-parking" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Parkovanie [v/na parkovisku/parkovacom dome, a pod.] -->
+      <div *ngIf="parking.outsideParking">
+        <div *ngFor="let parking of parking.outsideParking" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+          <div class="flex justify-start items-start">
+            <mat-icon color="primary" class="svg-icons" svgIcon="parking"></mat-icon>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="parking-subtitle" [innerHTML]="parking.title"></h2>
+            <span [innerHTML]="parking.description">
+            </span>
+            <div *ngIf="parking.payment" class="flex flex-col justify-start items-start w-[100%]">
+              <div class="mt-[32px] w-[50%]" *ngFor="let payment of parking.payment">
+                <span [innerHTML]="payment.text"></span>
+                <div [innerHTML]="payment.table"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

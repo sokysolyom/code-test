@@ -1,0 +1,29 @@
+.event-update-save-button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.event-update-big-icon {
+  width: 60px !important;
+  height: 60px !important;
+  color: var(--primary-color);
+}
+
+.event-update-participation-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+
+  .event-update-big-icon {
+    color: var(--white-color) !important;
+  }
+}
+
+.event-update-participation-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.event-update-participation-check {
+  color: var(--success-color);
+}

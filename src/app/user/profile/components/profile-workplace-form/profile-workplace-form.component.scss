@@ -1,0 +1,36 @@
+.profile-workplace-statement-ban-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.profile-workplace-statement-big-icon {
+  color: var(--primary-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.profile-workplace-statement-big-icon-ban {
+  color: var(--warning-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.profile-workplace-statement-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.profile-workplace-statement-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+
+  .profile-workplace-statement-big-icon {
+    color: var(--white-color) !important;
+  }
+
+  .profile-workplace-statement-icons {
+    color: var(--white-color) !important;
+  }
+}

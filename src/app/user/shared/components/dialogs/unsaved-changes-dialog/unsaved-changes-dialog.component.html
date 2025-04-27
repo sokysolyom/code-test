@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>UPOZORNENIE!</h1>
+<div mat-dialog-content>
+  Máte neuložené zmeny. Ak sa chcete vrátiť späť a uložiť tieto zmeny, stlačte tlačidlo Zrušiť. Ak chcete pokračovať bez
+  uloženia zmien, stlačte tlačidlo OK.
+</div>
+<div fxLayoutAlign="end" mat-dialog-actions>
+  <button (click)="onClick(false)" mat-button mat-dialog-close>Zrušiť</button>
+  <button (click)="onClick(true)" mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,95 @@
+.poster-main-box {
+  p {
+    text-align: justify;
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+
+  ul li::before {
+    content: '■';
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -2em;
+    font-size: 20px;
+    margin-right: 1em;
+  }
+}
+
+.poster-table {
+  table {
+    font-size: 14px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    text-align: left;
+    padding: 8px;
+    color: var(--white-color);
+    font-weight: 600;
+  }
+
+  td:not(:first-child),
+  th:not(:first-child) {
+    text-align: center;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  th:not(:first-child) {
+    background-color: var(--primary-color);
+    width: 20%;
+  }
+}
+
+.poster-title {
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.poster-subtitle {
+  font-size: 20px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+}
+
+.poster-p {
+  margin-top: 0;
+}
+
+.poster-hyperlink {
+  color: black;
+}
+
+.poster-send-p {
+  margin-bottom: 0px;
+}
+
+.poster-send-ul {
+  margin-top: 0px;
+}
+
+@media (max-width: 600px) {
+  .poster-title {
+    text-align: center;
+  }
+  .poster-main-box {
+    ul li::before {
+      font-size: 12px;
+    }
+  }
+}

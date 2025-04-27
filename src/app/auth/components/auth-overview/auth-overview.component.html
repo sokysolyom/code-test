@@ -1,0 +1,50 @@
+<div class="flex flex-col main-content auth-overview-main-box">
+  <summeet-title-overlay [title]="'Registrácia na podujatie'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-1 flex-col justify-start items-center gap-[16px]">
+    <p class="text-xs text-center m-0 animation-from-top">Na podujatie sa môžete registrovať po prihlásení sa do svojho
+      účtu. Ak ešte
+      nemáte u nás vytvorený účet môžete
+      tak urobiť aj teraz.</p>
+    <h3 class="animation-from-top">Chcem</h3>
+    <!-- Login -->
+    <mat-card
+      class="flex w-[50%] lt-md:w-[90%] max-w-[700px] p-[25px] animation-from-top auth-overview-mat-card summeet-mat-card drop-shadow-lg"
+      routerLink="/auth/prihlasenie">
+      <mat-card-content class="!p-0">
+        <div class="flex flex-row justify-start">
+          <div class="flex items-center">
+            <mat-icon class="auth-overview-big-icon pr-[30px] pl-[5px]" svgIcon="right-to-bracket"></mat-icon>
+          </div>
+          <div class="flex flex-col justify-start">
+            <p class="m-0 font-semibold">Prihlásiť sa do účtu</p>
+            <p class="text-xs m-0">
+              Po prihlásení sa do vytvoreného účtu môžete uskutočniť registráciu na dostupné podujatia, spravovať tieto
+              registrácie, ale aj odovzdať abstrakt alebo nahrať prednášku.
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Register -->
+    <mat-card
+      class="flex w-[50%] lt-md:w-[90%] max-w-[700px] p-[25px] animation-from-top auth-overview-mat-card summeet-mat-card drop-shadow-lg"
+      routerLink="/register/prehlad">
+      <mat-card-content class="!p-0">
+        <div class="flex flex-row justify-start">
+          <div class="flex items-center">
+            <mat-icon class="auth-overview-big-icon pr-[30px] pl-[5px]" svgIcon="user-pen-solid"></mat-icon>
+          </div>
+          <div class="flex flex-col justify-start">
+            <p class="m-0 font-semibold">Vytvoriť si účet</p>
+            <p class="text-xs  m-0">
+              Zdravotnícki pracovníci a osoby na úseku farmácie si môžu vytvoriť účet na webových stránkach spoločnosti
+              SUMMEET s. r. o., ktorý umožňuje registráciu na dostupné podujatia.
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

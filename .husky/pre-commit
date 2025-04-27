@@ -1,0 +1,3 @@
+echo "\033[1;35mHusky 🐺🐾 pre-commit: npx lint-staged\033[0m"
+
+npx lint-staged

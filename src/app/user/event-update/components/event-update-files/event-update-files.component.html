@@ -1,0 +1,109 @@
+<div class="flex flex-col justify-center items-center gap-[16px]">
+  <h2 class="font-bold mb-0 mt-[16px] animation-from-top">Abstraky, prezentácie a postery</h2>
+  <p class="text-xs text-center m-0 mb-[16px] max-w-[700px] c-lg:w-[80%] animation-from-top">
+    Nahratie abstraktu, prezentácie alebo posteru je podmienené zvolením si aktívnej účasti na podujatí.
+  </p>
+  <!-- Upload files items -->
+  <h3
+    *ngIf="isActive && (submissionSettings?.isAbstractUploadEnabled || submissionSettings?.isPresentationUploadEnabled || submissionSettings?.isPosterUploadEnabled)"
+    class="m-0 text-base font-semibold animation-from-top">Chcem nahrať
+  </h3>
+  <div class="flex flex-row gap-[32px] animation-from-top">
+    <!-- Presentation -->
+    <mat-card *ngIf="isActive && submissionSettings?.isPresentationUploadEnabled"
+      class="flex w-[140px] h-[140px] event-update-files-mat-card summeet-mat-card" (click)="presentationInput.click()">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col items-center justify-between gap-[16px]">
+          <mat-icon class="event-update-files-big-icon" svgIcon="rectangle-history-solid"></mat-icon>
+          <span class="text-xs">Prednášku</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <input #presentationInput type="file" hidden accept=".pdf,.pptx,.ppt,.odp"
+      (change)="onFileSelected($event, 'presentation')" />
+    <!-- Poster -->
+    <mat-card *ngIf="isActive && submissionSettings?.isPosterUploadEnabled"
+      class="flex w-[140px] h-[140px] event-update-files-mat-card summeet-mat-card" (click)="posterInput.click()">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col items-center justify-between gap-[16px]">
+          <mat-icon class="event-update-files-big-icon" svgIcon="file-invoice"></mat-icon>
+          <span class="text-xs">Poster</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <input #posterInput type="file" hidden accept=".pdf,.pptx,.ppt,.odp,.jpeg,.png,.gif,.bmp"
+      (change)="onFileSelected($event, 'poster')" />
+    <!-- Abstract -->
+    <mat-card *ngIf="isActive && submissionSettings?.isAbstractUploadEnabled"
+      class="flex w-[140px] h-[140px] event-update-files-mat-card summeet-mat-card" (click)="uploadAbstract()">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col items-center justify-between gap-[16px]">
+          <mat-icon class="event-update-files-big-icon" svgIcon="memo-solid"></mat-icon>
+          <span class="text-xs">Abstrakt</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Table -->
+  <div
+    *ngIf="isActive && (submissionSettings?.isAbstractUploadEnabled || submissionSettings?.isPresentationUploadEnabled || submissionSettings?.isPosterUploadEnabled)"
+    class="max-w-[700px] w-full mb-[32px] animation-from-top">
+    <table mat-table [dataSource]="dataSource" class="event-update-files-table pl-[16px] pr-[16px] mt-[32px]">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="flex flex-row justify-start items-center">
+            <span>Názov súboru</span>
+          </span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="flex flex-row justify-start items-center">{{ element.name }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="flex flex-col justify-center items-center">
+            <span>Typ</span>
+            <span>súboru</span>
+          </span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="flex flex-row justify-center items-center">{{ element.type }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="flex justify-center"> Možnosti </span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex flex-row justify-center items-center">
+            <button mat-icon-button *ngIf="element.type === 'abstrakt'; else otherFiles"
+              (click)="editAbstract(element.id)">
+              <mat-icon class="!scale-[0.77] !h-[24px]" svgIcon="pen-to-square-solid"></mat-icon>
+            </button>
+            <ng-template #otherFiles>
+              <button mat-icon-button (click)="downloadItem(element.id)">
+                <mat-icon class="scale-[0.9] !h-[20px]">download</mat-icon>
+              </button>
+            </ng-template>
+
+            <button mat-icon-button (click)="deleteItem(element.type, element.id)">
+              <mat-icon class="!scale-[0.77] !h-[24px]" svgIcon="trash-can"></mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+
+</div>

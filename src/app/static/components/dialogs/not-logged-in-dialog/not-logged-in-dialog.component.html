@@ -1,0 +1,19 @@
+<div class="flex justify-end">
+  <button (click)="onClose()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="flex w-[100%] h-[100%]">
+  <p class="text-justify">Ľutujeme, ale táto časť webovej stránky je prístupná len osobám oprávneným predpisovať alebo
+    vydávať lieky. Pre zobrazenie obsahu je potrebné prihlásiť sa.</p>
+  <div class="flex w-[100%] flex-row justify-between items-center">
+    <button mat-raised-button color="accent" (click)="onClose()" type="button" class="registration-button">
+      <span>Zavrieť</span>
+    </button>
+    <div>
+      <button mat-raised-button routerLink="/auth/prihlasenie" (click)="onClose()" type="button" color="accent">
+        <span>Prihlásiť sa</span>
+      </button>
+    </div>
+  </div>
+</div>

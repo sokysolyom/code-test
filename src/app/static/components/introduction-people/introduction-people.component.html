@@ -1,0 +1,25 @@
+<div *ngIf="people" class="flex flex-col justify-center items-center pt-[40px]">
+  <div *ngIf="title !== ''">
+    <h1 class="introduction-titles">{{ title }}</h1>
+  </div>
+</div>
+
+<div *ngIf="people" [ngClass]="{
+  'grid grid-cols-2 lt-md:grid-cols-1 gap-[16px]': people.length > 1,
+  'flex justify-center items-center': people.length === 1,
+  'ml-[16px]': isIntroduction
+}">
+  <div *ngFor="let person of people" class="flex flex-row items-start introduction-people-box" [ngClass]="{
+      'items-center justify-center': !person.photo,
+      'items-center': !person.workPlace
+    }">
+    <img *ngIf="person.photo" src="{{ person.photo }}" alt="{{ person.fullName }}" class="main-avatar" />
+    <div class="flex flex-col max-w-[85%]" [ngClass]="{
+        'ml-[20px]': person.photo,
+        'max-w-full text-center': !person.photo || people.length === 1
+      }">
+      <span class="introduction-list-items !font-bold text-sm" [innerHTML]="person.fullName"></span>
+      <span class="m-0 pt-[5px] text-sm" [innerHTML]="person.workPlace"></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<mat-card class="grid flex-1 flex-col items-stretch partner-item-card">
+  <div class="flex h-[100%] justify-center items-center partner-item-image-container">
+    <img class="partner-item-image" src="{{ src }}" alt="partner" />
+  </div>
+</mat-card>
+<div *ngIf="isVirtualTent; else notVirtualTent" class="w-[100%]">
+  <button class="w-[100%] partner-item-button !rounded partner-item-secondary-color " mat-raised-button
+    (click)="navigateToVirtualTent()">Virtuálny
+    stánok</button>
+</div>
+<ng-template #notVirtualTent>
+  <div class="w-[100%]">
+    <button class="w-[100%] partner-item-button !rounded partner-item-secondary-color" mat-raised-button
+      (click)="navigateToPage()">
+      <span *ngIf="link.length > 0">Webová stránka</span>
+      <span *ngIf="link.length === 0">&ZeroWidthSpace;</span>
+    </button>
+  </div>
+</ng-template>

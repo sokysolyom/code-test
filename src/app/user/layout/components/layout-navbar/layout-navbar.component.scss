@@ -1,0 +1,51 @@
+.layout-navbar-container {
+  padding: 5px 10px;
+  z-index: 5;
+  background-color: var(--navbar-color);
+  height: 30px;
+}
+
+.layout-navbar-button {
+  color: var(--white-color);
+  background-color: transparent;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.layout-navbar-login {
+  color: var(--white-color);
+  font-size: 16px;
+}
+
+.layout-navbar-logout {
+  color: var(--white-color);
+  font-size: 13px;
+}
+
+.layout-navbar-logo {
+  height: 40px;
+}
+
+.layout-navbar-prefix-icon {
+  width: 8px;
+  height: 8px;
+  font-size: 8px;
+  padding-right: 5px;
+}
+
+.mat-menu-element:hover {
+  color: var(--primary-color);
+}
+
+.mat-menu-element:hover mat-icon {
+  color: var(--primary-color);
+}
+
+.layout-navbar-a {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.layout-navbar-span {
+  color: var(--white-color);
+}

@@ -1,0 +1,104 @@
+<div class="w-[325px]">
+  <div *ngIf="userData?.role === healtcareRole; else subject"
+    class="flex flex-row justify-between items-center ordered-services-custom-table-healthcare-bg-color w-full rounded-lg p-[16px] z-[2]">
+    <div class="flex flex-row justify-start items-center gap-[32px]">
+      <mat-icon svgIcon="user-doctor"></mat-icon>
+      <span>Zdravotnícky pracovník</span>
+    </div>
+    <mat-icon
+      matTooltip="Pri každej službe sa zobrazuje počet využitých služieb z celkového počtu objednaných služieb (napr. pri registrácii - 0/1, kedy číslo 0 znamená, že služba nebola využitá a číslo 1 znamená, že bola objednaná jedna registrácia. ">info</mat-icon>
+  </div>
+  <ng-template #subject>
+    <div
+      class="flex flex-row justify-between items-center ordered-services-custom-table-subject-bg-color w-full rounded-lg p-[16px] z-[2]">
+      <div class="flex flex-row justify-start items-center gap-[32px]">
+        <mat-icon svgIcon="briefcase"></mat-icon>
+        <span>Zástupca subjektu</span>
+      </div>
+      <mat-icon
+        matTooltip="Pri každej službe sa zobrazuje počet využitých služieb z celkového počtu objednaných služieb (napr. pri registrácii - 0/1, kedy číslo 0 znamená, že služba nebola využitá a číslo 1 znamená, že bola objednaná jedna registrácia. ">info</mat-icon>
+    </div>
+  </ng-template>
+  <mat-card class="w-[356px] absolute top-[-20px] pt-[40px] p-[16px] z-[1]">
+    <div class="flex flex-col mt-[6px] gap-[6px]">
+      <!-- Registration -->
+      <span class="text-xs font-bold">Registrácie</span>
+      <mat-card class="flex !flex-row justify-between items-start summeet-mat-card">
+        <div class="flex flex-row gap-[16px] justify-start items-center p-[12px]">
+          <mat-icon
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-color' : 'ordered-services-custom-table-subject-color'"
+            svgIcon="user-pen-solid"></mat-icon>
+          <span class="text-xs">Registrácia na podujatie</span>
+        </div>
+        <div
+          [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-service' : 'ordered-services-custom-table-subject-service'"
+          class="flex flex-col justify-center items-center py-[16px] px-[24px] w-[20px]">
+          <span class="text-xs font-medium">{{userData?.registeredNumber}}/{{userData?.orderedNumber}}</span>
+        </div>
+      </mat-card>
+      <!-- Accommodation -->
+      <span *ngIf="userData?.accommodation?.length" class="text-xs font-bold mt-[16px]">Ubytovanie</span>
+      @for (accommodation of userData?.accommodation; track $index; let index = $index) {
+      <mat-card class="flex !flex-row justify-between items-start summeet-mat-card">
+        <div class="flex flex-row gap-[16px] justify-start items-center p-[16px]">
+          <mat-icon
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-color' : 'ordered-services-custom-table-subject-color'"
+            svgIcon="hotel"></mat-icon>
+          <div class="flex flex-col justify-center items-start">
+            <!-- <span class="font-medium text-xs">{{index + 1}}. noc</span> -->
+            <!-- <span class="font-medium text-xs">{{ accommodation.roomGroup.hotel.accommodationStartDate|
+              dayDifference:
+              accommodation.roomGroup.date}}</span> -->
+            <span class="text-xs uppercase">{{accommodation?.roomGroup?.hotel?.name}}</span>
+          </div>
+        </div>
+        <div class="flex flex-row">
+          <div
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-service-opacity' : 'ordered-services-custom-table-subject-service-opacity'"
+            class="flex flex-col justify-center items-center py-[12px] px-[24px]">
+            <span class="text-xs font-medium">{{accommodation.roomGroup.date | dayRangeFromDate}}</span>
+            <span class="text-xs">{{accommodation.roomGroup.date | monthFromDate}}</span>
+          </div>
+          <div
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-service' : 'ordered-services-custom-table-subject-service'"
+            class="flex flex-col justify-center items-center py-[12px] px-[24px] w-[20px]">
+            <span class="text-xs font-medium">{{accommodation.registeredNumber}}/{{accommodation.orderedNumber}}</span>
+          </div>
+        </div>
+
+      </mat-card>
+      }
+      <!-- Meal -->
+      <span *ngIf="userData?.meals?.length" class="text-xs font-bold mt-[16px]">Strava</span>
+      @for (meal of userData?.meals; track $index; let index = $index) {
+      <mat-card class="flex !flex-row justify-between items-start summeet-mat-card">
+        <div class="flex flex-row gap-[16px] justify-start items-center p-[16px]">
+          <mat-icon
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-color' : 'ordered-services-custom-table-subject-color'"
+            svgIcon="plate-utensils-solid"></mat-icon>
+          <div class="flex flex-col justify-center items-start">
+            <!-- <span class="font-medium text-xs">{{index + 1}}. deň</span> -->
+            <!-- <span class="font-medium text-xs">{{ meal.meal.hotel.accommodationStartDate|
+              dayDifference:
+              meal.meal.date}}</span> -->
+            <span class="text-xs uppercase">{{meal.meal.name}}</span>
+          </div>
+        </div>
+        <div class="flex flex-row">
+          <div
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-service-opacity' : 'ordered-services-custom-table-subject-service-opacity'"
+            class="flex flex-col justify-center items-center py-[12px] px-[24px]">
+            <span class="text-xs font-medium">{{meal.meal.date | dayFromDate}}</span>
+            <span class="text-xs">{{meal.meal.date | monthFromDate}}</span>
+          </div>
+          <div
+            [ngClass]="userData?.role === healtcareRole? 'ordered-services-custom-table-healthcare-service' : 'ordered-services-custom-table-subject-service'"
+            class="flex flex-col justify-center items-center py-[12px] px-[24px] w-[20px]">
+            <span class="text-xs font-medium">{{meal.registeredNumber}}/{{meal.orderedNumber}}</span>
+          </div>
+        </div>
+      </mat-card>
+      }
+    </div>
+  </mat-card>
+</div>

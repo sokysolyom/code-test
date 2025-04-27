@@ -1,0 +1,78 @@
+<form *ngIf="isDataLoaded$ | async" class="mt-[32px] animation-from-top w-[600px]">
+  <div class="flex flex-col gap-[6px]">
+    <div class="flex justify-center items-center w-full">
+      <!-- Country select -->
+      <mat-form-field class="max-w-[50%]">
+        <mat-label>Sídlo subjektu</mat-label>
+        <input matInput [value]="workData.country" readonly />
+        <mat-icon [svgIcon]="currentFlag" matPrefix></mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row gap-[16px] lt-md:flex-col lt-md:gap-[0px]">
+      <!-- Company name -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Obchodné meno</mat-label>
+        <input matInput [value]="workData.name" readonly />
+      </mat-form-field>
+
+      <!-- Company businessId -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Registračné č. <span *ngIf="!isSlovak">(ID)</span></mat-label>
+        <input matInput [value]="workData.businessId" readonly />
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row gap-[16px] lt-md:flex-col lt-md:gap-[0px]">
+      <!-- Company tax id -->
+      <mat-form-field class="max-w-full">
+        <mat-label>DIČ <span *ngIf="!isSlovak">(TIN)</span></mat-label>
+        <input [value]="workData.taxId" matInput readonly />
+      </mat-form-field>
+
+      <!-- Company vat -->
+      <mat-form-field class="max-w-full">
+        <mat-label>IČ-DPH <span *ngIf="!isSlovak">(VAT)</span></mat-label>
+        <input [value]="workData.vat" matInput readonly />
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row gap-[16px] lt-md:flex-col lt-md:gap-[0px]">
+      <!-- Company street -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Ulica</mat-label>
+        <input [value]="workData.street" matInput readonly />
+      </mat-form-field>
+
+      <!-- Company street number -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Číslo</mat-label>
+        <input [value]="workData.streetNumber" matInput readonly />
+      </mat-form-field>
+
+    </div>
+    <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+      <!-- Company zip code -->
+      <mat-form-field>
+        <mat-label>PSČ</mat-label>
+        <input [value]="workData.zipCode" matInput readonly />
+      </mat-form-field>
+
+      <!-- Company city -->
+      <mat-form-field>
+        <mat-label>Mesto</mat-label>
+        <input [value]="workData.city" matInput readonly />
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+      <!-- Company registry -->
+      <mat-form-field [ngClass]="{'max-w-full': !isSlovak && !isCzech}">
+        <mat-label>Registrátor</mat-label>
+        <input [value]="workData.registrationOffice" matInput readonly />
+      </mat-form-field>
+
+      <!-- Company filler number -->
+      <mat-form-field *ngIf="isSlovak || isCzech">
+        <mat-label>Registračné č.</mat-label>
+        <input matInput [value]="workData.registrationNumber" readonly />
+      </mat-form-field>
+    </div>
+  </div>
+</form>

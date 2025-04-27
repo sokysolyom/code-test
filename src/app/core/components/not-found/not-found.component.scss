@@ -1,0 +1,36 @@
+.app-background {
+  padding-bottom: 300px;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(https://summeet-bucket.fra1.cdn.digitaloceanspaces.com/mladi-hematologovia/public/intro-bg.jpeg);
+}
+
+.not-found-main-box {
+  margin-bottom: 200px;
+  span {
+    text-align: center;
+  }
+}
+
+.not-found-number-span {
+  font-size: 150px;
+  font-weight: bolder;
+  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.not-found-text-span {
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+.not-found-button {
+  margin-top: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+@media (max-width: 960px) {
+  .not-found-main-box {
+    margin-bottom: 300px;
+  }
+}

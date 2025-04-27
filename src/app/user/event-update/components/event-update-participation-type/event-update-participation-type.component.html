@@ -1,0 +1,57 @@
+<div class="flex flex-col justify-center items-center gap-[16px]">
+  <h2 class="font-bold mb-0 mt-[16px] animation-from-top">Typ účasti</h2>
+  <!-- Passive -->
+  <mat-card
+    class="flex w-[90%] max-w-[700px] 2xl:!max-w-[600px] lt-lg:!max-w-[500px] animation-from-top p-[25px] event-update-participation-mat-card summeet-mat-card"
+    [ngClass]="{'event-update-participation-selected': isActive === false}" (click)="togleActive(false)">
+    <mat-card-content class="!p-0">
+      <div class="flex flex-row justify-start gap-[16px]">
+        <div class="flex items-center">
+          <mat-icon class="event-update-big-icon pr-[30px] pl-[5px]" svgIcon="screen-users-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col justify-start">
+          <p class="m-0 font-semibold">Pasívna účasť</p>
+          <p class="text-xs">
+            Účastník sa zúčastňuje na prednáškach odborného programu len ako poslucháč.
+          </p>
+        </div>
+      </div>
+      <div *ngIf="!participationState"
+        class="flex flex-row justify-center items-center gap-[6px] absolute bottom-1 right-2">
+        <mat-icon class="event-update-participation-check">check_circle</mat-icon>
+        <span class="text-xs">Vybraté</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Active -->
+  <mat-card *ngIf="isActiveParticipation"
+    class="flex w-[90%] max-w-[700px] 2xl:!max-w-[600px] lt-lg:!max-w-[500px] animation-from-top p-[25px] event-update-participation-mat-card summeet-mat-card"
+    [ngClass]="{'event-update-participation-selected': isActive === true}" (click)="togleActive(true)">
+    <mat-card-content class="!p-0">
+      <div class="flex flex-row justify-start gap-[16px]">
+        <div class="flex items-center">
+          <mat-icon class="event-update-big-icon pr-[30px] pl-[5px]" svgIcon="podium-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col justify-start">
+          <p class="m-0 font-semibold">Aktívna účasť</p>
+          <p class="text-xs">
+            Účastník prezentuje počas odborného programu vybranú odbornú tému. Podmienkou aktívnej účasti je odovzdanie
+            abstraktu a prednášky.
+          </p>
+        </div>
+      </div>
+      <div *ngIf="participationState"
+        class="flex flex-row justify-center items-center gap-[6px] absolute bottom-1 right-2">
+        <mat-icon class="event-update-participation-check">check_circle</mat-icon>
+        <span class="text-xs">Vybraté</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Save button -->
+  <button class="event-update-save-button !rounded my-[32px]" mat-button (click)="onSubmit()">
+    <mat-icon svgIcon="floppy-disk" class="!w-[20px] !h-[20px]"></mat-icon>
+    <span>Uložiť</span>
+  </button>
+</div>

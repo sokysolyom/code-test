@@ -1,0 +1,85 @@
+<div class="flex flex-col main-content partners-main-box">
+  <summeet-title-overlay [title]="'Partneri'" class="animation-from-top"></summeet-title-overlay>
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-1 flex-col max-w-[50%] lt-lg:max-w-[70%] lt-md:max-w-[90%] gap-[40px]">
+
+      <!-- Platinum partners -->
+      <div>
+        <h1 class="partners-title text-3xl text-center">Generálny partner</h1>
+        <div *ngIf="platinaPartnerLogos.length"
+          class="partners-logo-container flex flex-row flex-wrap gap-[16px] justify-center items-center">
+          <div class="flex w-[31%] lt-md:w-[48%] lt-sm:w-full" *ngFor="let logo of platinaPartnerLogos">
+            <summeet-partner-item [src]="logo.src" [link]="logo.link" [isVirtualTent]="logo.isVirtualTent"
+              [name]="logo.name" [hasVirtualTent]="logo.hasVirtualTent" [virtualTentLink]="logo.virtualTentLink"
+              class="flex-grow"></summeet-partner-item>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main partners -->
+      <div>
+        <h1 class="partners-title text-3xl text-center">Hlavní partneri</h1>
+        <div *ngIf="mainPartnersLogos.length"
+          class="partners-logo-container flex flex-row flex-wrap gap-[16px] justify-center items-center">
+          <div class="flex w-[31%] lt-md:w-[48%] lt-sm:w-full" *ngFor="let logo of mainPartnersLogos">
+            <summeet-partner-item [src]="logo.src" [link]="logo.link" [isVirtualTent]="logo.isVirtualTent"
+              [name]="logo.name" [hasVirtualTent]="logo.hasVirtualTent" [virtualTentLink]="logo.virtualTentLink"
+              class="flex-grow"></summeet-partner-item>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partners -->
+      <div>
+        <h1 class="partners-title text-3xl text-center">Partneri</h1>
+        <div *ngIf="partnersLogos.length"
+          class="partners-logo-container flex flex-row flex-wrap gap-[16px] justify-center items-center">
+          <div class="flex w-[31%] lt-md:w-[48%] lt-sm:w-full" *ngFor="let logo of partnersLogos">
+            <summeet-partner-item [src]="logo.src" [link]="logo.link" [isVirtualTent]="logo.isVirtualTent"
+              [name]="logo.name" [hasVirtualTent]="logo.hasVirtualTent" [virtualTentLink]="logo.virtualTentLink"
+              class="flex-grow"></summeet-partner-item>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exhibitors -->
+      <div>
+        <h1 class="partners-title text-3xl text-center">Vystavovatelia</h1>
+        <div *ngIf="exhibitorsLogos.length"
+          class="partners-logo-container flex flex-row flex-wrap gap-[16px] justify-center items-center">
+          <div class="flex w-[31%] lt-md:w-[48%] lt-sm:w-full" *ngFor="let logo of exhibitorsLogos">
+            <summeet-partner-item [src]="logo.src" [link]="logo.link" [isVirtualTent]="logo.isVirtualTent"
+              [name]="logo.name" [hasVirtualTent]="logo.hasVirtualTent" [virtualTentLink]="logo.virtualTentLink"
+              class="flex-grow"></summeet-partner-item>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other partners -->
+      <div>
+        <h1 class="partners-title text-3xl text-center">Iný druh partnerstva</h1>
+        <div *ngIf="otherPartnersLogos.length"
+          class="partners-logo-container flex flex-row flex-wrap gap-[16px] justify-center items-center">
+          <div class="flex w-[31%] lt-md:w-[48%] lt-sm:w-full" *ngFor="let logo of otherPartnersLogos">
+            <summeet-partner-item [src]="logo.src" [link]="logo.link" [isVirtualTent]="logo.isVirtualTent"
+              [name]="logo.name" [hasVirtualTent]="logo.hasVirtualTent" [virtualTentLink]="logo.virtualTentLink"
+              class="flex-grow"></summeet-partner-item>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div fxLayoutAlign="center center">
+        <button mat-raised-button color="accent" routerLink="/general/kontakt" class="registration-button">
+          <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center center">
+            <mat-icon>login</mat-icon>
+            <span> Chcem byť partnerom </span>
+          </div>
+        </button>
+      </div> -->
+
+      <!-- <h3 class="partners-subtitle">
+        Ďakujeme všetkým zúčastneným partnerom za podporu podujatia
+      </h3> -->
+    </div>
+  </div>
+</div>

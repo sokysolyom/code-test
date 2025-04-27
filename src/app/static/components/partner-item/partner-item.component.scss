@@ -1,0 +1,38 @@
+.partner-item-card {
+  height: 8rem;
+  padding: 16px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+// .partner-item-card:hover {
+//   box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+// }
+
+.partner-item-image-container {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.partner-item-image {
+  margin: 0 !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.partner-item-button {
+  bottom: 3px;
+}
+
+.partner-item-secondary-color {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.partner-item-primary-color {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}

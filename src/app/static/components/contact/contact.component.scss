@@ -1,0 +1,33 @@
+.contact-submit-button {
+  padding: 40px 55px;
+  font-size: 20px;
+}
+
+.contact-icon-card {
+  background-color: var(--secondary-color);
+}
+
+.contact-icon-button {
+  background-color: var(--secondary-color) !important;
+  .mat-icon {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 80px !important;
+    color: var(--white-color);
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--white-color);
+  }
+
+  p {
+    margin: 0;
+    color: var(--white-color);
+  }
+}
+
+.contact-icon-card-divider {
+  color: var(--white-color);
+  width: 80%;
+}

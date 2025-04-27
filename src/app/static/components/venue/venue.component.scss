@@ -1,0 +1,136 @@
+.venue-main-box {
+  p {
+    text-align: justify;
+    margin: 0 !important;
+  }
+}
+
+.venue-photo {
+  height: 300px;
+  width: 600px;
+  cursor: pointer;
+}
+
+.venue-button {
+  background-color: var(--secondary-color);
+  color: var(--white-color) !important;
+
+  span {
+    font-size: 15px;
+  }
+}
+
+.venue-address-city {
+  white-space: nowrap;
+}
+
+.venue-description-text {
+  font-size: 14px;
+  margin-top: 0px;
+  font-weight: 400;
+}
+
+.venue-title {
+  margin-bottom: 60px;
+}
+
+.venue-subtitle {
+  font-size: 20px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+}
+
+.carousel-cell {
+  display: flex; /* Center the image */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure the cell takes full width */
+  height: 200px; /* Set a fixed height for the cell */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.carousel-img {
+  width: 100%; /* Ensure the image takes the full width of the cell */
+  height: 100%; /* Ensure the image takes the full height of the cell */
+  object-fit: cover; /* Scale the image while preserving its aspect ratio */
+}
+
+.venue-carousel {
+  height: 20vw !important;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain; /* Contain the image within the tile */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  width: 100%; /* Ensure the tile takes full width */
+  height: 200px; /* Set a fixed height for the tile */
+  overflow: hidden; /* Prevents overflow of large images */
+}
+
+.leftRs,
+.rightRs {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.leftRs {
+  left: 10px;
+  z-index: 20; /* Ensure it's above other elements */
+}
+
+.rightRs {
+  right: 10px;
+  z-index: 20;
+}
+
+.leftRs:disabled,
+.rightRs:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+  .venue-photo {
+    height: 200px;
+    width: 400px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 400px) {
+  .venue-photo {
+    height: 150px;
+    width: 300px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .venue-carousel {
+    height: 44vw !important;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .venue-carousel {
+    height: 54vw !important;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .venue-carousel {
+    height: 65vw !important;
+  }
+}

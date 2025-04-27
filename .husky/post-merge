@@ -1,0 +1,3 @@
+echo "\033[1;35mHusky 🐺🐾 post-merge: npm install\033[0m"
+
+npm install

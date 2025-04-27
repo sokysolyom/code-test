@@ -1,0 +1,152 @@
+<mat-toolbar class="flex flex-row navbar-container mat-elevation-z4">
+  <div class="flex w-[25%] md:w-[10%]"></div>
+  <div class="flex flex-row justify-center items-center w-[60%] md:w-[80%] navbar-button-group">
+    <button mat-flat-button class="flex flex-row justify-center items-center navbar-button !rounded"
+      routerLink="/general/uvod">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <span class="!text-sm">Úvod</span>
+    </button>
+    <button mat-flat-button class="flex flex-row justify-start items-center navbar-button !rounded"
+      routerLink="/general/program">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <span class="!text-sm">Program</span>
+    </button>
+    <button mat-flat-button class="flex flex-row justify-start items-center navbar-button !rounded"
+      routerLink="/general/partneri">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <span class="!text-sm">Partneri</span>
+    </button>
+    <button mat-flat-button [matMenuTriggerFor]="informationMenu"
+      class="flex flex-row justify-start items-center navbar-button !rounded">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <div class="flex flex-row justify-center items-center">
+        <span class="!text-sm">Informácie</span>
+        <mat-icon>expand_more</mat-icon>
+      </div>
+    </button>
+    <button #activityDropDown="matMenuTrigger" mat-flat-button [matMenuTriggerFor]="activityMenu"
+      (menuClosed)="closedActivity()" color="secondary"
+      class="flex flex-row justify-start items-center navbar-button !rounded">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <div class="flex flex-row justify-center items-center">
+        <span class="!text-sm">Aktívna účasť</span>
+        <mat-icon>expand_more</mat-icon>
+      </div>
+    </button>
+    <!-- <button mat-flat-button class="flex flex-row justify-start items-center navbar-button !rounded"
+      routerLink="/general/workshopy">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <span class="!text-sm">Workshop</span>
+    </button> -->
+    <button mat-flat-button class="flex flex-row justify-start items-center navbar-button !rounded"
+      routerLink="/general/kontakt">
+      <mat-icon class="navbar-prefix-icon">circle</mat-icon>
+      <span class="!text-sm">Kontakt</span>
+    </button>
+  </div>
+
+  <div *ngIf="isLoggedIn$ | async; else notLoggedIn" class="flex flex-row justify-end w-[25%] gap-[10px]">
+    <button mat-flat-button [matMenuTriggerFor]="accountMenu" color="accent" class="!rounded navbar-my-account-button">
+      <mat-icon svgIcon="circle-user-solid" class="scale-[0.9] !h-[20px]"></mat-icon>
+      <div class="flex flex-row justify-center items-center">
+        <span>Môj účet</span>
+        <mat-icon matSuffix>expand_more</mat-icon>
+      </div>
+    </button>
+  </div>
+  <ng-template #notLoggedIn>
+    <div class="flex flex-row justify-end w-[25%] gap-[10px]">
+      <!-- <button [disabled]="isRegistratDisabled" [ngClass]="{'navbar-disable': isRegistratDisabled}" mat-raised-button
+        class="navbar-login !rounded" routerLink="/auth/prihlasenie">
+        <span class="!text-sm">Prihlásiť sa</span>
+      </button> -->
+      <button [disabled]="isRegistratDisabled" [ngClass]="{'navbar-disable': isRegistratDisabled}" mat-raised-button
+        class="navbar-login !rounded" routerLink="/auth/prehlad">
+        <mat-icon>login</mat-icon>
+        <span class="!text-base">Registrovať sa</span>
+      </button>
+    </div>
+  </ng-template>
+</mat-toolbar>
+
+<!-- mat menus -->
+<mat-menu #informationMenu="matMenu">
+  <button mat-menu-item routerLink="/general/miesto-podujatia">
+    <mat-icon class="navbar-icons" svgIcon="location-dot"></mat-icon>
+    <span>Miesto podujatia</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/ubytovanie">
+    <mat-icon class="navbar-icons">hotel</mat-icon>
+    <span>Ubytovanie</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/parkovanie">
+    <mat-icon class="navbar-icons" svgIcon="parking"></mat-icon>
+    <span>Parkovanie</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/registracia">
+    <mat-icon class="navbar-icons">person</mat-icon>
+    <span>Registrácia a poplatky</span>
+  </button>
+  <!-- <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/spolocensky-program">
+    <mat-icon class="navbar-icons">group</mat-icon>
+    <span>Spoločenský program</span>
+  </button> -->
+  <mat-divider class=" !m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/faq">
+    <mat-icon class="navbar-icons">quiz</mat-icon>
+    <span>FAQ</span>
+  </button>
+</mat-menu>
+
+<mat-menu #activityMenu="matMenu">
+  <button mat-menu-item routerLink="/general/prezentacia">
+    <mat-icon class="navbar-icons" svgIcon="rectangle-history-solid"></mat-icon>
+    <span>Prednáška</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/poster">
+    <mat-icon class="navbar-icons" svgIcon="rectangle-history-solid"></mat-icon>
+    <span>Poster</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/general/abstrakt">
+    <mat-icon class="navbar-icons" svgIcon="memo-solid"></mat-icon>
+    <span>Abstrakt</span>
+  </button>
+  <!-- <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button disabled mat-menu-item routerLink="/general/sablony">
+    <mat-icon class="navbar-icons" svgIcon="pen"></mat-icon>
+    <span>Šablóny</span>
+  </button> -->
+</mat-menu>
+
+<mat-menu #accountMenu="matMenu">
+  <button mat-menu-item routerLink="/user/event/upcoming">
+    <mat-icon class="navbar-icons" svgIcon="calendar-days"></mat-icon>
+    <span>Podujatia</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/user/event/my-events">
+    <mat-icon class="navbar-icons" svgIcon="calendar-circle-user"></mat-icon>
+    <span>Moje podujatia</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/user/endorsements/all-docs" [queryParams]="{ type: 'all' }">
+    <mat-icon class="navbar-icons" svgIcon="file-certificate-solid"></mat-icon>
+    <span>Potvrdenia</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item routerLink="/user/profile/personal-statements">
+    <mat-icon class="navbar-icons" svgIcon="user-gear"></mat-icon>
+    <span>Profil</span>
+  </button>
+  <mat-divider class="!m-0 navbar-divider"></mat-divider>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon class="navbar-icons">logout</mat-icon>
+    <span>Odhlásiť sa</span>
+  </button>
+</mat-menu>

@@ -1,0 +1,9 @@
+<div class="flex flex-row justify-between items-center error-notification-bg">
+  <mat-icon class="error-notification-icon"> error </mat-icon>
+  <i class="error-notification-text" [innerHtml]="data.message">
+    {{ data.message }}
+  </i>
+  <button class="error-notification-highlight" mat-icon-button (click)="dismiss()">
+    <mat-icon> highlight_off </mat-icon>
+  </button>
+</div>

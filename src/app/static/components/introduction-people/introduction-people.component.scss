@@ -1,0 +1,42 @@
+.introduction-titles {
+  color: var(--secondary-color);
+  text-align: center;
+  font-size: 30px;
+}
+
+.introduction-background {
+  font-size: 46px;
+  font-weight: bold;
+  color: #efefef;
+  margin-top: 30px;
+}
+
+.introduction-content-box {
+  padding-top: 20px;
+}
+
+.introduction-people-box {
+  margin-top: 0px;
+}
+
+.introduction-list-items {
+  color: var(--primary-color);
+  margin: 0px;
+  padding-top: 10px;
+}
+
+@media (max-width: 1279px) {
+  .introduction-background {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 960px) {
+  .introduction-background {
+    color: #fafafa;
+  }
+
+  .introduction-content-box {
+    padding-top: 10px;
+  }
+}

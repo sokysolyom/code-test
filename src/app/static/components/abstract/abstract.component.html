@@ -1,0 +1,91 @@
+<div class="flex flex-col main-content">
+  <summeet-title-overlay [title]="'Abstrakt'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-col justify-center items-center mt-[60px]">
+    <div class="flex flex-col w-[60%] lt-md:w-[90%]">
+      <h1 *ngIf="abstractData.registerTerm || abstractData.activityConditions" class="abstract-title">Termíny a
+        podmienky aktívnej účasti</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Abstract dates -->
+      <div *ngIf="abstractData.registerTerm" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="calendar-day-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col w-[100%] gap-[16px]">
+          <h2 class="abstract-subtitle lt-sm:text-center">Termíny týkajúce sa aktívnej účasti na podujatí</h2>
+          <div class="abstract-table" [innerHTML]="abstractData.registerTerm"></div>
+        </div>
+      </div>
+
+      <!-- Abstract conditions -->
+      <div *ngIf="abstractData.activityConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="memo-circle-check-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="abstract-subtitle lt-sm:text-center">Podmienky registrácie aktívnej účasti</h2>
+          <summeet-shared-list-custom [data]="abstractData.activityConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <h1 *ngIf="abstractData.assignmentTerm" class="abstract-title">Termín odovzdania abstraktu</h1>
+      <!-- Abstract assignment date -->
+      <div *ngIf="abstractData.assignmentTerm" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="ng-icons">calendar_month</mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="abstract-subtitle lt-sm:text-center">Termín odovzdania abstraktu</h2>
+          <p class="abstract-p" [innerHTML]="abstractData.assignmentTerm"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-[60%] lt-md:w-[90%] mt-[32px]">
+      <h1 *ngIf="abstractData.abstractConditions" class="abstract-title">Formálne a obsahové náležitosti abstraktu</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+      <!-- Forbidden content -->
+      <div *ngIf="abstractData.abstractConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-xmark"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="abstract-subtitle lt-sm:text-center">Zakázaný obsah abstraktu</h2>
+          <p class="abstract-p !mb-[16px]" [innerHTML]="abstractData.forbiddenContent?.text"></p>
+          <summeet-shared-list-custom [data]="abstractData.forbiddenContent?.list"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Mandatory content -->
+      <div *ngIf="abstractData.abstractConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-check"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="abstract-subtitle lt-sm:text-center">Podmienky a pravidlá pre abstrakt</h2>
+          <summeet-shared-list-custom [data]="abstractData.abstractConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abstract upload -->
+    <div class="flex flex-col w-[60%] lt-md:w-[90%] mt-[32px]">
+      <h1 *ngIf="abstractData.sendAbstract" class="abstract-title">Doručenie abstraktu</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+      <div *ngIf="abstractData.sendAbstract" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-arrow-up"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="abstract-subtitle lt-sm:text-center">Doručenie abstraktu</h2>
+          <p class="abstract-p" [innerHTML]="abstractData.sendAbstract">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

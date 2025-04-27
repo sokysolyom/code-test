@@ -1,0 +1,16 @@
+<div class="flex flex-col justify-center items-center gap-[16px] w-[80%] animation-from-top">
+  <h2 *ngIf="isHealthcareProfessional; else representativeText" class="font-bold mb-0 animation-from-top">Údaje o
+    povolaní</h2>
+  <ng-template #representativeText>
+    <h2 class="font-bold mb-0 animation-from-top">Údaje o subjekte</h2>
+    <p class="text-xs text-center m-0 max-w-[700px] animation-from-top">Údaje o subjekte nie je možné zmeniť.
+    </p>
+  </ng-template>
+  <div *ngIf="isHealthcareProfessional; else representative">
+    <summeet-profile-workplace-form class="flex justify-center w-full"></summeet-profile-workplace-form>
+  </div>
+  <ng-template #representative>
+    <summeet-profile-representative-statements
+      class="flex justify-center w-full"></summeet-profile-representative-statements>
+  </ng-template>
+</div>

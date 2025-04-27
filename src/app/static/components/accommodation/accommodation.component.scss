@@ -1,0 +1,31 @@
+.accommodation-title {
+  color: var(--primary-color);
+}
+
+.accommodation-hotel-description {
+  p:first-child {
+    font-size: 14px;
+    text-align: justify;
+    margin-top: 0px;
+  }
+  p {
+    font-size: 14px;
+    text-align: justify;
+    margin-bottom: 16px;
+  }
+  span {
+    font-size: 14px;
+  }
+}
+
+.accommodation-subtitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.accommodation-divider {
+  border-bottom: 1px solid var(--secondary-color);
+  width: 95%;
+}

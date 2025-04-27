@@ -1,0 +1,14 @@
+<div class="flex justify-end">
+  <button (click)="onClose()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="flex w-[100%] h-[100%]">
+  <p class="text-justify">Ľutujeme, ale táto časť webovej stránky je prístupná len osobám oprávneným predpisovať alebo
+    vydávať lieky.</p>
+  <div class="flex w-[100%] flex-row justify-end items-center">
+    <button mat-raised-button color="accent" (click)="onClose()" type="button" class="registration-button">
+      <span>Zavrieť</span>
+    </button>
+  </div>
+</div>

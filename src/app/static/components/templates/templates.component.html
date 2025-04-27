@@ -1,0 +1,46 @@
+<div class="flex flex-col main-content">
+  <summeet-title-overlay [title]="'Šablóny'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+      <div *ngIf="templatesData.presentationText" class="flex flex-row gap-[30px] lt-md:gap-[20px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="rectangle-history-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="templates-subtitle lt-sm:text-center">Šablóna prezentácie</h2>
+          <p class="templates-p">{{templatesData.presentationText}}</p>
+        </div>
+      </div>
+      <div *ngIf="templatesData.presentationText" class="flex w-[100%] justify-center items-center">
+        <a mat-raised-button color="primary" class="templates-image-container"
+          href="assets/presentations/presentation.potx">
+          <div class="flex flex-row items-center gap-[5px]">
+            <img class="templates-image"
+              src="https://summeet-bucket.fra1.cdn.digitaloceanspaces.com/mladi-hematologovia/public/prezentacia_MH25_titulka2.png"
+              alt="template-image" />
+            <div class="download-overlay">
+              <span class="download-text">Stiahnuť</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- <div *ngIf="templatesData.posterText" fxLayout="row" fxLayoutGap="30px" fxLayoutGap.lt-md="20px">
+        <div fxLayoutAlign="start start">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-invoice"></mat-icon>
+        </div>
+        <div fxLayout="column">
+          <h2 class="templates-subtitle">Šablóna posteru</h2>
+          <p class="templates-p">{{templatesData.posterText}}</p>
+        </div>
+      </div>
+      <div *ngIf="templatesData.posterText" fxFlex="25" fxLayoutAlign="center center">
+        <a mat-raised-button color="accent" href="assets/templates/KHaTD - Poster (VZOR).pptx">
+          <div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="5px">
+            <img class="templates-image" src="assets/templates/template_photo.png" />
+          </div>
+        </a>
+      </div> -->
+    </div>
+  </div>
+</div>

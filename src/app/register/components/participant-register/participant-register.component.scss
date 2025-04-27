@@ -1,0 +1,214 @@
+.participant-register-main-box {
+  div.mat-chip-list-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    .mat-chip {
+      flex: 0 0 auto;
+    }
+  }
+
+  .mat-checkbox-inner-container {
+    margin-right: 33px !important;
+  }
+  .mat-checkbox {
+    font-size: 12px !important;
+  }
+}
+
+.participant-register-title {
+  color: var(--primary-color);
+}
+
+.participant-register-card-stepper-wrapper {
+  padding: 0 !important;
+}
+
+.participant-register-big-title {
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.participant-register-form {
+  margin-bottom: 30px;
+}
+
+.participant-register-toggle-buttons {
+  margin-bottom: 30px;
+}
+
+.mat-step-icon {
+  color: var(--white-color) !important;
+}
+
+.mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+
+.participant-register-activated {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 0px 26px 0px 26px;
+  font-size: 16px !important;
+}
+
+.participant-register-unactivated {
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 0px 26px 0px 26px;
+  font-size: 16px !important;
+}
+
+.participant-register-button {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.participant-register-ban-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.participant-register-big-icon {
+  color: var(--primary-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.participant-register-big-icon-ban {
+  color: var(--warning-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.participant-register-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.participant-register-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+
+  .participant-register-big-icon {
+    color: var(--white-color) !important;
+  }
+
+  .participant-register-icons {
+    color: var(--white-color) !important;
+  }
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap; /* Ensures chips wrap to the next line */
+  gap: 8px; /* Adds space between chips */
+  max-height: 100px; /* Optionally set a maximum height */
+  overflow: hidden; /* Hide any overflow content */
+  scrollbar-width: none;
+}
+
+.chips-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbars for Chrome, Safari, Edge */
+}
+
+.mat-chip-border {
+  color: #e1e1e1 !important; /* Adjust text/icon color */
+  background-color: #e1e1e1 !important; /* Ensure the background is transparent if needed */
+  height: 20px; /* Maintain your custom height */
+}
+
+::ng-deep .participant-register-toggle .mdc-switch {
+  transform: scale(0.6);
+  margin-right: 8px;
+}
+
+::ng-deep .mat-mdc-slide-toggle .mat-internal-form-field {
+  display: flex;
+  align-items: start;
+}
+
+/* Ensure the text and label are unaffected */
+::ng-deep .participant-register-toggle .mdc-form-field > label {
+  transform: none;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+// Stepper
+::ng-deep .mat-step-icon-content {
+  display: none !important;
+}
+
+.participant-register-href-color {
+  color: #1e1b16;
+}
+
+::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+  width: 170px;
+}
+
+// ::ng-deep .mat-step-header:hover {
+//   background-color: white !important;
+// }
+// ::ng-deep .mat-step-header.cdk-program-focused {
+//   background-color: white;
+// }
+// ::ng-deep .mat-step-header.cdk-mouse-focused {
+//   background-color: white;
+// }
+// ::ng-deep .mat-step-header.cdk-focused {
+//   background-color: white;
+// }
+
+::ng-deep .mdc-switch--unselected .mdc-switch__icon {
+  fill: #797979 !important;
+  color: #797979 !important;
+}
+
+/* Reset focus and active styles for mat-stepper headers */
+::ng-deep .mat-step-header {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: white !important; /* Set background to white */
+}
+
+/* Remove focus styles when clicked or navigated */
+::ng-deep .mat-step-header:focus,
+::ng-deep .mat-step-header:focus-visible,
+::ng-deep .mat-step-header:focus-within,
+::ng-deep .mat-step-header:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: white !important; /* Ensure consistent white background */
+}
+
+/* Remove styles for the active step */
+::ng-deep .mat-step-header.mat-active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: white !important; /* Consistent background */
+}
+
+/* Reset ripple effect focus */
+::ng-deep .mat-ripple-element {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important; /* Ripple should not affect appearance */
+}
+
+/* Ensure stepper labels maintain white background */
+::ng-deep .mat-stepper-horizontal .mat-step-label {
+  background-color: white !important; /* Consistent background for labels */
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .mat-select-panel {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}

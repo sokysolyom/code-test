@@ -1,0 +1,33 @@
+<div class="flex justify-end pt-[16px] pl-[16px] pr-[16px]">
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="flex justify-center items-center">
+    <h1 class="m-0">Vymazať</h1>
+  </div>
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-col w-[100%]">
+      <div class="flex justify-center items-center">
+        <p>
+          Naozaj chcete vymazať <b>{{ name }}</b>?
+        </p>
+      </div>
+      <mat-form-field class="max-w-full mb-[16px]">
+        <input [formControl]="deleteConfirmation" matInput />
+        <mat-hint>Pre potvrdenie vymazania zadajte slovo VYMAZAT (s veľkými písmenami a bez diakritiky).</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="flex flex-row justify-evenly">
+    <button mat-flat-button class="!rounded" (click)="closeDialog()">
+      Nie!
+    </button>
+    <button [disabled]="!deleteConfirmation.valid" mat-flat-button class="!rounded" (click)="onSubmit()">
+      Áno!
+    </button>
+  </div>
+</mat-dialog-actions>

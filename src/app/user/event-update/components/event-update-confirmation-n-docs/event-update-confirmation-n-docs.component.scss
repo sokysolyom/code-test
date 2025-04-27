@@ -1,0 +1,47 @@
+.event-update-confirmation-n-docs-table {
+  th {
+    background-color: var(--secondary-color) !important;
+    font-size: 12px;
+
+    span {
+      color: var(--white-color);
+
+      mat-icon {
+        color: var(--white-color);
+      }
+    }
+  }
+
+  td {
+    font-size: 12px;
+  }
+
+  .mat-mdc-cell {
+    border-bottom-style: none !important;
+  }
+}
+
+.event-update-confirmation-n-docs-table tr:nth-child(even) {
+  background-color: var(--secondary-color-10);
+}
+
+.mat-column-actions {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 10%;
+}
+
+.mat-column-name {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.my-events-absolved {
+  background-color: var(--success-color);
+  color: var(--white-color);
+}
+
+.my-events-upcmoning {
+  background-color: var(--navbar-color);
+  color: var(--white-color);
+}

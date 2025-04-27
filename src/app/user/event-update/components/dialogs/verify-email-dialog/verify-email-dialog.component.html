@@ -1,0 +1,61 @@
+<div class="flex justify-end">
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="flex flex-col justify-center items-center p-[16px]">
+  <h3 *ngIf="isHealthcareProfessional" class="m-0 font-semibold">Zadajte email zdravotníckeho pracovníka</h3>
+  <h3 *ngIf="!isHealthcareProfessional" class="m-0 font-semibold">Zadajte email zástupcu</h3>
+  <mat-form-field class="mt-[16px] max-w-[80%]">
+    <mat-label>Email</mat-label>
+    <input [readonly]="isChecking" autocomplete="email" [formControl]="email" matInput required="true" />
+    <mat-error *ngIf="email.errors?.['required']">Email je povinný údaj
+    </mat-error>
+    <mat-error *ngIf="email.errors?.['incorrectEmail']">
+      E-mail nemá platný formát
+    </mat-error>
+  </mat-form-field>
+  <div *ngIf="isChecking" class="animation-from-top w-[80%]">
+    <h3 class="m-0 font-semibold text-center">Overenie údajov</h3>
+    <form [formGroup]="checkForm" class="flex flex-col w-[100%] mt-[16px] gap-[6px]">
+      <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+        <mat-form-field class="max-w-full">
+          <mat-label>Krstné meno</mat-label>
+          <input formControlName="firstName" matInput autocomplete="given-name" />
+          <mat-error *ngIf="checkForm.controls['firstName'].errors?.['required']">Krstné meno je povinný údaj
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="max-w-full">
+          <mat-label>Priezvisko</mat-label>
+          <input formControlName="lastName" matInput autocomplete="family-name" />
+          <mat-error *ngIf="checkForm.controls['lastName'].errors?.['required']">Priezvisko je povinný údaj
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="max-w-full">
+        <mat-label>Dátum narodenia</mat-label>
+        <input matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirthPicker"
+          (click)="dateOfBirthPicker.open()" />
+        <mat-datepicker-toggle matIconSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateOfBirthPicker [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="flex w-[80%] h-[100%]">
+    <div class="flex w-[100%] flex-row justify-between items-center">
+      <button mat-flat-button color="primary" (click)="closeDialog()" type="button" class="!rounded">
+        <span class="uppercase">Zavrieť</span>
+      </button>
+      <div>
+        <button *ngIf="!isChecking" [disabled]="!email.valid" mat-flat-button (click)="checkEmail()" type="button"
+          color="primary" class="!rounded">
+          <span class="uppercase">Ďalej</span>
+        </button>
+        <button *ngIf="isChecking" [disabled]="!checkForm.valid" mat-flat-button (click)="onSubmit()" type="button"
+          color="primary" class="!rounded">
+          <span class="uppercase">Ďalej</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

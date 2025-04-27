@@ -1,0 +1,21 @@
+<div class="flex flex-col main-content">
+  <div class="flex flex-row justify-center items-center mt-[32px]">
+    <div class="flex flex-row justify-center items-center w-[60%] lt-md:flex-col lt-md:w-[90%]">
+      <div class="flex flex-col justify-center items-center gap-[20px]">
+        <mat-form-field class="flex max-w-full !text-sm">
+          <mat-label>Heslo</mat-label>
+          <input [formControl]="password" matInput [type]="hidePassword ? 'password' : 'text'" />
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+            hidePassword ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="flex flec-row justify-between w-[100%] animation-from-left">
+        <button (click)="submit()" mat-flat-button type="submit" class="!rounded">
+          <span>Prihlásiť</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

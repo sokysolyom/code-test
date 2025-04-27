@@ -1,0 +1,149 @@
+<div class="flex flex-col main-content workshop-main-box">
+  <summeet-title-overlay [title]="'Workshop'" class="animation-from-top"></summeet-title-overlay>
+
+  <!-- ngFor workshopData -->
+  <div class="flex flex-row justify-center items-center mb-[50px]" *ngFor="let workshop of workshopData">
+    <div class="flex flex-row justify-center items-center w-[60%] lt-md:w-[90%]">
+      <div class="flex flex-col gap-[40px] mt-[32px]">
+
+        <!-- Sponsor -->
+        <div *ngIf="workshop.sponsor" class="flex flex-col justify-center items-center">
+          <h1 [ngClass]="{'mb-0' : workshop.sponsor.title2}" class="workshop-primary-color font-bold !text-xl
+          text-center" [innerHTML]="workshop.sponsor.title"></h1>
+          <h1 *ngIf="workshop.sponsor.title2" class="workshop-primary-color font-bold text-center m-0 !text-xl"
+            [innerHTML]="workshop.sponsor.title2">
+          </h1>
+          <p class="mt-0 text-center !text-sm" [innerHTML]="workshop.sponsor.partner"></p>
+        </div>
+
+        <!-- Date -->
+        <div *ngIf="workshop.date" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-center">
+            <mat-icon color="primary" class="svg-icons" svgIcon="calendar-day"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0">
+            <h2 class="workshop-subtitle !text-xl">Termín</h2>
+            <p class="workshop-p !text-sm" [innerHTML]="workshop.date"></p>
+          </div>
+        </div>
+
+        <!-- Time -->
+        <div *ngIf="workshop.time" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-center">
+            <mat-icon color="primary" class="svg-icons" svgIcon="clock-solid"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0">
+            <h2 class="workshop-subtitle !text-xl">Čas</h2>
+            <p class="workshop-p !text-sm" [innerHTML]="workshop.time"></p>
+          </div>
+        </div>
+
+        <!-- Capacity -->
+        <div *ngIf="workshop.capacity" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-center">
+            <mat-icon color="primary" class="svg-icons" svgIcon="users"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0">
+            <h2 class="workshop-subtitle !text-xl">Kapacita</h2>
+            <p class="workshop-p !text-sm" [innerHTML]="workshop.capacity"></p>
+          </div>
+        </div>
+
+        <!-- Registration -->
+        <div *ngIf="workshop.registration" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-start">
+            <mat-icon color="primary" class="svg-icons" svgIcon="user-pen-solid"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0">
+            <h2 class="workshop-subtitle !text-xl">Registrácia</h2>
+            <div class="flex flex-col">
+              <p class="mt-0 !text-sm" [innerHTML]="workshop.registration.text"></p>
+              <div class="flex flex-row pl-[15px]">
+                <div class="flex justify-center items-center">
+                  <mat-icon color="primary" class="list-custom-icon" svgIcon="square"></mat-icon>
+                </div>
+                <div class="flex justify-center items-center">
+                  <p class="m-1 text-sm" [innerHTML]="workshop.registration.name"></p>
+                </div>
+              </div>
+            </div>
+            <span><a class="!text-sm ml-[42px]" href="mailto:{{workshop.registration.email}}" target="_blank"
+                [innerHTML]="workshop.registration.email"></a></span>
+          </div>
+        </div>
+
+        <!-- Lectors -->
+        <div *ngIf="workshop.lectors" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-start">
+            <mat-icon color="primary" class="svg-icons" svgIcon="chalkboard-user"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0">
+            <h2 class="workshop-subtitle workshop-lector-title !text-xl">Lektori</h2>
+            <div class="flex flex-col">
+              <!-- <ul class="workshop-list">
+                <li *ngFor="let lector of workshop.lectors" [innerHTML]="lector"></li>
+              </ul> -->
+              <summeet-introduction-list-custom [data]="workshop.lectors"></summeet-introduction-list-custom>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Themes -->
+        <div *ngIf="workshop.mainThemes" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-start">
+            <mat-icon color="primary" class="svg-icons" svgIcon="list-check"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0">
+            <h2 class="workshop-subtitle !text-xl">Hlavné témy</h2>
+            <div class="flex flex-col">
+              <p [innerHTML]="workshop.mainThemes.text" class="!text-sm"></p>
+              <ul class="workshop-list">
+                <li *ngFor="let themes of workshop.mainThemes.themes" [innerHTML]="themes"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Program with time -->
+        <div *ngIf="workshop.program && workshop.isTimeInProgram" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-start">
+            <mat-icon color="primary" class="svg-icons" svgIcon="list"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0 w-[100%]">
+            <h2 class="workshop-subtitle !text-xl">Program</h2>
+            <div class="flex flex-row mb-[16px] lt-sm:flex-col" *ngFor="let program of workshop.program">
+              <div class="mr-[32px] lt-sm:w-[100%]">
+                <p [innerHTML]="program?.time" class="!text-sm"></p>
+              </div>
+              <div class="flex flex-1 flex-col">
+                <p class="workshop-program-title !text-base" [innerHTML]="program.title"></p>
+                <ul class="workshop-list">
+                  <li *ngFor="let theme of program.themes" [innerHTML]="theme" class="!text-sm"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Program without time -->
+        <div *ngIf="workshop.program && !workshop.isTimeInProgram" class="flex flex-row gap-[30px] lt-md:gap-[20px]">
+          <div class="flex justify-start items-start">
+            <mat-icon color="primary" class="svg-icons" svgIcon="list"></mat-icon>
+          </div>
+          <div class="flex flex-col gap-0 w-[100%]">
+            <h2 class="workshop-subtitle !text-xl">Program</h2>
+            <div class="flex flex-row mb-[16px] lt-sm:flex-col" *ngFor="let program of workshop.program">
+              <div class="flex flex-1 flex-col">
+                <p class="workshop-program-title !text-base" [innerHTML]="program.title"></p>
+                <!-- <ul class="workshop-list">
+                  <li *ngFor="let theme of program.themes" [innerHTML]="theme" class="!text-sm"></li>
+                </ul> -->
+                <summeet-shared-list-custom [data]="program.themes"></summeet-shared-list-custom>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

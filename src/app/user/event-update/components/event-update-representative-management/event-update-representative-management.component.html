@@ -1,0 +1,178 @@
+<div class="flex flex-col justify-center items-center gap-[16px] w-full animation-from-top">
+  <h2 class="font-medium">Správa registrácií</h2>
+  <p class="text-xs text-center m-0">
+    Ako administrátor ste oprávnený/á uskutočniť a spravovať hromadnú registráciu zdravotníckych pracovníkov a zástupcov
+    subjektu na úseku farmácie.
+  </p>
+
+  <!-- Choose partner if role is SUBJECT -->
+  <mat-form-field *ngIf="isSelectVisible$ | async" class="max-w-[300px]">
+    <mat-label>Partner</mat-label>
+    <mat-select [formControl]="partner">
+      @for (partner of allPartners; track partner.id) {
+      <mat-option [value]="partner.id" class="!text-sm">{{
+        partner.legalPerson.name
+        }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <!-- Select -->
+  <div class="flex flex-col justify-center items-center gap-[16px]">
+    <h3 *ngIf="isAdminSelectVisible" class="m-0 text-base font-semibold">Chcem byť</h3>
+
+    <div *ngIf="isAdminSelectVisible; else notInSelect" class="flex flex-col gap-[32px] mt-[16px]">
+      <div class="flex flex-row gap-[32px]">
+        <!-- Administrator -->
+        <mat-card [ngClass]="{'event-register-represntative-admin-selected': adminState === 1}"
+          class="flex w-[140px] h-[140px] event-register-represntative-admin-mat-card summeet-mat-card"
+          (click)="toggleAdmin(1)">
+          <mat-card-content class="h-full">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-register-represntative-admin-big-icon" svgIcon="users-gear-solid"></mat-icon>
+              <span class="text-xs">Administrátor</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <!-- Not interested -->
+        <mat-card [ngClass]="{'event-register-represntative-admin-ban-selected': adminState === 2}"
+          class="flex w-[140px] h-[140px] event-register-represntative-admin-mat-card summeet-mat-card"
+          (click)="toggleAdmin(2)">
+          <mat-card-content class="h-full">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-register-represntative-admin-big-icon-ban" svgIcon="ban-solid"></mat-icon>
+              <span class="text-xs">Nemám záujem</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- Confirm button -->
+      <div class="flex flex-col justify-center items-center">
+        <button [disabled]="isButtonDisabled" color="primary" mat-flat-button (click)="beExtAdminOfPartner()"
+          class="!rounded">
+          <span>ĎALEJ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #notInSelect>
+    <div class="flex flex-col justify-center items-center animation-from-top">
+      <h3 class="text-base m-0 font-medium">Chcem registrovať</h3>
+
+      <div class="flex flex-row gap-[16px] mt-[16px]">
+        <!-- Medical user register -->
+        <div class="flex flex-col" *ngIf="healthcareProfessionalOrders?.isBulkRegistrationAllowed">
+          <mat-card
+            [ngClass]="{'pointer-events-none': healthcareProfessionalOrders && ((healthcareProfessionalOrders.registeredNumber >= healthcareProfessionalOrders.orderedNumber) || !healthcareProfessionalOrders.isBulkRegistrationAllowed)}"
+            class="flex w-[140px] h-[140px] z-[2] event-update-representative-management-mat-card summeet-mat-card"
+            (click)="openMedicalProfessionalDialog()">
+            <mat-card-content class="h-full"
+              [ngClass]="{'opacity-50': healthcareProfessionalOrders && ((healthcareProfessionalOrders.registeredNumber >= healthcareProfessionalOrders.orderedNumber) || !healthcareProfessionalOrders.isBulkRegistrationAllowed)}">
+              <div class="flex flex-col items-center justify-between gap-[16px]">
+                <mat-icon class="event-update-representative-management-big-icon" svgIcon="user-doctor"></mat-icon>
+                <span class="flex flex-col">
+                  <span class="text-xs text-center">Zdravotníckeho</span>
+                  <span class="text-xs text-center">pracovníka</span>
+                </span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="w-[140px] absolute top-[-20px] z-[1] event-update-representative-management-shadow">
+            <div
+              class="flex flex-col justify-center items-center pt-[26px] pb-[6px]  event-update-representative-registered-box">
+              <span class="!text-xs">Dostupné</span>
+              <span class="!text-xs">registrácie</span>
+              <mat-icon class="absolute right-[6px]"
+                matTooltip="Zobrazuje počet využitých registrácií z celkového počtu objednaných registrácií (napr. 0/1, kedy číslo 0 znamená, že zatiaľ nebola uskutočnená registrácia a číslo 1 znamená, že bola objednaná jedna registrácia.)">info</mat-icon>
+            </div>
+            <div class="flex flex-col justify-center items-center py-[6px]  event-update-representative-state-box">
+              <span
+                class="!text-base">{{healthcareProfessionalOrders?.registeredNumber}}/{{healthcareProfessionalOrders?.orderedNumber}}</span>
+            </div>
+          </mat-card>
+        </div>
+        <!-- Representative register -->
+        <div class="flex flex-col">
+          <mat-card
+            [ngClass]="{'pointer-events-none': representativeOrders && representativeOrders.registeredNumber >= representativeOrders.orderedNumber}"
+            class="flex w-[140px] h-[140px] z-[2] event-update-representative-management-mat-card summeet-mat-card"
+            (click)="openRepresentativeDialog()">
+            <mat-card-content class="h-full"
+              [ngClass]="{'opacity-50': representativeOrders && representativeOrders.registeredNumber >= representativeOrders.orderedNumber}">
+              <div class="flex flex-col items-center justify-between gap-[16px]">
+                <mat-icon class="event-update-representative-management-big-icon"
+                  svgIcon="briefcase-medical"></mat-icon>
+                <span class="flex flex-col">
+                  <span class="text-xs text-center">Zástupcu </span>
+                  <span class="text-xs text-center">subjektu</span>
+                </span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="w-[140px] absolute top-[-20px] z-[1] event-update-representative-management-shadow">
+            <!-- Available registrations -->
+            <div
+              class="flex flex-col justify-center items-center pt-[26px] pb-[6px]  event-update-representative-registered-box">
+              <span class="!text-xs">Dostupné</span>
+              <span class="!text-xs">registrácie</span>
+              <mat-icon class="absolute right-[6px]"
+                matTooltip="Zobrazuje počet využitých registrácií z celkového počtu objednaných registrácií (napr. 0/1, kedy číslo 0 znamená, že zatiaľ nebola uskutočnená registrácia a číslo 1 znamená, že bola objednaná jedna registrácia.)">info</mat-icon>
+            </div>
+            <!-- Current state of registrations -->
+            <div class="flex flex-col justify-center items-center py-[6px]  event-update-representative-state-box">
+              <span
+                class="!text-base">{{representativeOrders?.registeredNumber}}/{{representativeOrders?.orderedNumber}}</span>
+            </div>
+          </mat-card>
+        </div>
+
+        <!-- Myself registration -->
+        <div *ngIf="!isSubject" class="flex flex-col">
+          <mat-card
+            [ngClass]="{'pointer-events-none': isRegistered || representativeOrders?.registeredNumber === representativeOrders?.orderedNumber}"
+            (click)="goToRegistration()"
+            class="flex w-[140px] h-[140px] z-[2] event-update-representative-management-mat-card summeet-mat-card">
+            <mat-card-content class="h-full"
+              [ngClass]="{'opacity-50': isRegistered || representativeOrders?.registeredNumber === representativeOrders?.orderedNumber}">
+              <div class="flex flex-col items-center justify-between gap-[16px]">
+                <mat-icon class="event-update-representative-management-big-icon" svgIcon="user"></mat-icon>
+                <span class="text-xs">Seba</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card *ngIf="isRegistered" class="w-[140px] absolute top-[-20px] z-[1]">
+            <!-- Available registrations -->
+            <div
+              class="flex flex-col justify-center items-center pt-[26px] pb-[6px] event-update-representative-already-registered-box">
+              <span class="!text-xs">UŽ STE</span>
+              <span class="!text-xs">ZAREGISTROVANÝ/Á</span>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isDataLoaded$ | async" class="flex flex-col justify-center items-center w-[720px]">
+      <h3 *ngIf="representatives.users.length" class="text-base m-0 font-semibold">Zaregistrovaní účastníci</h3>
+      <div class="flex flex-row justify-between items-start gap-[16px] w-full mt-[16px]"
+        [ngClass]="{'!justify-center': (!representatives.users.length && healthcareProfessionals.users.length) || (representatives.users.length && !healthcareProfessionals.users.length)}">
+        <summeet-registered-users-custom-table class="w-[357px]" *ngIf="healthcareProfessionals.users.length"
+          (fetchUsers)="fetchDataAfterDelete()"
+          [userData]="healthcareProfessionals"></summeet-registered-users-custom-table>
+        <summeet-registered-users-custom-table class="w-[357px]" *ngIf="representatives.users.length"
+          (fetchUsers)="fetchDataAfterDelete()" [userData]="representatives"></summeet-registered-users-custom-table>
+      </div>
+    </div>
+    <div class="flex flex-col justify-center items-center w-[720px]">
+      <h3 class="text-base m-0 font-semibold">Objednané služby</h3>
+      <div class="flex flex-row justify-between items-start gap-[16px] w-full mt-[16px]"
+        [ngClass]="{'!justify-center': !healthcareProfessionalOrders?.isBulkRegistrationAllowed}">
+        <summeet-ordered-services-custom-table class="w-[357px]"
+          *ngIf="healthcareProfessionalOrders?.isBulkRegistrationAllowed"
+          [userData]="healthcareProfessionalOrders"></summeet-ordered-services-custom-table>
+        <summeet-ordered-services-custom-table class="w-[357px]"
+          [userData]="representativeOrders"></summeet-ordered-services-custom-table>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

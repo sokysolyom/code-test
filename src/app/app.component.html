@@ -1,0 +1,15 @@
+<div class="app-wrapper">
+  <summeet-header class="mat-elevation-z6 app-header"></summeet-header>
+  <div [ngClass]="this.isMobile ? 'mobile-main-content' : 'main-content'" class="app-sidenav-container"
+    class="flex flex-1 app-content" #appContent>
+    <mat-sidenav-container class="main-content app-sidenav-container">
+      <mat-sidenav #sidenav [opened]="sidenavOpened$ | async" [mode]="'over'" disableClose class="app-sidenav-nav">
+        <summeet-sidenav></summeet-sidenav>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+        <summeet-footer></summeet-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

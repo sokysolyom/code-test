@@ -1,0 +1,64 @@
+<div class="flex flex-row justify-center items-center gap-[40px] lt-md:flex-col">
+
+  <!-- Left info side -->
+  <div
+    class="flex flex-col w-[35%] justify-center lt-md:w-[50%] lt-sm:w-[100%] lt-md:justify-start lt-md:items-start lt-sm:justify-center lt-sm:items-center animation-from-left">
+    <!-- Hotel -->
+    <div *ngIf="venueData.hotel" class="flex flex-row gap-[30px] lt-md:gap-[20px] mb-[21px] lt-sm:flex-col">
+      <div class="flex justify-start items-start lt-sm:justify-center">
+        <mat-icon color="primary" class="ng-icons">hotel_outline</mat-icon>
+      </div>
+      <div class="flex flex-col">
+        <h2 class="venue-subtitle lt-sm:text-center">
+          <span *ngIf="isHotel; else notHotel">Hotel</span>
+          <ng-template #notHotel>
+            <span>Prednášková miestnosť</span>
+          </ng-template>
+        </h2>
+        <span class="venue-description-text" [innerHTML]="venueData.hotel"></span>
+      </div>
+    </div>
+    <!-- Address -->
+    <div *ngIf="venueData.addressCity" class="flex flex-row gap-[30px] lt-md:gap-[20px] mb-[21px] lt-sm:flex-col">
+      <div class="flex justify-start items-start lt-sm:justify-center">
+        <mat-icon color="primary" class="svg-icons" svgIcon="location-dot"></mat-icon>
+      </div>
+      <div class="flex flex-col">
+        <h2 class="venue-subtitle lt-sm:text-center">Adresa</h2>
+        <span class="venue-description-text" [innerHTML]="venueData.addressCity">
+        </span>
+      </div>
+    </div>
+    <!-- Navigation button -->
+    <div class="flex justify-end items-start">
+      <button (click)="navigate()" mat-stroked-button color="accent" class="venue-button !rounded">
+        <div class="flex flex-row justify-center items-center gap-[16px]">
+          <mat-icon>directions_car</mat-icon>
+          <span> Navigovať </span>
+        </div>
+      </button>
+    </div>
+  </div>
+  <!-- Right info side, Google map -->
+  <div class="flex flex-1 justify-center items-center animation-from-right">
+    <iframe class="venue-photo" [src]="venueData.iFrameUrl | safe: 'resourceUrl'" frameborder="0" allowfullscreen
+      webkitallowfullscreen mozallowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<!-- Photos - caraousel -->
+<div class="flex flex-row flex-1 justify-center items-center mt-[60px]">
+  <ngu-carousel #myCarousel [inputs]="carouselTile" (carouselLoad)="carouselTileLoad()" [dataSource]="carouselTileItems"
+    class="!w-full">
+    <ngu-tile *nguCarouselDef="let item; let i = index">
+      <div class="carousel-cell">
+        <img class="carousel-img" (click)="openPictureBrowser(item)" (keydown.enter)="openPictureBrowser(item)"
+          (keydown.space)="openPictureBrowser(item)" [src]="item" alt="Image: {{i}}" tabindex="0" />
+      </div>
+    </ngu-tile>
+    <button NguCarouselPrev class="leftRs" [ngClass]="{ 'disabled': myCarousel.isFirst() }">&lt;</button>
+    <button NguCarouselNext class="rightRs" [ngClass]="{ 'disabled': myCarousel.isLast() }">&gt;</button>
+
+  </ngu-carousel>
+</div>

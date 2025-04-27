@@ -1,0 +1,173 @@
+<div class="flex flex-col justify-center items-center gap-[16px]">
+  <div *ngIf="noInvoiceFound; else invoiceFound"
+    class="flex flex-col justify-center items-center gap-[16px] max-w-[700px] w-full">
+    <h2 class="font-bold mb-0 mt-[16px] animation-from-top text-center">Poplatky</h2>
+    <p class="text-xs text-center m-0 mb-[16px] max-w-[700px] c-lg:w-[80%] animation-from-top">
+      Neevidujeme žiadne poplatky za objednané služby na podujatí.
+    </p>
+  </div>
+  <ng-template #invoiceFound>
+    <div *ngIf="isDataLoaded$" class="flex flex-col justify-center items-center gap-[16px] max-w-[700px] w-full">
+      <h2 class="font-bold mb-0 mt-[16px] animation-from-top text-center">Poplatky</h2>
+      <p class="text-xs text-center m-0 mb-[16px] max-w-[700px] c-lg:w-[80%] animation-from-top">
+        Tu nájdete informácie týkajúce sa poplatkov za objednané služby na podujatí.
+      </p>
+      <!-- Order -->
+      <div class="flex flex-col justify-center items-start w-full">
+        <div class="flex flex-row gap-[32px]">
+          <h2 class="m-0 font-medium">Objednávka č.: {{invoiceData.variableSymbol}}</h2>
+          <div *ngIf="isPaid; else notPaidYet" class="flex justify-center items-center event-update-unpaid-bg">
+            <span class="text-xs px-[6px]">Zaplatené</span>
+          </div>
+          <ng-template #notPaidYet>
+            <div class="flex justify-center items-center event-update-fees-waiting-bg">
+              <span class="text-xs px-[6px]">Čaká sa na úhradu</span>
+            </div>
+          </ng-template>
+        </div>
+        <span class="text-xs text-center m-0">
+          Vytvorená dňa {{invoiceData.issueDate | dateFormatWithTime}}
+        </span>
+      </div>
+
+      <!-- Status -->
+      <div class="flex flex-col justify-center items-start w-full gap-[16px]">
+        <h3 class="m-0 font-medium">Status</h3>
+        <mat-progress-bar mode="determinate" value="{{isPaid ? 100 : 50}}" class="my-[5px]"
+          [ngClass]="isPaid ? 'event-update-fees-success-bar' : 'event-update-fees-progress-bar'"></mat-progress-bar>
+        <div class="flex flex-row justify-between w-full">
+          <div>
+            <p class="text-xs m-0">Objednávka</p>
+            <p class="text-xs m-0">vytvorená</p>
+            <p class="text-xs m-0 mt-1">{{invoiceData.issueDate | normalDate}}</p>
+          </div>
+          <div>
+            <p class="text-xs m-0 text-center">Čaká sa </p>
+            <p class="text-xs m-0 text-center">na úhradu</p>
+          </div>
+          <div class="flex flex-col items-end">
+            <p class="text-xs m-0">Objednávka </p>
+            <p class="text-xs m-0">uhradená</p>
+          </div>
+        </div>
+        <!-- <span class="text-xs text-center mt-[16px]">
+        Mrzelo by nás, ak by ste nemohli využiť naše služby <span class="font-medium">z dôvodu neuhradenia zálohovej
+          faktúry v lehote splatnosti.</span>
+        Avšak, aby sme zabezpečili každému účastníkovi spravodlivú možnosť využiť obmedzené počty rezervovaných kapacít,
+        tak po uplynutí lehoty splatnosti <span class="font-medium">vás automaticky odhlásime z podujatia a zrušíme
+          objednané služby.</span>
+      </span> -->
+      </div>
+
+      <!-- I want -->
+      <div class="flex flex-col justify-center items-center w-full gap-[16px]">
+        <h3 class="m-0 font-semibold text-base mt-[16px]">Chcem</h3>
+        <div class="flex flex-row gap-[32px]">
+          <mat-card (click)="openInvoice(invoiceData.id)"
+            class="flex w-[140px] h-[140px] event-update-fees-mat-card summeet-mat-card"
+            [ngClass]="{'mat-card-disable': isPaid}">
+            <mat-card-content class="h-full">
+              <div class="flex flex-col items-center justify-between gap-[16px]">
+                <mat-icon class="event-update-fees-big-icon" svgIcon="money-bill-transfer"></mat-icon>
+                <span class="text-xs text-center">Zaplatiť
+                  na účet</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <!-- Upload later -->
+          <!-- <mat-card class="flex w-[140px] h-[140px] event-update-fees-mat-card summeet-mat-card">
+          <mat-card-content class="h-full">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-update-fees-big-icon" svgIcon="credit-card"></mat-icon>
+              <span class="text-xs text-center">Platobnou kartou</span>
+            </div>
+          </mat-card-content>
+        </mat-card> -->
+          <!-- Download invoice -->
+          <mat-card class="flex w-[140px] h-[140px] event-update-fees-mat-card summeet-mat-card mat-card-disable">
+            <mat-card-content class="h-full">
+              <div class="flex flex-col items-center justify-between gap-[16px]">
+                <mat-icon class="event-update-fees-big-icon" svgIcon="file-invoice"></mat-icon>
+                <span class="text-xs text-center">Stiahnuť
+                  faktúru</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <!-- VIP -->
+          <!-- <mat-card class="flex w-[140px] h-[140px] event-update-fees-mat-card summeet-mat-card">
+          <mat-card-content class="h-full">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-update-fees-big-icon" svgIcon="circle-star"></mat-icon>
+              <span class="text-xs text-center">Vložiť
+                VIP kód</span>
+            </div>
+          </mat-card-content>
+        </mat-card> -->
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="flex flex-col justify-center items-start w-full">
+        <h3 class="m-0 font-semibold text-base mt-[16px]">Detaily</h3>
+      </div>
+      <div class="flex flex-row justify-between items-center w-full">
+        <!-- Orderer -->
+        <mat-card class="flex w-[280px] h-[200px] event-update-fees-mat-card summeet-mat-card !cursor-default">
+          <mat-card-content class="h-full">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-update-fees-big-icon" svgIcon="money-check-pen-solid"></mat-icon>
+              <span class="text-base font-medium text-center">Objednávateľ</span>
+              <div class="flex flex-col justify-center items-center">
+                <span class="text-xs">{{invoiceData.beneficiary.businessName}}</span>
+                <span class="text-xs">{{invoiceData.beneficiary.street}} {{invoiceData.beneficiary.streetNumber}}</span>
+                <span class="text-xs">{{invoiceData.beneficiary.zipCode}} </span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <!-- Payer -->
+        <mat-card class="flex w-[280px] h-[200px] event-update-fees-mat-card summeet-mat-card !cursor-default">
+          <mat-card-content class="h-full">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-update-fees-big-icon" svgIcon="money-check-dollar-pen"></mat-icon>
+              <span class="text-base font-medium text-center">Platca</span>
+              <div class="flex flex-col justify-center items-center">
+                <span class="text-xs">{{invoiceData.partner.businessName}}</span>
+                <span class="text-xs">{{invoiceData.partner.street}} {{invoiceData.partner.streetNumber}}</span>
+                <span class="text-xs">{{invoiceData.partner.zipCode}}</span>
+              </div>
+
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Fees table -->
+      <div class="max-w-[1000px] w-full mb-[32px]">
+        <h3 class="m-0 font-semibold text-base mt-[16px]">Tovar a služby</h3>
+        <table mat-table [dataSource]="dataSource" class="event-update-fees-table mt-[16px] rounded-xl">
+          <!-- Item Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef><span>Názov poplatku</span> </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.name}} </td>
+            <td mat-footer-cell *matFooterCellDef><span class="font-bold">
+                CELKOM
+              </span> </td>
+          </ng-container>
+
+          <!-- Cost Column -->
+          <ng-container matColumnDef="fee">
+            <th mat-header-cell *matHeaderCellDef><span>Suma</span> </th>
+            <td mat-cell *matCellDef="let transaction"> {{transaction.fee}} € </td>
+            <td mat-footer-cell *matFooterCellDef><span class="font-bold">{{getTotalCost()}} €</span> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

@@ -1,0 +1,56 @@
+.templates-subtitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.templates-p {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.templates-image {
+  height: 130px;
+}
+
+.templates-image-container {
+  transition: transform 0.5s ease; /* Adding a smooth transition effect */
+  border-left: 20px solid var(--primary-color);
+  border-right: 20px solid var(--primary-color);
+  border-radius: 4px;
+}
+
+.templates-image-container:hover {
+  transform: scale(1.1); /* Scaling to 1.1 on hover */
+}
+
+// object-fit: cover;
+.templates-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.download-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.download-overlay:hover {
+  opacity: 1;
+}
+
+.download-text {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}

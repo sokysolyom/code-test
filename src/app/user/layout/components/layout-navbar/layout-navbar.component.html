@@ -1,0 +1,19 @@
+<mat-toolbar class="flex flex-row layout-navbar-container fixed top-50 z-30" color="primary">
+  <div class="flex flex-1 flex-row">
+    <div class="flex w-[304px] lt-md:w-[290px]"></div>
+    <div class="flex flex-row justify-start items-center w-[60%] md:w-[80%] layout-navbar-button-group">
+      <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+        <ng-container *ngIf="!last">
+          <span class="layout-navbar-a text-xs">{{
+            breadcrumb.label
+            }}</span><span class="layout-navbar-span text-xs">&nbsp;/&nbsp;</span>
+        </ng-container>
+        <ng-container *ngIf="last">
+          <span class="layout-navbar-a text-xs">{{
+            breadcrumb.label
+            }}</span>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</mat-toolbar>

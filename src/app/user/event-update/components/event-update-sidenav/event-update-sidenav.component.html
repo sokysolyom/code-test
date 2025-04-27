@@ -1,0 +1,97 @@
+<section>
+  <div
+    class="flex flex-col z-[1] p-[10px] event-update-sidenavcontainer h-auto overflow-hidden self-start fixed top-[129px] max-h-[calc(100vh-120px)] overflow-y-auto 2xl:!w-[200px]">
+    <!-- Menu section -->
+    <div>
+      <p class="text-center mb-[10px] mt-0 text-sm font-semibold">MENU</p>
+      <mat-divider class="event-update-divider-color"></mat-divider>
+    </div>
+    <!-- Participation type section -->
+    <div *ngIf="isHealthcareProfessional" class="flex flex-col mt-[12px]">
+      <div class="event-update-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'participation-type']"
+          routerLinkActive="event-update-sidenavactive-link" mat-button
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center !text-start gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon" svgIcon="id-badge"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Typ účasti</span>
+        </button>
+      </div>
+    </div>
+    <!-- Abstracts, presetntaion and poster section -->
+    <div *ngIf="isHealthcareProfessional && isActiveParticipation" class="flex flex-col">
+      <div class="event-update-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'files']"
+          routerLinkActive="event-update-sidenavactive-link" mat-button
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center !text-start gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon !w-[27px]" svgIcon="rectangle-history-circle-user"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Abstrakty, prezentácie a postery</span>
+        </button>
+      </div>
+    </div>
+    <!-- Accommodation and meal section -->
+    <div *ngIf="isRegisteredToEvent && eventSettings?.accommodationSettings?.hasAccommodation" class="flex flex-col">
+      <div class="event-update-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'accommodation']"
+          routerLinkActive="event-update-sidenavactive-link" mat-button
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon" svgIcon="bell-concierge"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Ubytovanie a strava</span>
+        </button>
+      </div>
+    </div>
+    <!-- Fees section -->
+    <div *ngIf="isHealthcareProfessional && eventSettings?.registrationSettings?.isPaid" class="flex flex-col">
+      <div class="event-update-sidenavsection flex flex-row justify-start items-center gap-[12px]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'fees']"
+          routerLinkActive="event-update-sidenavactive-link" mat-button
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon" svgIcon="file-regular"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Poplatky</span>
+        </button>
+      </div>
+    </div>
+    <!-- Endorsements and documents section -->
+    <!-- <div class="flex flex-col">
+      <div class="event-update-sidenavsection flex flex-row justify-start items-center gap-[12px]">
+        <button mat-button routerLink="/user/event/update-event/confirmation-and-docs"
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon">image</mat-icon>
+          <span class="text-sm event-update-sidenavtext">Potvrdenia a dokumenty</span>
+        </button>
+      </div>
+    </div> -->
+    <!-- Manage registered users -->
+    <div *ngIf="isAdmin || isSubject" class="flex flex-col">
+      <div class="event-update-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'manage']"
+          routerLinkActive="event-update-sidenavactive-link" mat-button
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon" svgIcon="users"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Správa registrácií</span>
+        </button>
+      </div>
+    </div>
+    <!-- Change admin -->
+    <div *ngIf="isPartner" class="flex flex-col">
+      <div class="event-update-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'change-admin']"
+          routerLinkActive="event-update-sidenavactive-link" mat-button
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon" svgIcon="people-arrows-solid"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Zmena administrátora</span>
+        </button>
+      </div>
+    </div>
+    <!-- Cancel registration section -->
+    <div *ngIf="isPartner || isHealthcareProfessional" class="flex flex-col">
+      <div class="event-update-sidenavsection flex flex-row justify-start items-center gap-[12px]">
+        <button mat-button [routerLink]="['/user/event/update-event', eventId, 'contact-form']"
+          routerLinkActive="event-update-sidenavactive-link"
+          class="event-update-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-sidenavicon" svgIcon="right-from-bracket"></mat-icon>
+          <span class="text-sm event-update-sidenavtext">Odhlásiť z podujatia</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+.app-wrapper {
+  overflow: hidden;
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.app-content {
+  position: fixed;
+  padding-top: 60px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.mobile-app-content {
+  position: absolute;
+  padding-top: 60px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.app-sidenav-container {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-sidenav-nav {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.mat-drawer-content {
+  overflow-x: hidden;
+}
+
+@media (max-width: 959px) {
+  .mobile-app-content {
+    // position: absolute;
+    padding-top: 50px;
+    // height: 100%;
+    // width: 100%;
+    // overflow: auto;
+  }
+
+  .app-content {
+    padding-top: 50px;
+  }
+}

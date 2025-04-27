@@ -1,0 +1,63 @@
+<section>
+  <div
+    class="flex flex-col z-30 p-[6px] mat-elevation-z6 event-update-representative-sidenav-container h-auto overflow-hidden self-start fixed top-[170px] max-h-[calc(100vh-120px)] overflow-y-auto">
+    <!-- Menu section -->
+    <div>
+      <p class="text-center mt-[15px] mb-[15px]">MENU</p>
+      <mat-divider></mat-divider>
+    </div>
+    <!-- Own registration section -->
+    <div class="flex flex-col">
+      <div class="event-update-representative-sidenav-section pt-[6px] flex flex-row justify-start items-center">
+        <button [routerLink]="['/user/event/update-event', eventId, 'participation-type']"
+          routerLinkActive="event-update-representative-sidenav-active-link" mat-button
+          class="event-update-representative-sidenav-subsection p-[2px] flex flex-row !justify-start items-center w-[100%]">
+          <mat-icon class="event-update-representative-sidenav-icon">edit</mat-icon>
+          <span class="text-sm event-update-representative-sidenav-text">Vlastná registrácia</span>
+        </button>
+      </div>
+      <div class="flex flex-col">
+        <button mat-button [routerLink]="['/user/event/update-event', eventId, 'accommodation']"
+          routerLinkActive="event-update-representative-sidenav-active-link"
+          class="event-update-representative-sidenav-subsection p-[2px] flex flex-row !justify-start items-center gap-[12px]">
+          <mat-icon class="!ml-[15%] event-update-representative-sidenav-icon">work</mat-icon>
+          <span class="text-sm event-update-representative-sidenav-text">Ubytovanie a strava</span>
+        </button>
+        <button mat-button [routerLink]="['/user/event/update-event', eventId, 'fees']"
+          routerLinkActive="event-update-representative-sidenav-active-link"
+          class="event-update-representative-sidenav-subsection p-[2px] flex flex-row !justify-start items-center gap-[12px]">
+          <mat-icon class="!ml-[15%] event-update-representative-sidenav-icon">work</mat-icon>
+          <span class="text-sm event-update-representative-sidenav-text">Poplatky</span>
+        </button>
+        <button mat-button [routerLink]="['/user/event/update-event', eventId, 'unsubscribe']"
+          routerLinkActive="event-update-representative-sidenav-active-link"
+          class="event-update-representative-sidenav-subsection p-[2px] flex flex-row !justify-start items-center gap-[12px]">
+          <mat-icon class="!ml-[15%] event-update-representative-sidenav-icon">work</mat-icon>
+          <span class="text-sm event-update-representative-sidenav-text">Odhlásiť z podujatia</span>
+        </button>
+      </div>
+    </div>
+    <!-- Registration people section -->
+    <div class="flex flex-col">
+      <div class="event-update-representative-sidenav-section flex flex-row justify-start items-center gap-[12px]">
+        <button [routerLink]="['/user/event/update-event', eventId, 'manage']"
+          routerLinkActive="event-update-representative-sidenav-active-link" mat-button
+          class="event-update-representative-sidenav-subsection p-[2px] flex flex-row !justify-start items-center !text-start gap-[12px] w-[100%]">
+          <mat-icon class="event-update-representative-sidenav-icon">groups</mat-icon>
+          <span class="text-sm event-update-representative-sidenav-text">Správa registrácií</span>
+        </button>
+      </div>
+    </div>
+    <!-- Change admin section -->
+    <div class="flex flex-col">
+      <div
+        class="event-update-representative-sidenav-section p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button mat-button [routerLink]="['/user/event/update-event', eventId, 'change-admin']"
+          class="event-update-representative-sidenav-subsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-update-representative-sidenav-icon">person_add</mat-icon>
+          <span class="text-sm event-update-representative-sidenav-text">Zmena administrátora</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

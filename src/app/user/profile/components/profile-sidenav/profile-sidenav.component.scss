@@ -1,0 +1,47 @@
+.profile-sidenavedit-button {
+  color: var(--text-color);
+}
+
+.profile-sidenavsubsection {
+  // background-color: var(--white-color);
+  border-radius: 64px;
+
+  .profile-sidenavicon {
+    color: var(--text-color);
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  .profile-sidenavtext {
+    color: var(--text-color);
+  }
+}
+
+.profile-sidenavactive-link {
+  background-color: var(--secondary-color) !important;
+
+  .profile-sidenavicon {
+    color: var(--white-color);
+  }
+
+  .profile-sidenavtext {
+    color: var(--white-color);
+  }
+}
+
+.profile-sidenavcontainer {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 263px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 1560px) {
+  .profile-sidenavcontainer {
+    width: 238px;
+    span {
+      font-size: 12px;
+    }
+  }
+}

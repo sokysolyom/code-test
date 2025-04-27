@@ -1,0 +1,95 @@
+<div class="flex flex-col main-content">
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+      <div class="flex flex-col justify-center items-center mt-[32px]">
+        <!-- BG Image -->
+        <img class="partner-page-background-image" src="{{currentPartnerData.bgImg}}" alt="partner-img">
+        <!-- Partner Logo -->
+        <!-- <mat-card class="grid w-[31%] flex-col items-stretch partner-item-card">
+          <div class="flex h-[100%] justify-center items-center partner-item-image-container">
+            <img class="partner-item-image" />
+          </div>
+        </mat-card> -->
+        <mat-card class="grid w-[13.8%] lt-lg:w-[21%] lt-md:w-[39.9%] flex-col items-stretch partner-item-card">
+          <div class="flex h-[100%] justify-center items-center partner-item-image-container">
+            <img class="partner-item-image" src="{{ currentPartnerData.logo }}" alt="logo" />
+          </div>
+        </mat-card>
+        <!-- Partner URL -->
+        <!-- <p class="mt-[100px] cursor-pointer partner-page-link" (click)="navigate()">{{currentPartnerData.linkName}}</p> -->
+        <button *ngIf="currentPartnerData.link" class="partner-page-link" mat-raised-button color="accent"
+          (click)="navigate()">
+          <span>Webová stránka</span>
+        </button>
+      </div>
+      <!-- Sticky navbar -->
+      <mat-card class="partner-page-mat-card sticky-navbar">
+        <div class="flex flex-row justify-center items-center gap-[128px] lt-sm:flex-col lt-sm:gap-[0px]">
+          <div *ngIf="currentPartnerData.description1 || currentPartnerData.description2">
+            <div>
+              <div>
+                <p (click)="onAnchorClick('aboutUs')" (keydown)="handleKeydown($event, 'aboutUs')"
+                  [ngClass]="{'underline  underline-offset-[5px] decoration-2': currentAnchor === 'aboutUs'}"
+                  class="partner-page-mat-card-item font-bold" role="button" tabindex="0">
+                  O NÁS
+                </p>
+              </div>
+              <div *ngIf="currentPartnerData.videoCDNUrl">
+                <p (click)="onAnchorClick('promo')" (keydown)="handleKeydown($event, 'promo')"
+                  [ngClass]="{'underline underline-offset-[5px] decoration-2': currentAnchor === 'promo'}"
+                  class="partner-page-mat-card-item font-bold" role="button" tabindex="0">
+                  PROMO
+                </p>
+              </div>
+              <div *ngIf="currentPartnerData.portfolioImg">
+                <p (click)="onAnchorClick('portfolio')" (keydown)="handleKeydown($event, 'portfolio')"
+                  [ngClass]="{'underline  underline-offset-[5px] decoration-2': currentAnchor === 'portfolio'}"
+                  class="partner-page-mat-card-item font-bold" role="button" tabindex="0">
+                  PORTFÓLIO
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </mat-card>
+      <!-- Partner description -->
+      <div id="aboutUs" class="scroll-mt-[64px] lt-sm:scroll-mt-[164px]">
+        <p class="text-center" [innerHTML]="currentPartnerData.description1"></p>
+        <!-- <p class="text-center">{{currentPartnerData.description2}}</p> -->
+      </div>
+      <!-- Promo video -->
+      <mat-card *ngIf="currentPartnerData.videoCDNUrl" id="promo" class="scroll-mt-[64px] lt-sm:scroll-mt-[164px]">
+        <mat-card-title class="text-center partner-page-video-title font-bold">PROMO</mat-card-title>
+        <mat-card-content>
+          <!-- <video id="videoPlayer" controls class="w-[100%]">
+            <source src="{{currentPartnerData.videoCDNUrl}}" type="video/mp4">
+          </video> -->
+
+          <div *ngFor="let video of currentPartnerData.videoCDNUrl; index as i"
+            class="flex flex-col justify-center items-center">
+            <video id="videoPlayer" controls class="w-[100%]">
+              <source src="{{video}}" type="video/mp4">
+            </video>
+            <mat-divider class="w-[95%] pb-[64px]"
+              *ngIf="currentPartnerData.videoCDNUrl.length - (i + 1) !== 0"></mat-divider>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Portfolio -->
+      <mat-card *ngIf="currentPartnerData.portfolioImg" id="portfolio" class="scroll-mt-[64px] lt-sm:scroll-mt-[164px]">
+        <mat-card-title class="text-center partner-page-video-title font-bold">PORTFÓLIO</mat-card-title>
+        <mat-card-content>
+          <div *ngFor="let img of currentPartnerData.portfolioImg; index as i"
+            class="flex flex-col justify-center items-center">
+            <img class="w-[90%] mb-[64px]" src="{{ img }}" alt="portfolio" />
+            <mat-divider class="w-[95%] pb-[64px]"
+              *ngIf="currentPartnerData.portfolioImg.length - (i + 1) !== 0"></mat-divider>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

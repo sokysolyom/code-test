@@ -1,0 +1,40 @@
+.social-program-main-box {
+  span {
+    text-align: justify;
+    font-size: 14px;
+  }
+  p {
+    text-align: justify;
+  }
+
+  ul {
+    list-style: none;
+  }
+}
+
+.social-program-hyperlink {
+  color: var(--text-color);
+}
+
+.social-program-title {
+  color: var(--primary-color);
+}
+
+.social-program-subtitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.social-program-p {
+  margin-top: 0;
+}
+
+.social-program-p-margin {
+  margin-bottom: 0;
+}
+
+.social-program-list {
+  list-style: none;
+}

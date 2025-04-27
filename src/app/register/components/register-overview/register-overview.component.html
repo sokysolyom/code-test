@@ -1,0 +1,69 @@
+<div class="flex flex-col main-content register-overview-main-box">
+  <summeet-title-overlay [title]="'Vytvoriť si účet'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-1 flex-col justify-start items-center gap-[16px]">
+    <p class="text-xs text-center m-0 animation-from-top">Vyberte či si chcete vytvoriť účet ako zdravotnícky pracovník,
+      subjekt na úseku
+      farmácie alebo externý subjekt.</p>
+    <h3 class="animation-from-top">Som</h3>
+    <!-- Medical worker -->
+    <mat-card
+      class="flex w-[50%] lt-md:w-[90%] max-w-[700px] animation-from-top p-[25px] register-overview-mat-card summeet-mat-card drop-shadow-lg"
+      routerLink="/register/zdravotnik">
+      <mat-card-content class="!p-0">
+        <div class="flex flex-row justify-start">
+          <div class="flex items-center">
+            <mat-icon class="register-overview-big-icon pr-[30px] pl-[5px]" svgIcon="user-doctor"></mat-icon>
+          </div>
+          <div class="flex flex-col justify-start">
+            <p class="m-0 font-semibold">Zdravotnícky pracovník</p>
+            <p class="text-xs m-0">
+              Fyzická osoba podľa § 27 zákona č. 578/2004 Z. z., ktorá nie je zároveň subjektom na úseku farmácie (napr.
+              lekár, zdravotná sestra, laborant, a pod.).
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Subject -->
+    <mat-card
+      class="flex w-[50%] lt-md:w-[90%] max-w-[700px] animation-from-top p-[25px] register-overview-mat-card summeet-mat-card  drop-shadow-lgs"
+      routerLink="/register/zastupca" (click)="setRegisterStatePartner()">
+      <mat-card-content class="!p-0">
+        <div class="flex flex-row justify-start">
+          <div class="flex items-center">
+            <mat-icon class="register-overview-big-icon pr-[30px] pl-[5px]" svgIcon="briefcase"></mat-icon>
+          </div>
+          <div class="flex flex-col justify-start">
+            <p class="m-0 font-semibold">Subjekt na úseku farmácie</p>
+            <p class="text-xs m-0">
+              Fyzická osoba podnikateľ alebo právnická osoba na úseku farmácie najmä podľa zákona č. 362/2011 Z. z.
+              (napr. farmaceutická spoločnosť, zamestnávateľ, a pod.).
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- External subject -->
+    <mat-card
+      class="flex w-[50%] lt-md:w-[90%] max-w-[700px] animation-from-top p-[25px] register-overview-mat-card summeet-mat-card  drop-shadow-lg"
+      routerLink="/register/zastupca" (click)="setRegisterStateSubject()">
+      <mat-card-content class="!p-0">
+        <div class="flex flex-row justify-start">
+          <div class="flex items-center">
+            <mat-icon class="register-overview-big-icon pr-[30px] pl-[5px]" svgIcon="user-tie"></mat-icon>
+          </div>
+          <div class="flex flex-col justify-start">
+            <p class="m-0 font-semibold">Externý subjekt</p>
+            <p class="text-xs m-0">
+              Právnická osoba, ktorá sprostredkovane zabezpečuje registrácie na podujatie na základe zmluvného vzťahu so
+              subjektom na úseku farmácie (napr. eventová agentúra).
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

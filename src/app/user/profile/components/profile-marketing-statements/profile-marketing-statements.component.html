@@ -1,0 +1,28 @@
+<div class="flex flex-col justify-center items-center gap-[16px] w-[80%]">
+  <h2 class="font-bold mb-0 animation-from-top">Marketingové a iné vyhlásenia</h2>
+  <form [formGroup]="marketingDataForm" class="flex flex-col gap-[16px] w-full max-w-[700px] animation-from-top">
+    <!-- Inform toggle -->
+    <mat-slide-toggle color="primary" class="profile-marketing-statements-toggle" formControlName="inform">
+      <div class="!text-justify">
+        <span class="text-xs">
+          Chcem byť informovaný/á o akreditovaných študijných programoch sústavného vzdelávania alebo o neakreditovaných
+          vzdelávacích aktivitách (odborných podujatiach, a pod.) organizovaných spoločnosťou SUMMEET s. r. o.
+        </span>
+      </div>
+    </mat-slide-toggle>
+    <!-- Newsletter toggle -->
+    <mat-slide-toggle color="primary" class="profile-marketing-statements-toggle" formControlName="newsletter">
+      <div class="!mt-[4px] !text-justify">
+        <span class="text-xs">
+          Chcem odoberať newsletter.
+        </span>
+      </div>
+    </mat-slide-toggle>
+    <div class="flex justify-center items-center">
+      <button color="primary" mat-flat-button (click)="onSubmit()" class="!rounded">
+        <mat-icon svgIcon="floppy-disk" class="!w-[20px] !h-[20px]"></mat-icon>
+        <span>Uložiť</span>
+      </button>
+    </div>
+  </form>
+</div>

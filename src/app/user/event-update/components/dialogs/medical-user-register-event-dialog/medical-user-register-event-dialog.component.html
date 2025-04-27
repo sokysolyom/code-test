@@ -1,0 +1,32 @@
+<div class="flex flex-row justify-end pt-[6px] pr-[6px]">
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="flex flex-col w-[100%] h-[100%] !px-[48px] !py-0">
+  <mat-stepper [orientation]="isLinear ? 'vertical' : 'horizontal'" linear #stepper labelPosition="bottom"
+    ngClass="{{ 'last-edited-step-' + stepper.selectedIndex }}"
+    class="flex w-[100%] h-[100%] max-w-[700px] animation-from-top">
+
+    <!-- Step 1 - Participation Type -->
+    <mat-step>
+      <ng-template matStepLabel>Typ účasti</ng-template>
+      <summeet-event-register-participation-form [isFirst]="true" (participationBackEvent)="onBack()"
+        (participationNextEvent)="onNext()"></summeet-event-register-participation-form>
+    </mat-step>
+    <!-- Step 2 - Accommodation -->
+    <mat-step *ngIf="isAccommodationVisible">
+      <ng-template matStepLabel>Ubytovanie</ng-template>
+      <summeet-event-register-accommodation-form [legalPersonId]="dialogData.legalPersonId" [userId]="dialogData.userId"
+        [isFirst]="false" (accommodationBackEvent)="onBack()"
+        (accommodationNextEvent)="onNext(true)"></summeet-event-register-accommodation-form>
+    </mat-step>
+    <!-- Step 3 - Recap -->
+    <mat-step>
+      <ng-template matStepLabel>Rekapitulácia</ng-template>
+      <summeet-event-register-recap-state [data]="data" [isMedicalUser]="true" [userId]="dialogData.userId"
+        (recapBackEvent)="onBack()" (recapNextEvent)="onSubmit()"
+        (recapEditEvent)="goToIndex($event)"></summeet-event-register-recap-state>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>

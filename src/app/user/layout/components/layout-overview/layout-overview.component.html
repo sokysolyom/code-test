@@ -1,0 +1,7 @@
+<div *ngIf="screenWidth > 959; else noMobile">
+  <summeet-layout-navbar></summeet-layout-navbar>
+  <summeet-layout-sidenav></summeet-layout-sidenav>
+</div>
+<ng-template #noMobile>
+  <summeet-layout-no-mobile></summeet-layout-no-mobile>
+</ng-template>

@@ -1,0 +1,167 @@
+<div class="flex flex-col main-content">
+  <summeet-title-overlay [title]="'Ubytovanie'" class="mb-[60px] animation-from-top"></summeet-title-overlay>
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+      <summeet-venue-data [venueData]="venueData" [isHotel]="true"></summeet-venue-data>
+
+      <div *ngFor="let accommodation of accommodationData" class="flex flex-col">
+
+        <!-- Hotel title -->
+        <h1 *ngIf="accommodation.title" class="accommodation-title annimation animation-from-left"
+          [innerHtml]="accommodation.title"></h1>
+
+        <!-- Hotel description -->
+        <div class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+          <div class="flex justify-start items-start lt-sm:justify-center">
+            <mat-icon color="primary" class="ng-icons">hotel</mat-icon>
+          </div>
+          <div *ngIf="accommodation.accommodation" class="flex flex-col">
+            <h2 class="accommodation-subtitle lt-sm:text-center">Ubytovanie</h2>
+            <div class="flex flex-col gap-[16px]">
+              <div class="text-justify accommodation-hotel-description"
+                [innerHTML]="accommodation.accommodation.description"></div>
+              <span *ngIf="accommodation.accommodation.equipment"
+                class="accommodation-subtitle !text-sm font-bold">Vybavenie
+                izby:</span>
+            </div>
+
+            <summeet-introduction-list-custom
+              [data]="accommodation.accommodation.equipment"></summeet-introduction-list-custom>
+          </div>
+        </div>
+
+        <!-- Bus stop and railway station -->
+        <div *ngIf="accommodation.wayFromStations"
+          class="flex flex-row gap-[30px] lt-md:gap-[16px] mt-[40px] lt-sm:flex-col">
+          <div class="flex justify-center items-start lt-sm:justify-center">
+            <mat-icon color="primary" svgIcon="bus-simple-solid" class="svg-icons"></mat-icon>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="accommodation-subtitle lt-sm:text-center">Cesta k hotelu z autobusovej a železničnej stanice</h2>
+            <span class="text-sm" [innerHtml]="accommodation.wayFromStations"></span>
+          </div>
+        </div>
+
+        <!-- Public transport -->
+        <div *ngIf="accommodation.wayByPublicTransport"
+          class="flex flex-row gap-[30px] lt-md:gap-[16px] mt-[40px] lt-sm:flex-col">
+          <div class="flex justify-start items-start  lt-sm:justify-center">
+            <mat-icon color="primary" svgIcon="bus-solid" class="svg-icons"></mat-icon>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="accommodation-subtitle lt-sm:text-center">Cesta k hotelu verejnou dopravou</h2>
+            <span class="text-sm" [innerHTML]="accommodation.wayByPublicTransport"></span>
+          </div>
+        </div>
+
+        <!-- 2 items in 1 row -->
+        <div class="flex flex-row gap-[40px] lt-md:flex-col mt-[40px]">
+          <!-- Address -->
+          <div *ngIf="accommodation.addressStreet"
+            class="flex flex-row w-[50%] gap-[30px] lt-md:w-[100%] lt-md:gap-[16px] lt-sm:flex-col">
+            <div class="flex justify-start items-start lt-sm:justify-center">
+              <mat-icon color="primary" class="svg-icons" svgIcon="location-dot"></mat-icon>
+            </div>
+            <div class="flex flex-col">
+              <h2 class="accommodation-subtitle lt-sm:text-center">Adresa</h2>
+              <span class="text-sm" [innerHTML]="accommodation.addressStreet"></span>
+            </div>
+          </div>
+          <!-- Web page -->
+          <div *ngIf="accommodation.webPage" class="flex flex-row flex-1 gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+            <div class="flex justify-start items-start lt-sm:justify-center">
+              <mat-icon color="primary" class="svg-icons" svgIcon="globe"></mat-icon>
+            </div>
+            <div class="flex flex-col">
+              <h2 class="accommodation-subtitle lt-sm:text-center">Webová stránka</h2>
+              <span class="text-sm"><a href="{{accommodation.webPage.link}}" target="_blank"
+                  [innerHTML]="accommodation.webPage.name"></a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 items in 1 row -->
+        <div class="flex flex-row gap-[40px] lt-md:flex-col mt-[40px]">
+          <!-- Telephone number -->
+          <div *ngIf="accommodation.telephoneNumbers"
+            class="flex flex-row w-[50%] gap-[30px] lt-md:w-full lt-md:gap-[16px] lt-sm:flex-col">
+            <div class="flex justify-start items-start lt-sm:justify-center">
+              <mat-icon color="primary" class="svg-icons" svgIcon="phone"></mat-icon>
+            </div>
+            <div class="flex flex-col">
+              <h2 class="accommodation-subtitle lt-sm:text-center">Telefonický kontakt na hotel</h2>
+              <div class="flex flex-col">
+                <span class="text-sm" *ngFor="let telNumber of accommodation.telephoneNumbers"><a
+                    href="tel:{{telNumber}}" target="_blank">{{telNumber}}</a></span>
+              </div>
+            </div>
+          </div>
+          <!-- Email -->
+          <div *ngIf="accommodation.email" class="flex flex-row flex-1 gap-[30px] lt-md:gap-20px lt-sm:flex-col">
+            <div class="flex justify-start items-start lt-sm:justify-center">
+              <mat-icon color="primary" class="ng-icons">mail</mat-icon>
+            </div>
+            <div class="flex flex-col">
+              <h2 class="accommodation-subtitle lt-sm:text-center">Emailový kontakt na hotel</h2>
+              <span class="text-sm"><a href="mailto:{{accommodation.email}}"
+                  target="_blank">{{accommodation.email}}</a></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 items in 1 row -->
+        <div class="flex flex-row gap-[40px] lt-md:flex-col mt-[40px]">
+          <!-- Check in -->
+          <div *ngIf="accommodation.checkIn"
+            class="flex flex-row w-[50%] gap-[30px] lt-md:gap-[16px] lt-md:w-[100%] lt-sm:flex-col">
+            <div class="flex justify-start items-start lt-sm:justify-center">
+              <mat-icon color="primary" class="svg-icons" svgIcon="right-to-bracket"></mat-icon>
+            </div>
+            <div class="flex flex-col">
+              <h2 class="accommodation-subtitle lt-sm:text-center">Check in</h2>
+              <span class="text-sm" [innerHTML]="accommodation.checkIn"></span>
+            </div>
+          </div>
+          <!-- Check out -->
+          <div *ngIf="accommodation.checkOut" class="flex flex-row flex-1 gap-[30px] lt-md:gap-20px lt-sm:flex-col">
+            <div class="flex justify-start items-start lt-sm:justify-center">
+              <mat-icon color="primary" class="svg-icons" svgIcon="right-from-bracket"></mat-icon>
+            </div>
+            <div class="flex flex-col">
+              <h2 class="accommodation-subtitle lt-sm:text-center">Check out</h2>
+              <span class="text-sm" [innerHTML]="accommodation.checkOut"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parking -->
+        <div *ngIf="accommodation.parking"
+          class="flex flex-row gap-[30px] lt-md:gap-[16px] mt-[40px] lt-md:mt-[40px] lt-sm:flex-col">
+          <div class="flex justify-start items-start lt-sm:justify-center">
+            <mat-icon color="primary" class="svg-icons" svgIcon="parking"></mat-icon>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="accommodation-subtitle lt-sm:text-center">Parkovanie</h2>
+            <div class="text-sm" [innerHTML]="accommodation.parking"></div>
+          </div>
+        </div>
+
+        <!-- Pets -->
+        <div *ngIf="accommodation.pets" class="flex flex-row gap-[30px] lt-md:gap-[16px] mt-[40px] lt-sm:flex-col">
+          <div class="flex justify-start items-start lt-sm:justify-center">
+            <mat-icon color="primary" svgIcon="dog-solid" class="svg-icons"></mat-icon>
+          </div>
+          <div class="flex flex-col">
+            <h2 class="accommodation-subtitle lt-sm:text-center">Domáce zvieratá</h2>
+            <div class="text-sm" [innerHTML]="accommodation.pets">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="accommodationData.length > 2" class="flex flex-row justify-center items-center">
+          <div class="accommodation-divider"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

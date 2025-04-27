@@ -1,0 +1,26 @@
+<div class="flex justify-center items-center w-full animation-from-top">
+  <div class="flex flex-col justify-center items-center gap-[16px] w-[80%]">
+    <h2 class="font-bold mb-0 mt-[16px] ">Zmena administrátora</h2>
+    <p class="text-xs text-center m-0 mb-[32px]  max-w-[700px] c-lg:w-[80%]">
+      Ak má iný zástupca subjektu na úseku farmácie vytvorený účet, tak môžete na neho presunúť oprávnenia
+      administrátora.
+    </p>
+    <!-- First step for admin -->
+    <div class="flex flex-col justify-center items-center">
+      <h3 class="m-0 text-base font-semibold">Chcem</h3>
+
+      <div class="flex flex-row gap-[16px] my-[16px]">
+        <!-- Administrator -->
+        <mat-card class="flex w-[140px] h-[140px] event-update-change-admin-mat-card summeet-mat-card">
+          <mat-card-content class="h-full" (click)="changeAdmin()">
+            <div class="flex flex-col items-center justify-between gap-[16px]">
+              <mat-icon class="event-update-change-admin-big-icon" svgIcon="people-arrows-solid"></mat-icon>
+              <span class="text-xs text-center">Presunúť
+                oprávnenia</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

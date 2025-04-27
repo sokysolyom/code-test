@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#e4d73f",
+    "activityBar.foreground": "#262626",
+    "titleBar.activeBackground": "#e4d73f",
+    "titleBar.activeForeground": "#262626"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}

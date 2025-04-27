@@ -1,0 +1,9 @@
+<mat-toolbar class="flex flex-col justify-end mobile-navbar-container">
+  <div class="flex flex-row justify-end items-center">
+    <button mat-icon-button>
+      <mat-icon class="mobile-navbar-icon" mat-icon-button (click)="toggleSidenav()">
+        {{ currentSidenavState ? 'close' : 'menu' }}
+      </mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

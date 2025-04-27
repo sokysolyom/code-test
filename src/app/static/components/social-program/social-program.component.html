@@ -1,0 +1,136 @@
+<div class="flex flex-col main-content social-program-main-box">
+  <summeet-title-overlay [title]="'Spoločenský program '" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-row justify-center items-center mt-[60px]">
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Date -->
+      <div *ngIf="socialProgramData.term" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="calendar-day-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Termín spoločenského programu</h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.term">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time -->
+      <div *ngIf="socialProgramData.time" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="clock-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Čas spoločenského programu</h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.time">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fee -->
+      <div *ngIf="socialProgramData.fee" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="ticket-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Poplatok za spoločenský program</h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.fee">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment method -->
+      <div *ngIf="socialProgramData.paymentMethod" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="cash-register-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Spôsob úhrady poplatku za spoločenský program </h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.paymentMethod">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capacity -->
+      <div *ngIf="socialProgramData.capacity" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="people-arrows-left-right-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Kapacita účasti na spoločenskom programe</h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.capacity">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance -->
+      <div *ngIf="socialProgramData.attendance" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="user-music-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Účasť na spoločenskom programe </h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.attendance">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contents -->
+      <div *ngIf="socialProgramData.contents" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="music-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Obsah spoločenského programu </h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.contents">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Changes -->
+      <div *ngIf="socialProgramData.changes" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="file-pen-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="social-program-subtitle lt-sm:text-center">Zmeny v spoločenskom programe </h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <span [innerHTML]="socialProgramData.changes">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

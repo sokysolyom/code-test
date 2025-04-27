@@ -1,0 +1,132 @@
+.register-page-main-box {
+  ul {
+    list-style: none;
+  }
+
+  li {
+    text-align: justify;
+  }
+
+  ul li::before {
+    content: '■';
+    color: var(--primary-color);
+    font-weight: normal;
+    display: inline-block;
+    width: 1em;
+    margin-left: -2em;
+    font-size: 20px;
+    margin-right: 1em;
+  }
+}
+
+.register-page-table {
+  table {
+    font-size: 14px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    text-align: left;
+    padding: 8px;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      gap: 5px;
+    }
+  }
+  th {
+    text-align: left;
+    padding: 8px;
+    color: var(--white-color);
+    font-weight: 600;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      gap: 5px;
+    }
+  }
+
+  td:not(:first-child),
+  th:not(:first-child) {
+    text-align: center;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  th:not(:first-child) {
+    background-color: var(--primary-color);
+    width: 20%;
+  }
+}
+
+.register-page-subtitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.register-page-p {
+  margin-top: 0;
+}
+
+.register-item-eur {
+  text-align: center;
+}
+
+.register-page-table-icon {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-right: 1em;
+}
+
+.register-item-next-to-border {
+  padding-left: 10px;
+}
+
+.register-table-box {
+  overflow-x: auto;
+}
+
+.register-item-small {
+  width: 15%;
+}
+
+.register-item-big {
+  width: 20%;
+  text-align: center;
+}
+
+.register-right-border {
+  border-right: 2px solid var(--text-color);
+}
+
+.register-bottom-border {
+  border-bottom: 2px solid var(--text-color);
+}
+
+.register-prage-payment-table {
+  border-collapse: collapse;
+}
+
+.register-page-table-upper-title {
+  text-align: center;
+}
+
+.register-page-check-text {
+  margin-left: 1em;
+}
+
+@media (max-width: 600px) {
+  .register-page-main-box {
+    ul li::before {
+      font-size: 12px;
+    }
+  }
+}

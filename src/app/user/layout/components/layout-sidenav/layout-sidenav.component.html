@@ -1,0 +1,151 @@
+<div class="flex flex-row w-[100%]">
+  <div class="flex flex-col fixed top-[60px] left-0 z-30 p-[6px] layout-sidenav-container overflow-y-auto"
+    *ngIf="isNavigationVisible$ | async">
+    <!-- Event section -->
+    <div class="flex flex-col">
+      <div
+        class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[12px]" svgIcon="calendar-days"></mat-icon>
+        <span class="text-sm font-normal">Podujatia</span>
+      </div>
+      <div class="flex flex-col items-end">
+        <button routerLink="/user/event/upcoming" routerLinkActive="layout-sidenav-active-link" mat-button
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px]  mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="calendar-day"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Pripravované</span>
+        </button>
+        <button routerLink="/user/event/my-events" mat-button
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px] my-[5px] mb-0 mx-[0px]"
+          [class.layout-sidenav-active-link]="isUpdateEventActive()">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="calendar-circle-user"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Moje podujatia</span>
+        </button>
+      </div>
+    </div>
+    <!-- Endorsements -->
+    <div *ngIf="isHealthcareProfessional" class="flex flex-col">
+      <div
+        class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[12px]" svgIcon="file-certificate-solid"></mat-icon>
+        <span class="text-sm font-normal">Potvrdenia</span>
+      </div>
+      <div class="flex flex-col items-end">
+        <button mat-button routerLink="/user/endorsements/credits" routerLinkActive="layout-sidenav-active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="award-simple-solid"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Kredity</span>
+        </button>
+        <button mat-button routerLink="/user/endorsements/all-docs" [queryParams]="{ type: 'participation' }"
+          routerLinkActive="layout-sidenav-active-link" [routerLinkActiveOptions]="{ exact: true }"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="badge-check"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Potvrdenie o účasti</span>
+        </button>
+
+        <button mat-button routerLink="/user/endorsements/all-docs" [queryParams]="{ type: 'all' }"
+          routerLinkActive="layout-sidenav-active-link" [routerLinkActiveOptions]="{ exact: true }"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="file-certificate-solid"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Všetky potvrdenia</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Event administration -->
+    <div *ngIf="isPartner || isSubject" class="flex flex-col">
+      <div
+        class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[12px]" svgIcon="users"></mat-icon>
+        <span class="text-sm font-normal">Administrácia podujatí</span>
+      </div>
+      <div class="flex flex-col items-end">
+        <button mat-button routerLink="/user/event/admin-events" routerLinkActive="layout-sidenav-active-link"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="credit-card"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Všetky podujatia</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Documents -->
+    <div *ngIf="isPartner" class="flex flex-col">
+      <div
+        class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[12px]" svgIcon="users"></mat-icon>
+        <span class="text-sm font-normal">Dokumenty</span>
+      </div>
+      <div class="flex flex-col items-end">
+        <button mat-button routerLink="/user/media/all-documents" routerLinkActive="layout-sidenav-active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="credit-card"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Všetky dokumenty</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Photos and records -->
+    <div class="flex flex-col">
+      <div
+        class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[12px]" svgIcon="photo-film"></mat-icon>
+        <span class="text-sm font-normal">Fotografie a videá</span>
+      </div>
+      <div class="flex flex-col items-end">
+        <button mat-button routerLink="/user/media/photos-and-videos" routerLinkActive="layout-sidenav-active-link"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px]  mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="photo-film"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Fotografie a videá</span>
+        </button>
+      </div>
+    </div>
+    <!-- Orders -->
+    <!-- <div class="flex flex-col">
+      <div class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[10px]">mail</mat-icon>
+        <span class="text-sm">Objednávky</span>
+      </div>
+      <div class="flex flex-col">
+        <button mat-button
+          class="layout-sidenav-subsection p-[2px] flex flex-row !justify-start items-center gap-[12px]">
+          <mat-icon class="!ml-[44px] layout-sidenav-icon">mail</mat-icon>
+          <span class="text-sm layout-sidenav-text">Všetky objednávky</span>
+        </button>
+      </div>
+    </div> -->
+    <!-- Profile -->
+    <div class="flex flex-col">
+      <div
+        class="layout-sidenav-section p-[6px] flex flex-row justify-start items-center gap-[12px] mt-[5px] mb-0 mx-[0px]">
+        <mat-icon class="w-[24px] h-[24px] ml-[12px]" svgIcon="user-gear"></mat-icon>
+        <span class="text-sm font-normal">Profil</span>
+      </div>
+      <div class="flex flex-col items-end">
+        <button mat-button routerLink="/user/profile/personal-statements" routerLinkActive="layout-sidenav-active-link"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px]  mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="address-card"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Osobné údaje</span>
+        </button>
+        <button mat-button routerLink="/user/profile/change-password" routerLinkActive="layout-sidenav-active-link"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px]  mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="lock-keyhole"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Zmeniť heslo</span>
+        </button>
+        <button mat-button routerLink="/user/profile/cancel" routerLinkActive="layout-sidenav-active-link"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px]  mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0 layout-sidenav-icon" svgIcon="user-xmark"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Zrušiť účet</span>
+        </button>
+        <button mat-button (click)="logout()"
+          class="layout-sidenav-subsection !p-[2px] w-[88%] flex flex-row !justify-start items-center gap-[12px]  mt-[5px] mb-0 mx-[0px]">
+          <mat-icon class="!ml-[12px] !mr-0  layout-sidenav-icon" svgIcon="right-from-bracket"></mat-icon>
+          <span class="text-sm layout-sidenav-text font-normal">Odhlásiť sa</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col flex-1 layout-sidenav-router min-h-[calc(100vh-60px)]">
+    <router-outlet></router-outlet>
+  </div>
+</div>

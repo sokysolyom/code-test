@@ -1,0 +1,109 @@
+<div class="flex flex-col gap-[5px] sidenav-container">
+  <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded" routerLink="/general/uvod">
+    <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+    <span>Úvod</span>
+  </button>
+  <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded" routerLink="/general/program">
+    <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+    <span>Program</span>
+  </button>
+  <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded" routerLink="/general/partneri">
+    <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+    <span>Partneri</span>
+  </button>
+  <button mat-flat-button class="flex-row justify-between sidenav-button !rounded"
+    (click)="informationMep.expanded = !informationMep.expanded">
+    <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+    <span>Informácie</span>
+    <mat-icon matSuffix>expand_more</mat-icon>
+  </button>
+  <mat-expansion-panel [disabled]="true" #informationMep="matExpansionPanel">
+    <div class="flex flex-col gap-[5px]">
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/miesto-podujatia">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Miesto podujatia</span>
+      </button>
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/ubytovanie">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Ubytovanie</span>
+      </button>
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/parkovanie">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Parkovanie</span>
+      </button>
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/registracia">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Registrácia a poplatky</span>
+      </button>
+      <!-- <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/spolocensky-program">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Spoločenský program</span>
+      </button> -->
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded" routerLink="/general/faq">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>FAQ</span>
+      </button>
+    </div>
+  </mat-expansion-panel>
+  <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+    (click)="participationMep.expanded = !participationMep.expanded">
+    <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+    <span>Aktívna účasť</span>
+    <mat-icon matSuffix>expand_more</mat-icon>
+  </button>
+  <mat-expansion-panel [disabled]="true" #participationMep="matExpansionPanel">
+    <div class="flex flex-col gap-[5px]">
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/prezentacia">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Prednáška</span>
+      </button>
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded" routerLink="/general/poster">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Poster</span>
+      </button>
+      <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/abstrakt">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Abstrakt</span>
+      </button>
+      <!-- <button disabled mat-flat-button class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/general/sablony">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Šablóny</span>
+      </button> -->
+    </div>
+  </mat-expansion-panel>
+  <button mat-flat-button class="flex flex-row justify-start sidenav-button !rounded" routerLink="/general/kontakt">
+    <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+    <span>Kontakt</span>
+  </button>
+  <div *ngIf="isLoggedIn$ | async; else notLoggedIn">
+    <div class="flex flex-col">
+      <button mat-flat-button color="primary" class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/user/event/upcoming">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Pripravované</span>
+      </button>
+      <button mat-flat-button color="primary" class="flex flex-row justify-start sidenav-button !rounded"
+        routerLink="/user/event/my-events">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Moje podujatia</span>
+      </button>
+      <button mat-flat-button color="accent" class="flex flex-row justify-start sidenav-primary-button !rounded"
+        (click)="logout()">
+        <mat-icon class="sidenav-prefix-icon">circle</mat-icon>
+        <span>Odhlásiť sa</span>
+      </button>
+    </div>
+  </div>
+  <ng-template #notLoggedIn>
+    <button [disabled]="isRegistratDisabled" mat-flat-button color="accent" class="!rounded"
+      routerLink="/auth/prehlad">Registrovať sa</button>
+  </ng-template>
+</div>

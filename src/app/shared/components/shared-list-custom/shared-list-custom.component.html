@@ -1,0 +1,11 @@
+<div *ngFor="let list of data" class="flex flex-row pl-[15px]">
+  <div class="flex justify-start items-start">
+    <mat-icon color="primary" class="list-custom-icon" svgIcon="square"></mat-icon>
+  </div>
+  <div *ngIf="list.text" class="flex flex-col w-full">
+    <div class="flex justify-start items-center">
+      <p class="!m-1 text-sm" [innerHTML]="list.text"></p>
+    </div>
+    <div *ngIf="list.table" class="flex flex-col w-full mt-[16px] text-sm" [innerHTML]="list.table"></div>
+  </div>
+</div>

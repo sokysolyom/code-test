@@ -1,0 +1,55 @@
+.registered-users-custom-table-healthcare-color {
+  color: var(--secondary-color);
+}
+
+.registered-users-custom-table-healthcare-bg-color {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 5px;
+}
+
+.registered-users-custom-table-subject-color {
+  color: var(--primary-color);
+}
+
+.registered-users-custom-table-subject-bg-color {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 5px;
+}
+
+.registered-users-custom-table-divider-color-healthcare {
+  border-color: var(--secondary-color) !important;
+}
+
+.registered-users-custom-table-divider-color-subject {
+  border-color: var(--primary-color) !important;
+}
+
+.registered-users-custom-table-accordion-header {
+  border: 1px solid #ccc;
+}
+
+.registered-users-custom-table-accordion-header-bottom {
+  border-bottom: 1px solid #ccc;
+}
+
+.registered-users-custom-table-subject-service {
+  background-color: var(--primary-color);
+  span {
+    color: var(--white-color);
+  }
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.registered-users-custom-table-healthcare-service {
+  background-color: var(--secondary-color);
+  span {
+    color: var(--white-color);
+  }
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

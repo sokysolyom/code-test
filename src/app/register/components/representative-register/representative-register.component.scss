@@ -1,0 +1,178 @@
+.representative-register-main-box {
+  .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+  }
+
+  .mat-step-icon {
+    color: var(--white-color) !important;
+  }
+
+  .mat-checkbox-inner-container {
+    margin-right: 33px !important;
+  }
+  .mat-checkbox {
+    font-size: 12px !important;
+  }
+}
+
+.representative-register-mat-card {
+  cursor: pointer;
+  padding: 16px;
+}
+
+.representative-register-mat-card:hover {
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.representative-register-card-stepper-wrapper {
+  padding: 0 !important;
+}
+
+.representative-register-big-title {
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.representative-register-title {
+  color: var(--primary-color);
+}
+
+.representative-register-title {
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.representative-register-mat-option.mat-option {
+  white-space: normal;
+  line-height: normal;
+  margin: 5px 0;
+}
+
+.representative-register-big-title {
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.representative-register-big-title {
+  margin-top: 50px;
+}
+
+.representative-register-activated {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 0px 26px 0px 26px;
+  font-size: 16px !important;
+}
+
+.representative-register-unactivated {
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 0px 26px 0px 26px;
+  font-size: 16px !important;
+}
+
+.representative-register-button {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.representative-register-ban-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.representative-register-big-icon {
+  color: var(--primary-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.representative-register-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.representative-register-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+
+  .representative-register-big-icon {
+    color: var(--white-color) !important;
+  }
+
+  .representative-register-icons {
+    color: var(--white-color) !important;
+  }
+}
+
+.representative-register-ban-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.representative-register-big-icon-ban {
+  color: var(--warning-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.mat-button-toggle-group {
+  height: 32px;
+  align-items: center;
+}
+
+.mat-chip-border {
+  color: #e1e1e1 !important; /* Adjust text/icon color */
+  background-color: #e1e1e1 !important; /* Ensure the background is transparent if needed */
+  height: 20px; /* Maintain your custom height */
+}
+
+::ng-deep .participant-register-toggle .mdc-switch {
+  transform: scale(0.6);
+  margin-right: 8px;
+}
+
+::ng-deep .mat-mdc-slide-toggle .mat-internal-form-field {
+  display: flex;
+  align-items: start;
+}
+
+/* Ensure the text and label are unaffected */
+::ng-deep .participant-register-toggle .mdc-form-field > label {
+  transform: none;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+// Stepper
+::ng-deep .mat-step-icon-content {
+  display: none !important;
+}
+
+.participant-register-href-color {
+  color: #1e1b16;
+}
+
+::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+  width: 170px;
+}
+
+::ng-deep .mat-step-header:hover {
+  background-color: white !important;
+}
+::ng-deep .mat-step-header.cdk-program-focused {
+  background-color: white;
+}
+::ng-deep .mat-step-header.cdk-mouse-focused {
+  background-color: white;
+}
+::ng-deep .mat-step-header.cdk-focused {
+  background-color: white;
+}
+
+::ng-deep .mdc-switch--unselected .mdc-switch__icon {
+  fill: #797979 !important;
+  color: #797979 !important;
+}

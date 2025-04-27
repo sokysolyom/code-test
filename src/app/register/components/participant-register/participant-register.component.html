@@ -1,0 +1,466 @@
+<div class="flex flex-col main-content participant-register-main-box">
+  <summeet-title-overlay [title]="'Vytvorenie účtu <br> zdravotníckeho pracovníka'"
+    class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-1 flex-row justify-center items-start">
+    <div class="flex flex-row w-[60%] gap-[20px] lt-md:flex-col lt-lg:w-[90%]">
+      <div class="flex justify-center items-center w-[100%] h-[100%] participant-register-card-stepper-wrapper">
+
+        <mat-stepper [orientation]="isLinear ? 'vertical' : 'horizontal'" linear #stepper labelPosition="bottom"
+          ngClass="{{ 'last-edited-step-' + stepper.selectedIndex }}"
+          class="flex w-[100%] h-[100%] max-w-[700px] animation-from-top">
+          <!-- 1 step - email -->
+          <mat-step [stepControl]="email">
+            <ng-template matStepLabel>Email</ng-template>
+            <div class="flex flex-col justify-center items-center w-[100%] h-[100%]">
+              <h3>Email</h3>
+              <p class="text-xs text-center m-0">Zadajte váš sukromný email.</p>
+            </div>
+            <div class="flex flex-row justify-center items-center w-full mt-[32px]">
+              <!-- Email -->
+              <mat-form-field class="flex w-[90%] h-[100%] max-w-[500px]">
+                <mat-label>Email</mat-label>
+                <input [formControl]="email" matInput autocomplete="email" required="true" />
+                <mat-error *ngIf="email.errors?.['required']">Email je povinný údaj
+                </mat-error>
+                <mat-error *ngIf="email.errors?.['incorrectEmail']">
+                  E-mail nemá platný formát
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- Buttons -->
+            <div class="flex flex-row justify-center items-center w-[100%] h-[100%]">
+              <div matTooltip="Formulár obsahuje chyby" [matTooltipDisabled]="email.valid">
+                <button mat-flat-button (click)="checkEmail()" [disabled]="!email.valid" type="button" color="accent"
+                  class="!rounded">
+                  <span>ĎALEJ</span>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+          <!-- 2 step - password -->
+          <mat-step [stepControl]="passwordForm">
+            <ng-template matStepLabel>Heslo</ng-template>
+            <div class="flex flex-col justify-center items-center w-[100%] h-[100%]">
+              <h3>Heslo</h3>
+              <p class="text-xs text-center m-0"> Heslo musí mať aspoň 6 znakov. Musí obsahovať 1 veľké a 1 malé písmeno
+                a 1 číslicu.</p>
+            </div>
+            <div class="flex flex-row justify-center items-center w-full mt-[32px]">
+              <form [formGroup]="passwordForm" class="flex flex-col w-full">
+                <div class="flex flex-row gap-[16px] w-[100%] lt-md:flex-col lt-md:gap-[0px]">
+                  <!-- Password -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Heslo</mat-label>
+                    <input formControlName="password" autocomplete="new-password" matInput
+                      [type]="hidePassword ? 'password' : 'text'" required="true" />
+                    <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+                      {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                    <mat-error *ngIf="passwordForm.controls['password'].errors?.['required']">Nie je zadané heslo
+                    </mat-error>
+                    <mat-error *ngIf="passwordForm.controls['password'].errors?.['pattern']">Heslo musí mať aspoň 6
+                      znakov. Musí obsahovať 1 veľké a 1 malé písmeno
+                      a 1 číslicu.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <!-- Password confirmation -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Potvrdenie hesla</mat-label>
+                    <input formControlName="confirmPassword" autocomplete="new-password"
+                      [type]="hideConfirmPassword ? 'password' : 'text'" matInput required="true" />
+                    <mat-error *ngIf="passwordForm.controls['confirmPassword'].errors?.['required']">
+                      Nie je zadané potvrdenie hesla
+                    </mat-error>
+                    <mat-error *ngIf="passwordForm.controls['confirmPassword'].errors?.['notEqual']">
+                      Heslá sa nezhodujú
+                    </mat-error>
+                    <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">
+                      {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                  </mat-form-field>
+                </div>
+              </form>
+            </div>
+            <!-- Buttons -->
+            <div class="flex flex-row justify-between items-center gap-[16px] mt-[32px] lt-md:flex-col">
+              <button mat-flat-button matStepperPrevious color="accent" type="button" class="!rounded">
+                <span>SPÄŤ</span>
+              </button>
+              <div matTooltip="Formulár obsahuje chyby" [matTooltipDisabled]="passwordForm.valid">
+                <button mat-flat-button matStepperNext color="accent" [disabled]="!passwordForm.valid" class="!rounded">
+                  <span>ĎALEJ</span>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+
+
+          <!-- Step 3 - Personal data -->
+          <mat-step [stepControl]="personalDataForm">
+            <ng-template matStepLabel>Osobné údaje</ng-template>
+            <div class="flex flex-col justify-center items-center w-[100%] h-[100%]">
+              <h3>Osobné údaje</h3>
+              <p class="text-xs text-center m-0">Zadané osobné údaje slúžia na plnenie zákonných a zmluvných povinností
+                voči príslušným orgánom a subjektom. </p>
+            </div>
+            <form [formGroup]="personalDataForm" class="flex flex-col mt-[32px]" (submit)="onSubmit()">
+              <div class="flex flex-col justify-center items-center gap-[6px]">
+                <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+                  <!-- Titles before name -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Titul pred menom</mat-label>
+                    <mat-select [formControl]="titlesBeforeNameControl" multiple>
+                      <mat-select-trigger>
+                        <div class="chips-container">
+                          <ng-container *ngFor="let title of titlesBeforeNameControl.value">
+                            <mat-chip color="primary" class="mat-chip-border">
+                              {{ title }}
+                              <mat-icon matChipRemove (click)="removeTitlesBeforeName(title)">close</mat-icon>
+                            </mat-chip>
+                          </ng-container>
+                        </div>
+                      </mat-select-trigger>
+
+                      <mat-option *ngFor="let titles of titlesBeforeNameOptions" [value]="titles.shortTitle"
+                        class="!text-sm">
+                        {{ titles.shortTitle }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+                  <!-- Titles after name -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Titul za menom</mat-label>
+                    <mat-select [formControl]="titlesAfterNameControl" multiple>
+                      <mat-select-trigger>
+                        <div class="chips-container">
+                          <ng-container *ngFor="let title of titlesAfterNameControl.value">
+                            <mat-chip color="primary" class="mat-chip-border">
+                              {{ title }}
+                              <mat-icon matChipRemove (click)="removeTitlesAfterName(title)">close</mat-icon>
+                            </mat-chip>
+                          </ng-container>
+                        </div>
+                      </mat-select-trigger>
+
+                      @for (titles of titlesAfterNameOptions; track $index) {
+                      <mat-option [value]="titles.shortTitle" class="!text-sm">
+                        {{ titles.shortTitle }}
+                      </mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+                  <!-- First name -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Krstné meno</mat-label>
+                    <input formControlName="firstName" matInput autocomplete="given-name" />
+                    <mat-error *ngIf="personalDataForm.controls['firstName'].errors?.['required']">
+                      Krstné meno je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+
+                  <!-- Last name -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Priezvisko</mat-label>
+                    <input formControlName="lastName" matInput autocomplete="family-name" />
+                    <mat-error *ngIf="personalDataForm.controls['lastName'].errors?.['required']">
+                      Priezvisko je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+
+                  <!-- Birth date -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Dátum narodenia</mat-label>
+                    <input matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirthPicker"
+                      (click)="dateOfBirthPicker.open()" [matDatepickerFilter]="ageFilter" />
+                    <mat-datepicker-toggle matIconSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dateOfBirthPicker [startAt]="startDate"></mat-datepicker>
+                    <mat-error *ngIf="personalDataForm.controls['dateOfBirth'].errors?.['required']">
+                      Dátum narodenia je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+
+                  <!-- Gender -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Pohlavie</mat-label>
+                    <mat-select formControlName="gender">
+                      @for (gender of genders; track gender.value) {
+                      <mat-option [value]="gender.value" class="!text-sm">{{
+                        gender.viewValue
+                        }}</mat-option>
+                      }
+                    </mat-select>
+                    <mat-error *ngIf="personalDataForm.controls['gender'].errors?.['required']">
+                      Pohlavie je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+                  <!-- Street -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Ulica bydliska</mat-label>
+                    <input formControlName="street" matInput autocomplete="address-line1" />
+                    <mat-error *ngIf="personalDataForm.controls['street'].errors?.['required']"> Ulica je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+
+                  <!-- Street number -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Číslo ulice bydliska</mat-label>
+                    <input formControlName="streetNumber" matInput />
+                    <mat-error *ngIf="personalDataForm.controls['streetNumber'].errors?.['required']">
+                      Číslo ulice je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="flex flex-row gap-[16px] w-[100%] h-[100%] lt-md:flex-col lt-md:gap-[0px]">
+                  <!-- Zipcode -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>PSČ a mesto bydliska</mat-label>
+                    <mat-icon matPrefix>place</mat-icon>
+                    <input matInput #zipCodeInputNative formControlName="zipCode"
+                      [matAutocomplete]="zipCodeSuggestionsAuto" />
+                    <mat-error *ngIf="personalDataForm.controls['zipCode'].errors?.['required']">
+                      PSČ je povinný údaj
+                    </mat-error>
+                    <mat-autocomplete #zipCodeSuggestionsAuto="matAutocomplete"
+                      (optionSelected)="onZipCodeSelected($event)" [displayWith]="displaySelectedZipCode.bind(this)">
+                      <mat-option *ngFor="let option of zipCodeSuggestions" [value]="option" class="!text-sm">
+                        {{ option.name + ', ' + option.zipCode }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+                  <!-- Phone -->
+                  <mat-form-field class="max-w-full">
+                    <mat-label>Telefónne číslo</mat-label>
+                    <input formControlName="telephone" matInput autocomplete="tel" />
+                    <mat-error *ngIf="personalDataForm.controls['telephone'].errors?.['required']">
+                      Telefonné číslo je povinný údaj
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Buttons -->
+              <div class="flex flex-row justify-between items-center gap-[16px] mt-[32px] lt-md:flex-col">
+                <button mat-flat-button matStepperPrevious color="accent" type="button" class="!rounded">
+                  <span>SPÄŤ</span>
+                </button>
+                <div matTooltip="Formulár obsahuje chyby" [matTooltipDisabled]="personalDataForm.valid">
+                  <button mat-flat-button matStepperNext color="accent" [disabled]="!personalDataForm.valid"
+                    class="!rounded">
+                    <span>ĎALEJ</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+
+          <!-- Step 4 - Work data -->
+          <mat-step [stepControl]="workDataForm">
+            <ng-template matStepLabel>Údaje o povolaní</ng-template>
+            <div class="flex flex-col justify-center items-center w-[100%] h-[100%]">
+              <h3>Údaje o povolaní</h3>
+              <p class="text-xs text-center m-0">Zadané osobné údaje slúžia na plnenie zákonných a zmluvných povinností
+                voči príslušným orgánom a subjektom. </p>
+            </div>
+            <form [formGroup]="workDataForm" class="flex flex-col mt-[32px] gap-[6px]" (ngSubmit)="onSubmit()">
+              <div class="flex flex-row gap-[16px] lt-md:flex-col lt-md:gap-[0px]">
+                <!-- Chamber ID -->
+                <mat-form-field class="max-w-full">
+                  <mat-label>ID komory</mat-label>
+                  <mat-icon matTooltip="V prípade, že nemáte ID, tak vyplňte 4 nuly" matSuffix>info</mat-icon>
+                  <input formControlName="chamberId" matInput type="text" />
+                  <mat-error *ngIf="workDataForm.controls['chamberId'].errors?.['required']">
+                    ID komory je povinný údaj
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- NCZI type -->
+                <mat-form-field class="max-w-full">
+                  <mat-label>Typ ZP podľa NCZI</mat-label>
+                  <mat-select formControlName="medicTypeId">
+                    <mat-option *ngFor="let type of ncziTypes" [value]="type.id" class="!text-sm">
+                      {{ type.abbreviation + ' ' + type.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!-- Medical expertise -->
+              <mat-form-field *ngIf="isMedicalExpertiseVisible$ | async" class="max-w-full">
+                <mat-label>Zdravotnícka odbornosť</mat-label>
+                <input matInput #medicalExpertiseInputNative formControlName="medicalExpertise"
+                  [matAutocomplete]="medicalExpertiseAuto" />
+                <mat-error *ngIf="workDataForm.controls['medicalExpertise'].errors?.['required']">
+                  Zdravotnícka odbornosť je povinný údaj
+                </mat-error>
+                <mat-error *ngIf="workDataForm.controls['medicalExpertise'].errors?.['isDirty']">
+                  Vyberte zo zoznamu
+                </mat-error>
+                <mat-autocomplete #medicalExpertiseAuto="matAutocomplete"
+                  (optionSelected)="onMedicalExpertiseSelected($event)"
+                  [displayWith]="displaySelectedMedicalExpertise.bind(this)">
+                  <mat-option *ngFor="let option of medicalExptertiseSuggestions" [value]="option" class="!text-sm">
+                    {{ option.abbreviation + ' ' + option.name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+              <!-- Workplace full name -->
+              <mat-form-field class="max-w-full">
+                <mat-label>Názov pracoviska</mat-label>
+                <input required formControlName="workplaceFullName" matInput type="text" />
+                <mat-error *ngIf="workDataForm.controls['workplaceFullName'].errors?.['required']">
+                  Názov pracoviska je povinný údaj
+                </mat-error>
+                <mat-error *ngIf="workDataForm.controls['workplaceFullName'].errors?.['minLength']">
+                  Názov pracoviska musí mať aspoň 10 znakov
+                </mat-error>
+              </mat-form-field>
+
+              <div class="flex flex-row gap-[16px] lt-md:flex-col lt-md:gap-[0px]">
+                <!-- Workplace street -->
+                <mat-form-field class="max-w-full">
+                  <mat-label>Ulica pracoviska</mat-label>
+                  <input formControlName="workplaceStreet" matInput autocomplete="address-line1" />
+                  <mat-error *ngIf="workDataForm.controls['workplaceStreet'].errors?.['required']">
+                    Ulica pracoviska je povinný údaj
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Workplace street number -->
+                <mat-form-field class="max-w-full">
+                  <mat-label>Číslo ulice pracoviska</mat-label>
+                  <input formControlName="workplaceStreetNumber" matInput />
+                  <mat-error *ngIf="workDataForm.controls['workplaceStreetNumber'].errors?.['required']">
+                    Číslo ulice pracoviska je povinný údaj
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- Workplace zipcode -->
+              <mat-form-field class="max-w-full">
+                <mat-label>PSČ a mesto pracoviska</mat-label>
+                <mat-icon matPrefix>place</mat-icon>
+                <input matInput #workplaceZipCodeInputNative formControlName="workplaceZipCode"
+                  [matAutocomplete]="workplaceZipCodeSuggestionsAuto" />
+                <mat-error *ngIf="workDataForm.controls['workplaceZipCode'].errors?.['required']">
+                  PSČ je povinný údaj
+                </mat-error>
+                <mat-autocomplete #workplaceZipCodeSuggestionsAuto="matAutocomplete"
+                  (optionSelected)="onWorkplaceZipCodeSelected($event)"
+                  [displayWith]="displaySelectedWorkplaceZipCode.bind(this)">
+                  <mat-option *ngFor="let option of workplaceZipCodeSuggestions" [value]="option" class="!text-sm">
+                    {{ option.name + ', ' + option.zipCode }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+            <form [formGroup]="agreementForm" class="participant-register-form ">
+              <h3 class="text-center">Som zdravotnícky pracovník oprávnený predpisovať alebo vydávať lieky</h3>
+              <div class="flex flex-row justify-center participant-register-toggle-buttons gap-[32px]">
+                <mat-card [ngClass]="{'participant-register-selected':  activeButton === 1}"
+                  class="flex w-[140px] h-[140px] participant-register-mat-card summeet-mat-card"
+                  (click)="toggleButton(1)">
+                  <mat-card-content class="h-full">
+                    <div class="flex flex-col items-center justify-between gap-[16px]">
+                      <mat-icon class="participant-register-big-icon" svgIcon="check-solid"></mat-icon>
+                      <span class="text-xs">ÁNO</span>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <!-- Not interested -->
+                <mat-card [ngClass]="{'participant-register-ban-selected': activeButton === 2}"
+                  class="flex w-[140px] h-[140px] participant-register-mat-card summeet-mat-card"
+                  (click)="toggleButton(2)">
+                  <mat-card-content class="h-full">
+                    <div class="flex flex-col items-center justify-between gap-[16px]">
+                      <mat-icon class="participant-register-big-icon-ban" svgIcon="ban-solid"></mat-icon>
+                      <span class="text-xs">Nie</span>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="flex flex-col gap-[8px] mt-[25px]">
+                <mat-slide-toggle color="primary" formControlName="acreditedInformationAgreement"
+                  class="participant-register-toggle">
+                  <div class="!text-justify">
+                    <span class="text-xs">
+                      Chcem byť informovaný/á o akreditovaných študijných programoch sústavného vzdelávania alebo o
+                      neakreditovaných vzdelávacích aktivitách (odborných podujatiach, a pod.) organizovaných
+                      spoločnosťou SUMMEET s. r. o.
+                    </span>
+                  </div>
+                </mat-slide-toggle>
+                <mat-slide-toggle class="participant-register-toggle" color="primary"
+                  formControlName="newsletterAgreement">
+                  <div class="!mt-[4px] !text-justify">
+                    <span class="text-xs">
+                      Chcem odoberať newsletter.
+                    </span>
+                  </div>
+                </mat-slide-toggle>
+                <mat-slide-toggle class="participant-register-toggle" color="primary"
+                  formControlName="realDataAgreement">
+                  <div class="!text-justify">
+                    <span class="text-xs">
+                      Vyhlasujem, že mnou vyplnené údaje sú pravdivé, správne a kompletné. Ak sa toto vyhlásenie
+                      preukáže ako nepravdivé beriem na vedomie, že zodpovedám za škodu, ktorú sa zaväzujem bezodkladne
+                      uhradiť.
+                    </span>
+                  </div>
+                </mat-slide-toggle>
+                <mat-slide-toggle class="participant-register-toggle" color="primary"
+                  formControlName="personalDataAgreement">
+                  <div class="!text-justify">
+                    <span class="text-xs">
+                      Súhlasím so spracovávaním osobných údajov podľa zákona č. 18/2018 Z. z. o ochrane osobných údajov
+                      a o zmene a doplnení niektorých zákonov a tým udeľujem súhlas so spracovávaním osobných údajov
+                      podľa <a class="font-semibold participant-register-href-color"
+                        href="https://www.summeet.sk/ochrana-osobnych-udajov/" target="_blank">Zásad spracovávania
+                        osobných
+                        údajov.</a>
+                    </span>
+                  </div>
+                </mat-slide-toggle>
+                <mat-slide-toggle class="participant-register-toggle" color="primary" formControlName="termsAgreement">
+                  <div class="!mt-[4px] !text-justify">
+                    <span class="text-xs">
+                      Súhlasím so <a class="font-semibold participant-register-href-color"
+                        href="https://www.summeet.sk/vop" target="_blank">Všeobecnými
+                        obchodnými podmienkami.</a>
+                    </span>
+                  </div>
+                </mat-slide-toggle>
+              </div>
+            </form>
+            <!-- Buttons -->
+            <div class="flex flex-row justify-between items-center gap-[16px] mt-[32px] lt-md:flex-col">
+              <button mat-flat-button matStepperPrevious color="accent" type="button" class="!rounded">
+                <span>SPÄŤ</span>
+              </button>
+              <div matTooltip="Formulár obsahuje chyby" [matTooltipDisabled]="workDataForm.valid">
+                <button mat-flat-button matStepperNext color="accent" (click)="onSubmit()"
+                  [disabled]="!workDataForm.valid || !agreementForm.valid || !activeButton" class=" !rounded">
+                  <span>VYTVORIŤ ÚČET</span>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+        </mat-stepper>
+      </div>
+    </div>
+  </div>
+</div>

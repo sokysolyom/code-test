@@ -1,0 +1,24 @@
+<div class="flex flex-row justify-end pt-[6px] pr-[6px]">
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="flex flex-col w-[100%] h-[100%] !px-[48px] !py-0">
+  <mat-stepper [orientation]="isLinear ? 'vertical' : 'horizontal'" [linear]="true" #stepper labelPosition="bottom"
+    ngClass="{{ 'last-edited-step-' + stepper.selectedIndex }}"
+    class="flex w-[100%] h-[100%] max-w-[700px] animation-from-top">
+
+    <!-- Step 1 - Personal data -->
+    <mat-step>
+      <ng-template matStepLabel>Osobné údaje</ng-template>
+      <summeet-event-register-personal-form [emailInput]="dialogData.email"
+        (personalDataNextEvent)="onNext()"></summeet-event-register-personal-form>
+    </mat-step>
+    <!-- Step 2 - Participation Type -->
+    <mat-step>
+      <ng-template matStepLabel>Podmienky</ng-template>
+      <summeet-event-register-representative-terms (representativeTermsBackEvent)="onBack()"
+        (representativeTermsNextEvent)="onSubmit()"></summeet-event-register-representative-terms>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>

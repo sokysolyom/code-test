@@ -1,0 +1,13 @@
+<div class="app-background"></div>
+
+<div class="flex flex-col justify-center items-center not-found-main-box">
+  <span class="not-found-number-span">404</span>
+  <span class="not-found-text-span">Oops... Stránka sa nenašla!</span>
+  <span>Skúste pomocou tlačidla nižšie prejsť na hlavnú stránku webu</span>
+  <button mat-raised-button color="accent" class="not-found-button" (click)="navigate('/general')">
+    <div class="flex justify-center items-center">
+      <mat-icon matPrefix>arrow_back</mat-icon>
+      <span>Späť na domovskú stránku</span>
+    </div>
+  </button>
+</div>

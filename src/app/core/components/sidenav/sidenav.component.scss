@@ -1,0 +1,46 @@
+.sidenav-container {
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.sidenav-prefix-icon {
+  width: 5px !important;
+  height: 5px !important;
+  font-size: 5px !important;
+  padding-right: 5px !important;
+  color: var(--primary-color);
+}
+
+.sidenav-sub-button {
+  margin-top: 16px;
+}
+
+.sidenav-button {
+  background-color: var(--white-color) !important;
+  color: var(--text-color) !important;
+}
+
+.sidenav-main-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.sidenav-primary-button {
+  color: var(--white-color);
+  margin: 2.5px;
+}
+
+.sidenav-prefix-suffix {
+  padding-left: 19px;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}

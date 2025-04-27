@@ -1,0 +1,43 @@
+.abstract-dialog-text-color {
+  color: var(--secondary-color);
+}
+
+.abstract-dialog-mat-form-field {
+  max-width: 100%;
+}
+
+.abstract-dialog-delete-button-box {
+  margin-bottom: 20px;
+}
+
+.abstract-dialog-button-box {
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.abstract-dialog-button {
+  padding: 13px;
+}
+
+.abstract-dialog-button-text {
+  font-size: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.abstract-dialog-button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.abstract-dialog-delete-button {
+  color: var(--warning-color);
+}
+
+.abstract-dialog-texteare {
+  ::ng-deep .mdc-text-field--outlined {
+    padding-right: 4px !important;
+  }
+}

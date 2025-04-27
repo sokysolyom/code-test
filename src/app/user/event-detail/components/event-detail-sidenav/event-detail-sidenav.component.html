@@ -1,0 +1,40 @@
+<section>
+  <div
+    class="flex flex-col z-30 p-[6px] mat-elevation-z6 event-detail-sidenavcontainer h-auto overflow-hidden self-start fixed top-[170px] max-h-[calc(100vh-120px)] overflow-y-auto">
+    <!-- Menu section -->
+    <div>
+      <p class="text-center mt-[15px] mb-[15px]">MENU</p>
+      <mat-divider></mat-divider>
+    </div>
+    <!-- Event detail section -->
+    <div class="event-detail-sidenavsection pt-[6px] flex flex-row justify-start items-center">
+      <button routerLink="/user/event/event-detail/stats" routerLinkActive="event-detail-sidenavactive-link" mat-button
+        class="event-detail-sidenavsubsection p-[2px] flex flex-row !justify-start items-center w-[100%]">
+        <mat-icon class="event-detail-sidenavicon">edit</mat-icon>
+        <span class="text-sm event-detail-sidenavtext">Detail podujatia</span>
+      </button>
+    </div>
+    <!-- Endorsements and documents section -->
+    <div class="flex flex-col">
+      <div class="event-detail-sidenavsection flex flex-row justify-start items-center gap-[12px]">
+        <button routerLink="/user/event/event-detail/confirmation-and-docs"
+          routerLinkActive="event-detail-sidenavactive-link" mat-button
+          class="event-detail-sidenavsubsection p-[2px] flex flex-row !justify-start items-center !text-start gap-[12px] w-[100%]">
+          <mat-icon class="event-detail-sidenavicon">groups</mat-icon>
+          <span class="text-sm event-detail-sidenavtext">Potvrdenia a dokumenty</span>
+        </button>
+      </div>
+    </div>
+    <!-- Photos and videos section -->
+    <div class="flex flex-col">
+      <div class="event-detail-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button routerLink="/user/event/event-detail/photos-and-videos"
+          routerLinkActive="event-detail-sidenavactive-link" mat-button
+          class="event-detail-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[12px] w-[100%]">
+          <mat-icon class="event-detail-sidenavicon">person_add</mat-icon>
+          <span class="text-sm event-detail-sidenavtext">Fotografie a videá</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

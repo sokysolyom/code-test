@@ -1,0 +1,8 @@
+<div *ngFor="let list of data" class="flex flex-row pl-[15px]">
+  <div class="flex justify-center items-center">
+    <mat-icon color="primary" class="list-custom-icon" svgIcon="square"></mat-icon>
+  </div>
+  <div class="flex justify-center items-center">
+    <p class="m-1 text-sm" [innerHTML]="list"></p>
+  </div>
+</div>

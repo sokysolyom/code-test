@@ -1,0 +1,166 @@
+<div class="flex justify-center animation-from-top">
+  <div class="flex flex-col justify-center items-center gap-[16px] w-[700px]">
+    <h2 class="font-bold mb-0 mt-[16px]">Ubytovanie a strava</h2>
+    <p class="text-xs text-center m-0 mb-[32px]">
+      Tu nájdete informácie týkajúce sa Vami objednaného ubytovania a stravy. Na zmenu objednaných služieb je potrebný
+      súhlas organizátora.
+    </p>
+    <!-- No items -->
+    <div *ngIf="!accommodationSettings && mealsSettings.length === 0">
+      <mat-card class="flex w-[140px] h-[140px] event-update-accommodation-mat-card summeet-mat-card">
+        <mat-card-content class="h-full">
+          <div class="flex flex-col items-center justify-between gap-[16px]">
+            <mat-icon class="event-update-accommodation-big-icon-ban" svgIcon="ban-solid"></mat-icon>
+            <span class="text-xs">Nemám záujem</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- Ordered items -->
+    <h3 *ngIf="accommodationSettings || mealsSettings" class="m-0 text-base font-semibold">Mám objednané</h3>
+    <!-- Accommodation -->
+    <mat-card *ngIf="accommodationSettings && mealsSettings.length === 0"
+      class="flex w-[140px] h-[140px] event-update-accommodation-mat-card summeet-mat-card">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col items-center justify-between gap-[16px]">
+          <mat-icon class="event-update-accommodation-big-icon text-[60px]">hotel</mat-icon>
+          <span class="text-xs">Ubytovanie</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Meal -->
+    <mat-card *ngIf="!accommodationSettings && mealsSettings.length > 0"
+      class="flex w-[140px] h-[140px] event-update-accommodation-mat-card summeet-mat-card">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col items-center justify-between gap-[16px]">
+          <mat-icon class="event-update-accommodation-big-icon" svgIcon="plate-utensils-solid"></mat-icon>
+          <span class="text-xs">Strava</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Accommodation and meal -->
+    <mat-card *ngIf="accommodationSettings && mealsSettings.length > 0"
+      class="flex w-[140px] h-[140px] summeet-mat-card">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col justify-between gap-[16px] h-full">
+          <div class="flex flex-col items-center justify-center">
+            <div class="flex justify-start w-[50%]">
+              <mat-icon class="event-update-accommodation-icons text-[30px]">hotel</mat-icon>
+            </div>
+            <div class="flex justify-end w-[50%]">
+              <mat-icon class="event-update-accommodation-icons" svgIcon="plate-utensils-solid"></mat-icon>
+            </div>
+          </div>
+          <div class="flex flex-col justify-end items-center">
+            <p class="text-xs text-center m-0">
+              Ubytovanie
+            </p>
+            <p class="text-xs text-center m-0">
+              a stravu
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Where I will be accommodated #1 -->
+    <h3 *ngIf="accommodationSettings" class="m-0 font-semibold text-base mt-[16px]">Budem ubytovaný/á</h3>
+    <p *ngIf="accommodationSettings" class="text-xs text-center m-0">
+      Ubytovanie je poskytované ako lôžko primárne na dvojlôžkovej izbe, ktorá bude obsadená aj ďaším účastníkom.
+    </p>
+    <div class="flex flex-row gap-[32px]">
+      @for (item of accommodationSettings?.roomGroups; track $index; let index = $index) {
+      <div class="flex flex-row gap-[32px]">
+        <mat-card class="flex w-[140px] h-[140px] summeet-mat-card">
+          <mat-card-content class="h-full !p-0">
+            <div class="flex flex-col justify-between h-full">
+              <div class="flex justify-center items-center h-[50%]">
+                <span class="text-sm font-medium">NOC</span>
+              </div>
+              <div class="flex flex-col justify-between h-[50%]">
+                <div class="flex flex-col items-center event-update-accommodation-date h-[50%]">
+                  <span class="text-xs font-medium">{{item.date | dayRangeFromDate}}</span>
+                  <span class="text-xs">{{item.date | monthFromDate}}</span>
+                </div>
+                <div class="flex flex-col justify-center event-update-accommodation-price items-center h-[50%]">
+                  <span *ngIf="item.retailPrice" class="text-sm font-medium">{{item.isIncludedInRegistrationFee ? '0' :
+                    item.retailPrice}} €</span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      }
+    </div>
+
+    <!-- Where I will be accommodated #2 -->
+    <h3 *ngIf="accommodationSettings" class="m-0 font-semibold text-base mt-[16px]">Budem ubytovaný/á v</h3>
+    <mat-card *ngIf="accommodationSettings" class="flex w-[140px] h-[140px] summeet-mat-card">
+      <mat-card-content class="h-full">
+        <div class="flex flex-col items-center justify-between gap-[16px]">
+          <mat-icon class="event-update-accommodation-big-icon" svgIcon="hotel"></mat-icon>
+          <span class="text-xs">{{ accommodationSettings.hotel }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Prefeted roommate -->
+    <h3 *ngIf="accommodationSettings?.preferredRoommate" class="m-0 font-semibold text-base mt-[16px]">Preferujem byť
+      ubytovaný s</h3>
+    <p *ngIf="accommodationSettings?.preferredRoommate" class="text-xs text-center m-0">
+      Výber preferovaného spolubývajúceho pomôže s výberom účastníka ubytovaného na Vašej izbe, ak je to možné.
+    </p>
+    <mat-card *ngIf="accommodationSettings?.preferredRoommate"
+      class="flex w-[600px] pl-[16px] event-update-participation-mat-card summeet-mat-card">
+      <mat-card-content>
+        <div class="flex flex-row justify-start gap-[16px]">
+          <div class="flex items-center">
+            <mat-icon class="event-update-accommodation-big-icon text-[60px]">groups</mat-icon>
+          </div>
+          <div class="flex flex-row justify-evenly items-center gap-[64px]">
+            <p class="text-sm font-medium">Účastníkom:</p>
+            <p class="text-sm">
+              {{ accommodationSettings?.preferredRoommate }}
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Meal -->
+    <h3 *ngIf="mealsSettings.length > 0" class="m-0 font-semibold text-base mt-[16px]">Dostanem</h3>
+    <div class="flex flex-row items-center gap-[32px] mb-[32px]">
+      @for (item of mealsSettings; track $index; let index = $index) {
+      <div class="flex flex-row gap-[32px]">
+        <mat-card class="flex w-[140px] h-[140px] summeet-mat-card">
+          <mat-card-content class="h-full !p-0">
+            <div class="flex flex-col justify-between h-full">
+              <div class="flex flex-col justify-center items-center h-[50%]">
+                <span class="text-sm text-center uppercase">{{item.name}}</span>
+              </div>
+              <div class="flex flex-col justify-between h-[50%]">
+                <div class="flex flex-col items-center event-update-accommodation-date h-[50%]">
+                  <span class="text-xs font-medium">{{item.date | dayFromDate}}</span>
+                  <span class="text-xs">{{item.date | monthFromDate}}</span>
+                </div>
+                <div class="flex flex-col justify-center event-update-accommodation-price items-center h-[50%]">
+                  <span *ngIf="item.retailPrice !== '0'" class="text-sm font-medium">{{checkMealPrice(item.date,
+                    item.retailPrice, item.isIncludedInRegistrationFee, item.isIncludedInRegistrationFee)}} €</span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      }
+    </div>
+    <!-- <div
+      class="flex flex-row justify-between w-[60%] pl-[16px] pr-[16px] rounded-md mb-[32px] event-update-accommodation-meal-price">
+      <span class="text-sm font-medium">CELKOM STRAVA</span>
+      <span class="text-sm font-medium">20 €</span>
+    </div> -->
+  </div>
+</div>

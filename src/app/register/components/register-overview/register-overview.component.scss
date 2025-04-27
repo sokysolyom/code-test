@@ -1,0 +1,49 @@
+.register-overview-card-content {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.register-overview-personal-box {
+  width: 1200px;
+}
+
+.register-overview-big-icon {
+  width: 50px !important;
+  height: 50px !important;
+  color: var(--primary-color);
+}
+
+.register-overview-check {
+  color: var(--success-color);
+}
+
+.register-overview-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem var(--primary-color);
+}
+
+@media screen and (max-width: 1220px) {
+  .register-overview-personal-box {
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .register-overview-personal-box {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .register-overview-background {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .register-overview-main-box {
+    ul li::before {
+      font-size: 12px;
+    }
+  }
+}

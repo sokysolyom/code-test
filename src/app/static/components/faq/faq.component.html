@@ -1,0 +1,210 @@
+<div class="flex flex-col main-content faq-span-p">
+  <summeet-title-overlay [title]="'FAQ'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-row justify-center items-center">
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Organizer -->
+      <div *ngIf="faqData.organizer" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="briefcase" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="faq-subtitle lt-sm:text-center">Organizátor podujatia</h2>
+          <div class="flex flex-row lt-md:flex-col">
+            <div class="flex w-[20%] justify-start items-center lt-md:w-[100%] lt-md:justify-center lt-md:mb-[16px]">
+              <img src="{{faqData.organizer.imageUrl}}" class="faq-image" alt="faq-image" />
+            </div>
+            <div class="flex flex-1">
+              <span class="faq-p" [innerHTML]="faqData.organizer.text">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Co-organizer -->
+      <div *ngIf="faqData.coOrganizer" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="handshake-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px] w-full">
+          <h2 class="faq-subtitle lt-sm:text-center">Spoluorganizátor podujatia</h2>
+          <div class="flex flex-row lt-md:flex-col">
+            <div class="flex w-[20%] justify-center items-center lt-md:w-[100%] lt-md:h-[102px] lt-md:mb-[16px]">
+              <img src="{{faqData.coOrganizer.imageUrl}}" class="hematolife-image" alt="hematolife-image" />
+            </div>
+            <div class="flex flex-1">
+              <span class="faq-p hematolife-text" [innerHTML]="faqData.coOrganizer.text">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entrusted company for the event -->
+      <div *ngIf="faqData.entrustedCompany"
+        class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col mt-[20px] lt-md:mt-0">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="briefcase" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="faq-subtitle lt-sm:text-center">Spoločnosť poverená organizáciou podujatia</h2>
+          <div class="flex flex-row lt-md:flex-col">
+            <div class="flex w-[20%] justify-start items-center lt-md:w-[100%] lt-md:justify-center lt-md:mb-[16px]">
+              <img src="{{faqData.entrustedCompany.imageUrl}}" class="faq-image" alt="faq-image" />
+            </div>
+            <div class="flex flex-1">
+              <span class="faq-p" [innerHTML]="faqData.entrustedCompany.text">
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Under the auspices -->
+      <div *ngIf="faqData.underTheAuspices" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="hand-holding-hand" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Pod záštitou</h2>
+          <div class="flex flex-row">
+            <div class="flex flex-1">
+              <summeet-shared-list-custom [data]="faqData.underTheAuspices"></summeet-shared-list-custom>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accreditation -->
+      <div *ngIf="faqData.accreditation" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="award-simple-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Akreditácia</h2>
+          <p class="faq-p" [innerHTML]="faqData.accreditation.law1">
+          </p>
+          <div class="flex flex-col gap-[16px]">
+            <span class="text-sm" [innerHTML]="faqData.accreditation.accreditedFor?.text"></span>
+            <summeet-shared-list-custom
+              [data]="faqData.accreditation.accreditedFor?.people"></summeet-shared-list-custom>
+            <span class="faq-p" [innerHTML]="faqData.accreditation.law2">
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Participation confirmation -->
+      <div *ngIf="faqData.participationConfirmation" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="file-certificate-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Potvrdenie o účasti</h2>
+          <div class="faq-div-p flex gap-[16px]" [innerHTML]="faqData.participationConfirmation"></div>
+        </div>
+      </div>
+
+      <!-- Non-monetary payment -->
+      <div *ngIf="faqData.nonMonetaryPayment" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="euro-sign"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Nepeňažné plnenie</h2>
+          <div class="faq-div-p flex gap-[16px]" [innerHTML]="faqData.nonMonetaryPayment"></div>
+        </div>
+      </div>
+
+      <!-- Important Dates -->
+      <div *ngIf="faqData.importantTerms" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="calendar-day-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Dôležité termíny</h2>
+          <span class="faq-p flex gap-[16px]" [innerHTML]="faqData.importantTerms">
+          </span>
+        </div>
+      </div>
+
+      <!-- Registration Information -->
+      <div *ngIf="faqData.registrationInformation" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="user-pen-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Informácie o registrácii</h2>
+          <span class="faq-p flex gap-[16px]" [innerHTML]="faqData.registrationInformation"></span>
+        </div>
+      </div>
+
+      <!-- Accommodation -->
+      <div *ngIf="faqData.accommodation" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="ng-icons">hotel</mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Ubytovanie</h2>
+          <span class="faq-div-p flex gap-[16px]" [innerHTML]="faqData.accommodation"></span>
+        </div>
+      </div>
+
+      <!-- Catering -->
+      <div *ngIf="faqData.catering" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="plate-utensils-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Strava</h2>
+          <div class="faq-div-p flex gap-[16px]" [innerHTML]="faqData.catering.text1"></div>
+          <div class="!my-[6px] text-sm faq-table" [innerHTML]="faqData.catering.table"></div>
+          <div class="faq-div-p flex gap-[16px]" [innerHTML]="faqData.catering.text2"></div>
+        </div>
+      </div>
+
+      <!-- Parking -->
+      <div *ngIf="faqData.parking" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="svg-icons" svgIcon="parking"></mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Parkovanie</h2>
+          <span class="faq-p flex gap-[16px]" [innerHTML]="faqData.parking"></span>
+        </div>
+      </div>
+
+      <!-- Active Participation -->
+      <div *ngIf="faqData.activeParticipation" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" class="ng-icons">mic</mat-icon>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="faq-subtitle lt-sm:text-center">Aktívna účasť</h2>
+          <p class="faq-p faq-active-button flex gap-[16px]" (click)="openDropdown()" (keydown)="handleKeyDown($event)"
+            tabindex="0" [innerHTML]="faqData.activeParticipation">
+          </p>
+
+        </div>
+      </div>
+
+      <!-- COVID-19 Actions -->
+      <div *ngIf="faqData.actions" class="flex flex-row gap-[30px] lt-md:gap-[16px] lt-sm:flex-col">
+        <div class="flex justify-start items-start lt-sm:justify-center">
+          <mat-icon color="primary" svgIcon="virus-covid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="faq-subtitle lt-sm:text-center">COVID-19 opatrenia</h2>
+          <span class="faq-p" [innerHTML]="faqData.actions.text1">
+          </span>
+          <ul class="faq-list">
+            <li *ngFor="let action of faqData.actions.actionFor" [innerHtml]="action"></li>
+          </ul>
+          <span class="faq-p" [innerHTML]="faqData.actions.text2"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

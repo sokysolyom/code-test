@@ -1,0 +1,31 @@
+.info-notification-icon {
+  color: var(--text-color);
+  vertical-align: bottom;
+  width: 44px;
+}
+
+.info-notification-text {
+  padding: 0 10px;
+  text-align: center;
+}
+
+.info-notification-highlight {
+  background-color: var(--secondary-color);
+  color: white;
+  border: 0px;
+  cursor: pointer;
+}
+
+.info-notification-bg {
+  background-color: var(--secondary-color);
+  padding: 14px;
+  border-radius: 4px;
+}
+
+::ng-deep .mdc-snackbar__label {
+  padding: 0px;
+}
+
+::ng-deep .mat-mdc-snackbar-surface {
+  padding-right: 0px;
+}

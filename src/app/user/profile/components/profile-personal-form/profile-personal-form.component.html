@@ -1,0 +1,152 @@
+<form [formGroup]="personalDataForm" class="w-full max-w-[700px] animation-from-top">
+  <div class="flex flex-col w-full gap-[6px]">
+    <div class="flex flex-row gap-[16px] w-full">
+      <mat-form-field class="max-w-full">
+        <mat-label>Titul pred menom</mat-label>
+        <mat-select [formControl]="titlesBeforeNameControl" multiple>
+          <mat-select-trigger>
+            <div class="chips-container">
+              <ng-container *ngFor="let title of titlesBeforeNameControl.value">
+                <mat-chip color="primary" class="mat-chip-border">
+                  {{ title }}
+                  <mat-icon matChipRemove (click)="removeTitlesBeforeName(title)">close</mat-icon>
+                </mat-chip>
+              </ng-container>
+            </div>
+          </mat-select-trigger>
+
+          @for (titles of titlesBeforeNameOptions; track $index) {
+          <mat-option [value]="titles.shortTitle" class="!text-sm">
+            {{ titles.shortTitle }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Titles after name -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Titul za menom</mat-label>
+        <mat-select [formControl]="titlesAfterNameControl" multiple>
+          <mat-select-trigger>
+            <div class="chips-container">
+              <ng-container *ngFor="let title of titlesAfterNameControl.value">
+                <mat-chip color="primary" class="mat-chip-border">
+                  {{ title }}
+                  <mat-icon matChipRemove (click)="removeTitlesAfterName(title)">close</mat-icon>
+                </mat-chip>
+              </ng-container>
+            </div>
+          </mat-select-trigger>
+
+          @for (titles of titlesAfterNameOptions; track $index) {
+          <mat-option [value]="titles.shortTitle" class="!text-sm">
+            {{ titles.shortTitle }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-row  gap-[16px] w-full">
+      <!-- First name -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Krstné meno</mat-label>
+        <input formControlName="firstName" matInput autocomplete="given-name" />
+        <mat-error *ngIf="personalDataForm.controls['firstName'].errors?.['required']">
+          Krstné meno je povinný údaj
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Last name -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Priezvisko</mat-label>
+        <input formControlName="lastName" matInput autocomplete="family-name" />
+        <mat-error *ngIf="personalDataForm.controls['lastName'].errors?.['required']">
+          Priezvisko je povinný údaj
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-row gap-[16px] w-full">
+      <!-- Birth date -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Dátum narodenia</mat-label>
+        <input matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirthPicker"
+          (click)="dateOfBirthPicker.open()" [matDatepickerFilter]="ageFilter" />
+        <mat-datepicker-toggle matIconSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateOfBirthPicker [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Gender -->
+      <mat-form-field>
+        <mat-label>Pohlavie</mat-label>
+        <mat-select formControlName="gender">
+          @for (gender of genders; track gender.value) {
+          <mat-option [value]="gender.value" class="!text-sm">{{
+            gender.viewValue
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-row gap-[16px] w-full">
+      <!-- Street -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Ulica</mat-label>
+        <input formControlName="street" matInput autocomplete="address-line1" />
+        <mat-error *ngIf="personalDataForm.controls['street'].errors?.['required']"> Ulica je povinný údaj
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Street number -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Číslo ulice</mat-label>
+        <input formControlName="streetNumber" matInput />
+        <mat-error *ngIf="personalDataForm.controls['streetNumber'].errors?.['required']">
+          Číslo ulice je povinný údaj
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Zipcode -->
+    <mat-form-field class="max-w-full">
+      <mat-label>PSČ, mesto</mat-label>
+      <mat-icon matPrefix>place</mat-icon>
+      <input matInput #zipCodeInputNative formControlName="zipCode" [matAutocomplete]="zipCodeSuggestionsAuto" />
+      <mat-error *ngIf="personalDataForm.controls['zipCode'].errors?.['required']">
+        PSČ je povinný údaj
+      </mat-error>
+      <mat-autocomplete #zipCodeSuggestionsAuto="matAutocomplete" (optionSelected)="onZipCodeSelected($event)">
+        <mat-option *ngFor="let option of zipCodeSuggestions" [value]="option" class="!text-sm">
+          {{ option.name + ', ' + option.zipCode }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="flex flex-row gap-[16px] w-full">
+      <!-- Street -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput autocomplete="email" />
+        <mat-error *ngIf="personalDataForm.controls['email'].errors?.['required']"> Email je povinný údaj
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Street number -->
+      <mat-form-field class="max-w-full">
+        <mat-label>Telefónne číslo</mat-label>
+        <input formControlName="telephone" matInput />
+        <mat-error *ngIf="personalDataForm.controls['telephone'].errors?.['required']">
+          Telefónne číslo je povinný údaj
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="flex justify-center items-center">
+    <button [disabled]="personalDataForm.invalid" color="primary" mat-flat-button (click)="onSubmit()" class="!rounded">
+      <mat-icon svgIcon="floppy-disk" class="!w-[20px] !h-[20px]"></mat-icon>
+      <span>Uložiť</span>
+    </button>
+  </div>
+</form>

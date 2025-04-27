@@ -1,0 +1,39 @@
+<section>
+  <div
+    class="flex flex-col z-2 p-[10px] profile-sidenavcontainer h-auto overflow-hidden self-start fixed top-[89px] max-h-[calc(100vh-120px)] overflow-y-auto 2xl:!w-[200px] lt-lg:!w-[194px]">
+    <!-- Menu section -->
+    <div>
+      <p class="text-center mb-[10px] mt-0 text-sm font-semibold">MENU</p>
+      <mat-divider></mat-divider>
+    </div>
+    <!-- Event detail section -->
+    <div class="profile-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+      <button routerLink="/user/profile/personal-statements" routerLinkActive="profile-sidenavactive-link" mat-button
+        class="profile-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[6px] w-[100%] !text-start">
+        <mat-icon class="profile-sidenavicon" svgIcon="address-card"></mat-icon>
+        <span class="text-sm profile-sidenavtext">Osobné údaje</span>
+      </button>
+    </div>
+    <!-- Endorsements and documents section -->
+    <div class="flex flex-col">
+      <div class="profile-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button routerLink="/user/profile/workplace-statements" routerLinkActive="profile-sidenavactive-link" mat-button
+          class="profile-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[6px] w-[100%] !text-start">
+          <mat-icon class="profile-sidenavicon"
+            svgIcon="{{isHealthcareProfessional ? 'user-doctor' : 'briefcase'}}"></mat-icon>
+          <span class="text-sm profile-sidenavtext">Údaje o povolaní</span>
+        </button>
+      </div>
+    </div>
+    <!-- Photos and videos section -->
+    <div class="flex flex-col">
+      <div class="profile-sidenavsection p-[2px] flex flex-row justify-start items-center gap-[12px] w-[100%]">
+        <button routerLink="/user/profile/marketing-statements" routerLinkActive="profile-sidenavactive-link" mat-button
+          class="profile-sidenavsubsection p-[2px] flex flex-row !justify-start items-center gap-[6px] w-[100%] !text-start">
+          <mat-icon class="profile-sidenavicon" svgIcon="newspaper"></mat-icon>
+          <span class="text-sm profile-sidenavtext">Marketingové vyhlásenia</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,225 @@
+<div class="flex flex-row justify-end pt-[6px] pr-[6px]">
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="flex flex-col w-[100%] h-[100%] !px-[48px] !py-0">
+  <h3 class="text-center m-0 text-base font-semibold mb-[32px]">Nový abstrakt</h3>
+  <div class="flex flex-col justify-center items-center gap-[6px]">
+    <!-- Title -->
+    <mat-form-field class="abstract-dialog-mat-form-field">
+      <mat-label>Názov</mat-label>
+      <input [formControl]="abstractTitle" matInput />
+      <mat-error *ngIf="abstractTitle.errors?.['required']">
+        Názov je povinný údaj
+      </mat-error>
+    </mat-form-field>
+    <!-- Form -->
+    <form [formGroup]="abstractTextForm" class="abstract-dialog-mat-form-field flex flex-col gap-[6px] w-full">
+      <!-- Introduction -->
+      <mat-form-field class="abstract-dialog-mat-form-field">
+        <mat-label>Úvod</mat-label>
+        <mat-icon
+          matTooltip="Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250."
+          matSuffix class="info-icon absolute top-[-30px] left-[-35px]">
+          info
+        </mat-icon>
+        <textarea formControlName="introduction" matInput></textarea>
+
+        <!-- Individual control errors -->
+        <mat-error *ngIf="abstractTextForm.controls['introduction']?.errors?.['required']">
+          Úvod je povinný údaj
+        </mat-error>
+
+        <!-- Group-level errors -->
+        <mat-error *ngIf="abstractTextForm.hasError('tooManyCharacters')">
+          Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250.
+        </mat-error>
+      </mat-form-field>
+      <!-- Target -->
+      <mat-form-field class="abstract-dialog-mat-form-field">
+        <mat-label>Cieľ</mat-label>
+        <textarea formControlName="target" matInput required="true"></textarea>
+        <!-- Individual control errors -->
+        <mat-error *ngIf="abstractTextForm.controls['target']?.errors?.['required']">
+          Cieľ je povinný údaj
+        </mat-error>
+
+        <!-- Group-level errors -->
+        <mat-error *ngIf="abstractTextForm.hasError('tooManyCharacters')">
+          Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250.
+        </mat-error>
+        <mat-icon
+          matTooltip="Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250."
+          class="info-icon absolute top-[-30px] left-[-35px]" matSuffix>
+          info</mat-icon>
+      </mat-form-field>
+      <!-- Methodology -->
+      <mat-form-field class="abstract-dialog-mat-form-field">
+        <mat-label>Metódy</mat-label>
+        <textarea formControlName="methodology" matInput required="true"></textarea>
+        <!-- Individual control errors -->
+        <mat-error *ngIf="abstractTextForm.controls['methodology']?.errors?.['required']">
+          Metódy sú povinný údaj
+        </mat-error>
+
+        <!-- Group-level errors -->
+        <mat-error *ngIf="abstractTextForm.hasError('tooManyCharacters')">
+          Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250.
+        </mat-error>
+        <mat-icon
+          matTooltip="Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250."
+          class="info-icon absolute top-[-30px] left-[-35px]" matSuffix>
+          info</mat-icon>
+      </mat-form-field>
+      <!-- Results -->
+      <mat-form-field class="abstract-dialog-mat-form-field">
+        <mat-label>Výsledky</mat-label>
+        <textarea formControlName="results" matInput required="true"></textarea>
+        <!-- Individual control errors -->
+        <mat-error *ngIf="abstractTextForm.controls['results']?.errors?.['required']">
+          Výsledky sú povinný údaj
+        </mat-error>
+
+        <!-- Group-level errors -->
+        <mat-error *ngIf="abstractTextForm.hasError('tooManyCharacters')">
+          Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250.
+        </mat-error>
+        <mat-icon
+          matTooltip="Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250."
+          class="info-icon absolute top-[-30px] left-[-35px]" matSuffix>
+          info</mat-icon>
+      </mat-form-field>
+      <!-- Conclusion -->
+      <mat-form-field class="abstract-dialog-mat-form-field">
+        <mat-label>Záver</mat-label>
+        <textarea formControlName="conclusion" matInput required="true"></textarea>
+        <!-- Individual control errors -->
+        <mat-error *ngIf="abstractTextForm.controls['conclusion']?.errors?.['required']">
+          Záver je povinný údaj
+        </mat-error>
+
+        <!-- Group-level errors -->
+        <mat-error *ngIf="abstractTextForm.hasError('tooManyCharacters')">
+          Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250.
+        </mat-error>
+        <mat-icon
+          matTooltip="Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250."
+          class="info-icon absolute top-[-30px] left-[-35px]" matSuffix>
+          info</mat-icon>
+        <mat-icon
+          matTooltip="Maximálny počet slov abstraktu (úvod, cieľ, metódy, výsledky ,záver) je limitovaný na 250."
+          class="info-icon absolute top-[-30px] left-[-35px]" matSuffix>
+          info</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+  <!-- Keywords with coauthors -->
+  <form [formGroup]="abstractForm" class="mt-[6px] w-full">
+    <!-- Conflicts -->
+    <mat-form-field class="abstract-dialog-mat-form-field abstract-dialog-texteare">
+      <mat-label>Konflikt záujmov</mat-label>
+      <textarea formControlName="conflicts" matInput></textarea>
+      <mat-error *ngIf="abstractForm.controls['conflicts'].errors?.['required']">
+        Konflikt záujmov je povinný údaj
+      </mat-error>
+    </mat-form-field>
+    <div class="flex flex-row gap-[16px] mt-[6px]">
+      <!-- Keyword1 -->
+      <mat-form-field class="flex flex-1">
+        <mat-label>Kľúč. slovo 1</mat-label>
+        <input formControlName="keyword1" matInput />
+        <mat-error *ngIf="abstractForm.controls['keyword1'].errors?.['required']">Kľúč. slovo 1 je povinný údaj
+        </mat-error>
+      </mat-form-field>
+      <!-- Keyword2 -->
+      <mat-form-field class="flex flex-1">
+        <mat-label>Kľúč. slovo 2</mat-label>
+        <input formControlName="keyword2" matInput />
+        <mat-error *ngIf="abstractForm.controls['keyword2'].errors?.['required']">Kľúč. slovo 2 je povinný údaj
+        </mat-error>
+      </mat-form-field>
+      <!-- Keyword3 -->
+      <mat-form-field class="flex flex-1">
+        <mat-label>Kľúč. slovo 3</mat-label>
+        <input formControlName="keyword3" matInput />
+        <mat-error *ngIf="abstractForm.controls['keyword3'].errors?.['required']">Kľúč. slovo 3 je povinný údaj
+        </mat-error>
+      </mat-form-field>
+      <!-- Keyword4 -->
+      <mat-form-field class="flex flex-1">
+        <mat-label>Kľúč. slovo 4</mat-label>
+        <input formControlName="keyword4" matInput />
+      </mat-form-field>
+      <!-- Keyword5 -->
+      <mat-form-field class="flex flex-1">
+        <mat-label>Kľúč. slovo 5</mat-label>
+        <input formControlName="keyword5" matInput />
+      </mat-form-field>
+    </div>
+    <mat-divider class="!mt-[32px]"></mat-divider>
+    <h3 class="text-center m-0 text-base font-semibold mt-[32px]">Spoluautori</h3>
+    <div formArrayName="coauthors" class="flex flex-col mt-[16px]"
+      *ngFor="let number of getCoauthors().controls; let i = index">
+      <div [formGroupName]="i" class="flex flex-row ">
+        <div class="flex justify-start items-start w-[30%]">
+          <div class="flex justify-center items-center gap-[12px]">
+            <button mat-icon-button (click)="deleteCoauthor(i)">
+              <mat-icon class="abstract-dialog-delete-button scale-[0.7]" svgIcon="trash-can"></mat-icon>
+            </button>
+            <span>Spoluautor č. {{ i + 1 }}</span>
+          </div>
+        </div>
+        <div class="flex flex-col w-[65%]">
+          <div class="flex flex-row justify-between gap-[16px]">
+            <mat-form-field class="flex w-[50%]">
+              <mat-label>Meno spoluautora č. {{ i + 1 }}</mat-label>
+              <input formControlName="firstName" matInput />
+              <mat-error *ngIf="getCoauthors().at(i).get('firstName')?.errors?.['required']">
+                Meno je povinné
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="flex w-[50%]">
+              <mat-label>Priezvisko spoluautora č. {{ i + 1 }}</mat-label>
+              <input formControlName="lastName" matInput />
+              <mat-error *ngIf="getCoauthors().at(i).get('lastName')?.errors?.['required']">
+                Priezvisko je povinné
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <mat-form-field class="flex max-w-full mt-[6px]">
+            <mat-label>Pracovisko spoluautora č. {{ i + 1 }}</mat-label>
+            <input formControlName="workplaceFullName" placeholder="Uveďte celý názov pracoviska bez použitia skratiek."
+              matInput />
+            <mat-error *ngIf="getCoauthors().at(i).get('workplaceFullName')?.errors?.['required']">
+              Pracovisko je povinné
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- Delete coauthor -->
+      <!-- <div class="flex justify-end mb-[16px]">
+        <button class="abstract-dialog-delete-button !rounded" mat-raised-button (click)="deleteCoauthor(i)">Odobrať
+          spoluautora</button>
+      </div> -->
+    </div>
+    <!-- Add coathor -->
+    <div class="flex flex-row justify-center items-center mb-[32px] mt-[16px]">
+      <button (click)="addCoauthor()" type="button" mat-raised-button class="abstract-dialog-button !rounded">
+        <span>Pridať spoluautora</span>
+        <mat-icon matSuffix>add</mat-icon>
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+<!-- Submit button -->
+<mat-dialog-actions align="center">
+  <button mat-flat-button color="primary"
+    [disabled]="((!abstractTitle.valid) || (abstractTextForm.hasError('tooManyCharacters')) || (abstractTextForm.invalid) || (!abstractForm.valid))"
+    (click)="onSubmit()" type="button" class="!rounded">
+    <mat-icon svgIcon="floppy-disk" class="!w-[20px] !h-[20px]"></mat-icon>
+    <span>Uložiť abstrakt</span>
+  </button>
+</mat-dialog-actions>

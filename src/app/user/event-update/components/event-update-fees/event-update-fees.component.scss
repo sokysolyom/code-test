@@ -1,0 +1,86 @@
+.event-update-fees-table {
+  th {
+    background-color: var(--secondary-color) !important;
+    font-size: 12px;
+
+    span {
+      color: var(--white-color);
+
+      mat-icon {
+        color: var(--white-color);
+      }
+    }
+  }
+
+  td {
+    font-size: 12px;
+  }
+
+  .mat-mdc-cell {
+    border-bottom-style: none !important;
+  }
+
+  tr.mat-mdc-footer-row td {
+    background-color: var(--navbar-color);
+    color: var(--white-color);
+  }
+}
+
+.event-update-fees-table tr:nth-child(even) {
+  background-color: var(--secondary-color-10);
+}
+
+.mat-column-fee {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 10%;
+}
+
+.mat-column-name {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.event-update-fees-waiting-bg {
+  border-radius: 14px;
+  background-color: var(--waiting-bg-color);
+  span {
+    color: var(--waiting-color);
+  }
+}
+
+.event-update-unpaid-bg {
+  border-radius: 14px;
+  background-color: var(--success-bg-color);
+  span {
+    color: var(--success-color);
+  }
+}
+
+::ng-deep .event-update-fees-progress-bar .mdc-linear-progress__bar-inner {
+  border-color: var(--primary-color) !important;
+}
+
+::ng-deep .event-update-fees-success-bar .mdc-linear-progress__bar-inner {
+  border-color: var(--success-color) !important;
+}
+
+.event-update-fees-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.event-update-fees-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+
+  .event-update-fees-big-icon {
+    color: var(--white-color) !important;
+  }
+}
+
+.event-update-fees-big-icon {
+  color: var(--primary-color);
+  width: 60px !important;
+  height: 60px !important;
+}

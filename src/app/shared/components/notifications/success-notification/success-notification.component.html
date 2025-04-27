@@ -1,0 +1,9 @@
+<div class="flex flex-row justify-between items-center success-notification-bg">
+  <mat-icon class="success-notification-icon"> check </mat-icon>
+  <i class="success-notification-text" [innerHtml]="data.message">
+    {{ data.message }}
+  </i>
+  <button class="success-notification-highlight" mat-icon-button (click)="dismiss()">
+    <mat-icon> highlight_off </mat-icon>
+  </button>
+</div>

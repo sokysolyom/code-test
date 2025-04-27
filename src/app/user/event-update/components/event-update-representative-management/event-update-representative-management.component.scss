@@ -1,0 +1,80 @@
+.event-update-representative-management-big-icon {
+  color: var(--primary-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.event-update-representative-management-big-icon-ban {
+  color: var(--warning-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.event-update-representative-management-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.event-update-representative-management-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 5px;
+}
+
+.event-update-representative-registered-box {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.event-update-representative-state-box {
+  background-color: var(--navbar-color);
+  color: white;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.event-update-representative-management-mat-card {
+  box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 5px;
+}
+
+.event-update-representative-already-registered-box {
+  background-color: var(--success-color);
+  color: white;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.event-register-represntative-admin-ban-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.event-register-represntative-admin-big-icon {
+  color: var(--primary-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.event-register-represntative-admin-big-icon-ban {
+  color: var(--warning-color);
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.event-register-represntative-admin-mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2rem transparentize(#31405f, 0.5);
+}
+
+.event-register-represntative-admin-selected {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: 1px solid var(--primary-color) !important;
+
+  .event-register-represntative-admin-big-icon {
+    color: var(--white-color) !important;
+  }
+
+  .event-register-represntative-admin-icons {
+    color: var(--white-color) !important;
+  }
+}

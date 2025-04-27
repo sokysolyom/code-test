@@ -1,0 +1,79 @@
+<div class="flex flex-col justify-start main-content">
+  <summeet-title-overlay [title]="'Kontakt'" class="animation-from-top"></summeet-title-overlay>
+
+  <!-- contact form -->
+  <div class="flex flex-1 flex-row justify-center items-center">
+    <div class="flex flex-col w-[60%] lt-md:w-[90%]">
+      <div class="flex flex-row gap-[16px] lt-md:flex-col">
+        <div class="flex w-[75%] lt-md:w-full animation-from-right">
+          <mat-card class="flex flex-1 p-[30px] mat-card-bg">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+              <div class="flex flex-row justify-between gap-[16px] lt-md:flex-col">
+                <mat-form-field class="max-w-full">
+                  <mat-label>Meno</mat-label>
+                  <input matInput autocomplete="name" formControlName="name" />
+                </mat-form-field>
+                <mat-form-field class="max-w-full">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput autocomplete="email" formControlName="email" required />
+                </mat-form-field>
+              </div>
+              <div class="flex flex-row justify-between gap-[16px] lt-md:flex-col">
+                <mat-form-field class="max-w-full">
+                  <mat-label>Tel. číslo</mat-label>
+                  <input matInput autocomplete="tel" formControlName="phoneNumber" />
+                  <mat-error *ngIf="contactForm.controls['phoneNumber'].errors?.['required']">
+                    Telefonné číslo je povinný údaj
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="max-w-full">
+                  <mat-label>Predmet</mat-label>
+                  <input matInput formControlName="subject" />
+                  <mat-error *ngIf="contactForm.controls['subject'].errors?.['required']">
+                    Predmet je povinný údaj
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <mat-form-field class="max-w-full">
+                <mat-label>Správa</mat-label>
+                <textarea matInput rows="4" formControlName="message"></textarea>
+                <mat-error *ngIf="contactForm.controls['message'].errors?.['required']">
+                  Správa je povinný údaj
+                </mat-error>
+              </mat-form-field>
+              <div class="flex justify-center items-center">
+                <button mat-raised-button type="submit" class="contact-submit-button !rounded"
+                  [disabled]="contactForm.invalid" type="button" (click)="onSubmit()">
+                  Odoslať
+                </button>
+              </div>
+            </form>
+          </mat-card>
+        </div>
+        <div class="flex w-[25%] lt-md:w-full animation-from-right">
+          <mat-card class="flex flex-1 contact-icon-card">
+            <div class="flex flex-1 flex-col justify-between items-center">
+              <div></div>
+              <a href="mailto:office@summeet.sk" target="_blank" class="contact-icon-button !no-underline">
+                <div class="flex flex-col justify-center items-center">
+                  <mat-icon>mail</mat-icon>
+                  <h3>Napíšte nám</h3>
+                  <p class="text-justify">office&#64;summeet.sk</p>
+                </div>
+              </a>
+              <hr class="contact-icon-card-divider" />
+              <a color="accent" href="tel:+421951035805" target="_blank" class="contact-icon-button !no-underline">
+                <div class="flex flex-col justify-center items-center">
+                  <mat-icon>call</mat-icon>
+                  <h3>Zavolajte nám</h3>
+                  <p class="text-justify">+421 951 035 805</p>
+                </div>
+              </a>
+              <hr class="contact-icon-card-divider" />
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

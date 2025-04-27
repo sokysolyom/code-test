@@ -1,0 +1,97 @@
+<div class="flex flex-col main-content poster-main-box">
+  <summeet-title-overlay [title]="'Poster'" class="animation-from-top"></summeet-title-overlay>
+
+  <div class="flex flex-col justify-center items-center mt-[60px]">
+    <div class="flex flex-col w-[60%] lt-md:w-[90%]">
+      <h1 *ngIf="posterData.registerTerm || posterData.activityConditions" class="poster-title">Termíny a podmienky
+        aktívnej účasti</h1>
+    </div>
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Dates for the event -->
+      <div *ngIf="posterData.registerTerm" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+        <div class="flex justify-start items-start">
+          <mat-icon color="primary" class="svg-icons" svgIcon="calendar-day-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col w-full gap-[16px]">
+          <h2 class="poster-subtitle">Termíny týkajúce sa aktívnej účasti na podujatí</h2>
+          <div class="text-sm poster-table" [innerHTML]="posterData.registerTerm"></div>
+        </div>
+      </div>
+
+      <!-- Activity conditions -->
+      <div *ngIf="posterData.activityConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+        <div class="flex justify-start items-start">
+          <mat-icon color="primary" class="svg-icons" svgIcon="memo-circle-check-solid"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="poster-subtitle">Podmienky registrácie aktívnej účasti</h2>
+          <summeet-shared-list-custom [data]="posterData.activityConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-[60%] lt-md:w-[90%] mt-[32px]">
+      <h1 *ngIf="posterData.posterConditions || posterData.posterTemplate" class="poster-title">Formálne a obsahové
+        náležitosti posteru</h1>
+    </div>
+
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+
+      <!-- Forbidden content -->
+      <div *ngIf="posterData.prohibitedContent" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+        <div class="flex justify-start items-start">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-xmark"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="poster-subtitle">Zakázaný obsah posteru</h2>
+          <p [innerHTML]="posterData.prohibitedContent.listTitle">
+          </p>
+          <summeet-shared-list-custom [data]="posterData.prohibitedContent.list"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+      <!-- Terms for poster -->
+      <div *ngIf="posterData.posterConditions" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+        <div class="flex justify-start items-start">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-circle-check"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="poster-subtitle">Podmienky a pravidlá pre poster</h2>
+          <summeet-shared-list-custom [data]="posterData.posterConditions"></summeet-shared-list-custom>
+        </div>
+      </div>
+
+
+      <!-- Presentation template -->
+      <div *ngIf="posterData.posterTemplate" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+        <div class="flex justify-start items-start">
+          <mat-icon color="primary" svgIcon="file-pen-solid" class="svg-icons"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="poster-subtitle">Šablóna posteru</h2>
+          <p [innerHTML]="posterData.posterTemplate"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-[60%] lt-md:w-[90%] mt-[32px]">
+      <h1 *ngIf="posterData.sendPoster" class="poster-title">Odoslanie posteru</h1>
+    </div>
+
+    <div class="flex flex-col w-[60%] gap-[40px] lt-md:w-[90%]">
+      <!-- Presentation upload -->
+      <div *ngIf="posterData.sendPoster" class="flex flex-row gap-[30px] lt-md:gap-[16px]">
+        <div class="flex justify-start items-start">
+          <mat-icon color="primary" class="svg-icons" svgIcon="file-arrow-up"></mat-icon>
+        </div>
+        <div class="flex flex-col gap-[16px]">
+          <h2 class="poster-subtitle">Doručenie posteru</h2>
+          <p>
+            {{posterData.sendPoster.text}}</p>
+          <summeet-shared-list-custom [data]="posterData.sendPoster.methods"></summeet-shared-list-custom>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

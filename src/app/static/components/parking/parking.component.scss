@@ -1,0 +1,59 @@
+.parking-main-box {
+  p {
+    text-align: justify;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td,
+  th {
+    text-align: left;
+    padding: 8px;
+  }
+
+  td:not(:first-child),
+  th:not(:first-child) {
+    text-align: center;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  ul li::before {
+    content: '■';
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -2em;
+    font-size: 20px;
+  }
+}
+
+.parking-button {
+  background-color: var(--secondary-color);
+  color: var(--white-color) !important;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.parking-subtitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.parking-title-color {
+  color: var(--primary-color);
+}

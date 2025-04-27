@@ -1,0 +1,110 @@
+<div class="w-[325px]">
+  <div *ngIf="userData?.role === healtcareRole; else subject"
+    class="flex flex-row justify-between items-center registered-users-custom-table-healthcare-bg-color w-full rounded-lg p-[16px] z-[2]">
+    <div class="flex flex-row justify-start items-center gap-[32px]">
+      <mat-icon svgIcon="user-doctor"></mat-icon>
+      <span>Zdravotnícky pracovník</span>
+    </div>
+    <mat-icon matTooltip="Kliknutím na tlačidlo + zobrazíte služby objednané pre konkrétneho účastníka.">info</mat-icon>
+  </div>
+  <ng-template #subject>
+    <div
+      class="flex flex-row justify-between items-center registered-users-custom-table-subject-bg-color w-full rounded-lg p-[16px] z-[2]">
+      <div class="flex flex-row justify-start items-center gap-[32px]">
+        <mat-icon svgIcon="briefcase"></mat-icon>
+        <span>Zástupca subjektu</span>
+      </div>
+      <mat-icon
+        matTooltip="Kliknutím na tlačidlo + zobrazíte služby objednané pre konkrétneho účastníka.">info</mat-icon>
+    </div>
+  </ng-template>
+  <mat-card class="w-[356px] absolute top-[-20px] pt-[40px] p-[16px] z-[1] gap-[6px]">
+    @for (user of userData?.users; track $index) {
+    <mat-accordion>
+      <mat-expansion-panel class="registered-users-custom-table-accordion-header" hideToggle
+        (click)="fetchUserData(user.id, panelOpenState())" (opened)="panelOpenState.set(true)"
+        (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header
+          [ngClass]="{'registered-users-custom-table-accordion-header-bottom':  panelOpenState()}" class="!px-[6px]">
+          <mat-panel-title class="!mr-[0px]">
+            <div class="flex flex-row justify-between w-full">
+              <div class="flex flex-row gap-[16px] items-center justify-start">
+                <mat-icon *ngIf="panelOpenState(); else minus" svgIcon="square-minus"></mat-icon>
+                <ng-template #minus>
+                  <mat-icon svgIcon="square-plus"></mat-icon>
+                </ng-template>
+                <div class="flex flex-col">
+                  <span class="!text-xs !font-normal">{{user.titlesBeforeName}} {{user.firstName}} {{user.lastName}}
+                    {{user.titlesAfterName}}</span>
+                  <span class="!text-xs !font-normal">nar. {{user.birthDate | birthDates}}</span>
+                </div>
+              </div>
+              <div class="flex flex-row justify-end items-center gap-[6px]">
+                <mat-divider [vertical]="true" [ngClass]="{
+                  '!h-[62px]': panelOpenState(),
+                  'registered-users-custom-table-divider-color-subject': userData.role !== healtcareRole,
+                  'registered-users-custom-table-divider-color-healthcare': userData.role === healtcareRole
+                }" class="!h-[44px] !border-[3px]"></mat-divider>
+                <!-- <mat-icon class="!w-[16px] !h-[16px] !text-[16px]">edit</mat-icon> -->
+                <button mat-icon-button
+                  (click)="deleteUser(user.id, user.firstName + ' ' + user.lastName);  $event.stopPropagation()">
+                  <mat-icon class="scale-[0.7]" svgIcon="trash-can"></mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- Body of the panel -->
+        <div class="flex flex-col mt-[6px] gap-[6px]">
+          <!-- Accommodation -->
+          <span *ngIf="user.accommodation.length" class="text-xs font-bold mt-[10px]">Ubytovanie</span>
+          @for (accommodation of user.accommodation; track $index; let index = $index) {
+          <mat-card class="flex !flex-row justify-between items-start summeet-mat-card">
+            <div class="flex flex-row gap-[16px] justify-start items-center p-[12px]">
+              <mat-icon
+                [ngClass]="userData.role === healtcareRole? 'registered-users-custom-table-healthcare-color' : 'registered-users-custom-table-subject-color'"
+                svgIcon="hotel"></mat-icon>
+              <div class="flex flex-col justify-center items-start">
+                <span class="font-medium text-xs">{{ accommodation.roomGroup.hotel.accommodationStartDate|
+                  dayDifference:
+                  accommodation.roomGroup.date}}. noc</span>
+                <span class="text-xs uppercase">{{accommodation.roomGroup.hotel.name}}</span>
+              </div>
+            </div>
+            <div
+              [ngClass]="userData.role === healtcareRole? 'registered-users-custom-table-healthcare-service' : 'registered-users-custom-table-subject-service'"
+              class="flex flex-col justify-center items-center py-[12px] px-[24px] w-[41px]">
+              <span class="text-xs font-medium">{{accommodation.roomGroup.date | dayRangeFromDate}}</span>
+              <span class="text-xs">{{accommodation.roomGroup.date | monthFromDate}}</span>
+            </div>
+          </mat-card>
+          }
+          <!-- Meal -->
+          <span *ngIf="user.meals.length" class="text-xs font-bold mt-[10px]">Strava</span>
+          @for (meal of user.meals; track $index; let index = $index) {
+          <mat-card class="flex !flex-row justify-between items-start summeet-mat-card">
+            <div class="flex flex-row gap-[16px] justify-start items-center p-[12px]">
+              <mat-icon
+                [ngClass]="userData.role === healtcareRole? 'registered-users-custom-table-healthcare-color' : 'registered-users-custom-table-subject-color'"
+                svgIcon="plate-utensils-solid"></mat-icon>
+              <div class="flex flex-col justify-center items-start">
+                <span class="font-medium text-xs">{{ meal.meal.hotel.accommodationStartDate|
+                  dayDifference:
+                  meal.meal.date}}. deň</span>
+                <span class="text-xs uppercase">{{meal.meal.name}}</span>
+              </div>
+            </div>
+            <div
+              [ngClass]="userData.role === healtcareRole? 'registered-users-custom-table-healthcare-service' : 'registered-users-custom-table-subject-service'"
+              class="flex flex-col justify-center items-center py-[12px] px-[24px] w-[20px]">
+              <span class="text-xs font-medium">{{meal.meal.date | dayFromDate}}</span>
+              <span class="text-xs">{{meal.meal.date | monthFromDate}}</span>
+            </div>
+          </mat-card>
+          }
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    }
+  </mat-card>
+</div>

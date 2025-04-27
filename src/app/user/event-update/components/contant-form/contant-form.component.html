@@ -1,0 +1,63 @@
+<div class="flex flex-col justify-center items-center gap-[16px] animation-from-top">
+  <div class="flex flex-col justify-center items-center gap-[16px] w-[90%] max-w-[700px]">
+    <h2 class="font-bold mb-0 mt-[16px]">Kontaktný formulár</h2>
+    <p class="text-xs text-center m-0 mb-[32px]">
+      Ak sa chcete odhlásiť z podujatia alebo zmeniť rozsah objednaných služieb môžete nás kontaktovať prostredníctvom
+      tohto kontaktného formulára.
+    </p>
+    <div class="flex flex-row w-full mb-[32px]">
+      <!-- Presentation -->
+      <mat-card class="w-full contact-form-mat-card shadow">
+        <mat-card-content>
+          <div class="flex justify-center items-center">
+            <h3 class="m-0 text-base font-semibold">Nový dopyt</h3>
+          </div>
+          <div class="flex flex-col px-[16px] gap-[16px] mt-[16px]">
+            <div class="flex flex-col">
+              <span class="text-xs">Odosielateľ</span>
+              <span class="font-medium text-sm">{{ userData.titlesBeforeName }} {{ userData.firstName }} {{
+                userData.lastName }}
+                {{ userData.titlesAfterName }}</span>
+            </div>
+            <div class="flex flex-row gap-[32px]">
+              <div class="flex flex-col w-[50%]">
+                <span class="text-xs">Kontaktný email</span>
+                <span class="font-medium text-sm">{{ userData.email }}</span>
+              </div>
+              <div class="flex flex-col w-[50%]">
+                <span class="text-xs">Kontaktný telefón</span>
+                <span class="font-medium text-sm">{{ userData.phoneNumber | telephonenumber }}</span>
+              </div>
+            </div>
+            <mat-form-field class="max-w-full mt-[16px]">
+              <mat-label>Druh dopytu</mat-label>
+              <mat-select [(ngModel)]="selectedType" name="type">
+                @for (type of types; track type) {
+                <mat-option [value]="type.value" class="!text-sm">{{type.viewValue}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="max-w-full">
+              <mat-label>Popis dopytu</mat-label>
+              <textarea matInput rows="4" [formControl]="messageControl"></textarea>
+              <mat-error *ngIf="messageControl.errors?.['required']">
+                Správa je povinný údaj
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex justify-center items-center">
+            <!-- <button [disabled] mat-button (click)="onSubmit()" class="contact-form-button !rounded">
+              <mat-icon svgIcon="paper-plane-regular" class="!w-[20px] !h-[20px]"></mat-icon>
+              <span>Odoslať</span>
+            </button> -->
+            <button [disabled]="!selectedType || messageControl.invalid" class="!rounded" mat-flat-button
+              (click)="onSubmit()">
+              <mat-icon svgIcon="paper-plane-regular" class="!w-[20px] !h-[20px]"></mat-icon>
+              <span>Odoslať</span>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

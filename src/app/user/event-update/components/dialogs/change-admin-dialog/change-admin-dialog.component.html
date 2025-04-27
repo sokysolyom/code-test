@@ -1,0 +1,28 @@
+<div class="flex justify-end">
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="flex flex-col justify-center items-center p-[16px]">
+  <h3 class="m-0 font-semibold">Presunúť oprávnenia</h3>
+  <mat-form-field class="max-w-full mt-[16px]">
+    <mat-label>Email</mat-label>
+    <input autocomplete="email" [formControl]="email" matInput required="true" />
+    <mat-error *ngIf="email.errors?.['required']">Email je povinný údaj
+    </mat-error>
+    <mat-error *ngIf="email.errors?.['incorrectEmail']">
+      E-mail nemá platný formát
+    </mat-error>
+  </mat-form-field>
+  <div class="flex w-[100%] h-[100%]">
+    <div class="flex w-[100%] flex-row justify-between items-center">
+      <button mat-flat-button color="primary" (click)="closeDialog()" type="button" class="!rounded">
+        <span class="uppercase">Zavrieť</span>
+      </button>
+      <button [disabled]="!email.valid" mat-flat-button (click)="submit()" type="button" color="primary"
+        class="!rounded">
+        <span class="uppercase">Presunúť</span>
+      </button>
+    </div>
+  </div>
+</div>

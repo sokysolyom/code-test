@@ -1,0 +1,69 @@
+<div class="flex flex-col justify-center items-center gap-[16px] mb-[32px]">
+  <h2 class="font-medium">Detail podujatia</h2>
+  <div class="flex flex-row justify-center items-start gap-[32px]">
+    <summeet-event-item></summeet-event-item>
+    <div class="flex flex-col justify-center w-[400px]">
+      <h3 class="mt-0 text-center">Za účasť na podujatí som získal/a</h3>
+      <div class="flex flex-row justify-center gap-[16px]">
+        <!-- Active -->
+        <mat-card class="flex w-[140px] h-[140px] summeet-mat-card">
+          <mat-card-content class="h-full !p-0">
+            <div class="flex flex-col justify-between h-full">
+              <div class="flex justify-center items-center h-[50%]">
+                <span class="text-3xl font-medium">6</span>
+              </div>
+              <div class="flex flex-col justify-between h-[50%]">
+                <div class="flex flex-col items-center justify-center event-detail-accommodation-date h-[50%]">
+                  <span class="text-sm font-medium">KREDITOV</span>
+                </div>
+                <div class="flex flex-col justify-center event-detail-accommodation-price items-center h-[50%]">
+                  <span class="text-xs">AKTÍVNA ÚČASŤ</span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <!-- Passive -->
+        <mat-card class="flex w-[140px] h-[140px] summeet-mat-card">
+          <mat-card-content class="h-full !p-0">
+            <div class="flex flex-col justify-between h-full">
+              <div class="flex justify-center items-center h-[50%]">
+                <span class="text-3xl font-medium">10</span>
+              </div>
+              <div class="flex flex-col justify-between h-[50%]">
+                <div class="flex flex-col items-center justify-center event-detail-accommodation-date h-[50%]">
+                  <span class="text-sm font-medium">KREDITOV</span>
+                </div>
+                <div class="flex flex-col justify-center event-detail-accommodation-price items-center h-[50%]">
+                  <span class="text-xs">PASÍVNA ÚČASŤ</span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- Non-monetary payment -->
+      <h3 class="text-center">Bolo mi poskytnuté nepeňažné plnenie
+        vo výške</h3>
+      <div class="flex flex-row justify-center">
+        <mat-card class="flex w-[140px] h-[140px] summeet-mat-card">
+          <mat-card-content class="h-full !p-0">
+            <div class="flex flex-col justify-between h-full">
+              <div class="flex justify-center items-center h-[50%]">
+                <span class="text-3xl font-medium">10</span>
+              </div>
+              <div class="flex flex-col justify-between h-[50%]">
+                <div class="flex flex-col items-center justify-center event-detail-accommodation-date h-[50%]">
+                  <span class="text-sm font-medium">EUR</span>
+                </div>
+                <div class="flex flex-col justify-center event-detail-accommodation-price items-center h-[50%]">
+                  <span class="text-xs"></span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
